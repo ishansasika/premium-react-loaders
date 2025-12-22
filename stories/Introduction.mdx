@@ -1,0 +1,166 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# Premium React Loaders
+
+Welcome to **Premium React Loaders** - a comprehensive collection of production-ready loading components for React applications.
+
+## Features
+
+- **18 Premium Components** across 4 categories
+- **Full TypeScript Support** with exported type definitions
+- **Tailwind CSS Integration** for easy customization
+- **Tree-shakeable** - only bundle what you use
+- **Accessible** - built with ARIA labels and best practices
+- **Performant** - hardware-accelerated CSS animations
+- **Customizable** - multiple ways to style components
+
+## Component Categories
+
+### Skeleton Loaders
+Placeholder components that mimic content layout while loading:
+- Skeleton (base)
+- SkeletonText
+- SkeletonAvatar
+- SkeletonImage
+- SkeletonCard
+- SkeletonList
+- SkeletonTable
+
+### Spinner Loaders
+Rotating and animated spinners:
+- SpinnerCircle
+- SpinnerRing
+- SpinnerDots
+- SpinnerBars
+- SpinnerGrid
+
+### Progress Loaders
+Progress indicators (determinate/indeterminate):
+- ProgressBar
+- ProgressCircle
+- ProgressRing
+
+### Pulse Loaders
+Bouncing, pulsing, wave animations:
+- PulseDots
+- PulseWave
+- PulseBars
+
+## Installation
+
+```bash
+npm install premium-react-loaders
+```
+
+### Prerequisites
+
+This library requires React and Tailwind CSS as peer dependencies:
+
+```bash
+npm install react react-dom tailwindcss
+```
+
+### Setup
+
+1. Import the styles in your main file:
+
+```typescript
+import 'premium-react-loaders/styles';
+```
+
+2. Add the library to your Tailwind config's content array:
+
+```javascript
+// tailwind.config.js
+module.exports = {
+  content: [
+    './src/**/*.{js,ts,jsx,tsx}',
+    './node_modules/premium-react-loaders/dist/**/*.{js,ts,jsx,tsx}',
+  ],
+  // ... rest of your config
+};
+```
+
+## Quick Start
+
+```typescript
+import { Skeleton, SpinnerCircle, ProgressBar } from 'premium-react-loaders';
+
+function App() {
+  return (
+    <div>
+      {/* Skeleton Loader */}
+      <Skeleton width={200} height={20} />
+
+      {/* Spinner */}
+      <SpinnerCircle size={40} color="#3b82f6" />
+
+      {/* Progress Bar */}
+      <ProgressBar value={75} showValue />
+    </div>
+  );
+}
+```
+
+## Customization
+
+All components support multiple customization methods:
+
+- **className prop** - Pass Tailwind utilities
+- **style prop** - Inline CSS styles
+- **color props** - Direct color control
+- **CSS variables** - Global theming
+
+Example:
+
+```typescript
+<SpinnerCircle
+  size={48}
+  color="#3b82f6"
+  className="my-4"
+  style={{ opacity: 0.8 }}
+/>
+```
+
+## TypeScript
+
+Full TypeScript support with exported types:
+
+```typescript
+import type { SkeletonProps, SpinnerCircleProps } from 'premium-react-loaders';
+
+const MyComponent: React.FC = () => {
+  const skeletonProps: SkeletonProps = {
+    width: 200,
+    height: 20,
+    animate: true,
+  };
+
+  return <Skeleton {...skeletonProps} />;
+};
+```
+
+## Performance
+
+All components use CSS animations (not JavaScript) for optimal performance:
+- Hardware acceleration with `transform` and `opacity`
+- 60fps smooth animations
+- Minimal bundle size
+- Tree-shakeable exports
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## License
+
+MIT © Ishan Karunaratne
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
