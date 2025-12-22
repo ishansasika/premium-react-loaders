@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './animations.css';
+
+/* CSS Variables for theming */
+:root {
+  --loader-primary: #3b82f6;
+  --loader-secondary: #8b5cf6;
+  --skeleton-base: #e0e0e0;
+  --skeleton-highlight: #f5f5f5;
+  --animation-duration-slow: 2s;
+  --animation-duration-normal: 1s;
+  --animation-duration-fast: 0.5s;
+}
+
+/* Base loader styles */
+@layer components {
+  /* Skeleton base */
+  .skeleton {
+    @apply relative overflow-hidden bg-gray-200;
+  }
+
+  .skeleton-animate {
+    @apply relative overflow-hidden;
+  }
+
+  .skeleton-animate::after {
+    @apply absolute inset-0;
+    content: '';
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    animation: skeleton-shimmer 1.5s infinite;
+  }
+
+  /* Spinner base */
+  .spinner-base {
+    @apply inline-block;
+    animation: spinner-rotate 1s linear infinite;
+  }
+
+  /* Progress base */
+  .progress-base {
+    @apply relative overflow-hidden;
+  }
+
+  .progress-indeterminate {
+    @apply absolute inset-0;
+  }
+}
