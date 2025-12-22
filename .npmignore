@@ -1,0 +1,55 @@
+# Source files
+src/
+stories/
+.storybook/
+
+# Configuration files
+vite.config.ts
+tsconfig.json
+tsconfig.build.json
+tailwind.config.js
+postcss.config.js
+
+# Development files
+*.log
+.DS_Store
+.env
+.env.*
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/
+
+# Documentation build
+storybook-static/
+
+# Tests
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+__tests__/
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node modules
+node_modules/
+
+# Build artifacts
+*.tsbuildinfo
+
+# Only include
+!dist/
+!README.md
+!LICENSE
+!CHANGELOG.md
+!package.json
