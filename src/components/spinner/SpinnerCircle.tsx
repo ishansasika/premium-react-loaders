@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { SpinnerCircleProps } from '../../types';
 import { cn, normalizeSize, getAnimationDuration } from '../../utils';
 
@@ -30,8 +30,6 @@ export const SpinnerCircle = forwardRef<HTMLDivElement, SpinnerCircleProps>(
     ref
   ) => {
     if (!visible) return null;
-
-    const sizeValue = typeof size === 'number' ? size : parseInt(String(size), 10);
 
     return (
       <div

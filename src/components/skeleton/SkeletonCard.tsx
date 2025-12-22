@@ -1,6 +1,6 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { SkeletonCardProps } from '../../types';
-import { cn, normalizeSize } from '../../utils';
+import { cn } from '../../utils';
 import { Skeleton } from './Skeleton';
 import { SkeletonAvatar } from './SkeletonAvatar';
 

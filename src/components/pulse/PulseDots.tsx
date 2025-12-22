@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { PulseDotsProps } from '../../types';
 import { cn, normalizeSize, getAnimationDuration } from '../../utils';
 

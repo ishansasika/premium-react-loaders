@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { SkeletonAvatarProps } from '../../types';
 import { normalizeSize } from '../../utils';
 import { Skeleton } from './Skeleton';

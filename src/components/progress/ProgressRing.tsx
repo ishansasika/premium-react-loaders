@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { ProgressRingProps } from '../../types';
 import { cn, normalizeSize } from '../../utils';
 
@@ -38,7 +38,8 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
 
     const clampedValue = Math.min(100, Math.max(0, value));
     const sizeValue = typeof size === 'number' ? size : parseInt(String(size), 10);
-    const radius = (sizeValue - thickness * 2) / 2;
+    const thicknessValue = typeof thickness === 'number' ? thickness : parseInt(String(thickness), 10);
+    const radius = (sizeValue - thicknessValue * 2) / 2;
     const circumference = 2 * Math.PI * radius;
     const strokeDashoffset = circumference - (clampedValue / 100) * circumference;
     const progressLabel = ariaLabel || `Loading ${clampedValue}%`;
@@ -82,7 +83,7 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
             r={radius}
             fill="none"
             stroke={gradient ? '#e0e0e0' : secondaryColor}
-            strokeWidth={thickness}
+            strokeWidth={thicknessValue}
           />
           {/* Progress circle */}
           <circle
@@ -91,7 +92,7 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
             r={radius}
             fill="none"
             stroke={gradient ? `url(#${gradientId})` : color}
-            strokeWidth={thickness}
+            strokeWidth={thicknessValue}
             strokeLinecap="round"
             strokeDasharray={circumference}
             strokeDashoffset={indeterminate ? circumference * 0.75 : strokeDashoffset}
