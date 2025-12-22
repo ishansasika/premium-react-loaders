@@ -5,6 +5,12 @@ A comprehensive collection of **18 premium, production-ready loading components*
 [![npm version](https://img.shields.io/npm/v/premium-react-loaders.svg)](https://www.npmjs.com/package/premium-react-loaders)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
+## Demo
+
+🚀 **[View Live Demo](https://premium-react-loaders.web.app/)**
+
+See all 18 components in action with interactive examples and customization options.
+
 ## Features
 
 - **18 Premium Components** across 4 categories (Skeleton, Spinner, Progress, Pulse)
