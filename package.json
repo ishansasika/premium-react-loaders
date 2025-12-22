@@ -57,6 +57,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "preview-storybook": "serve storybook-static",
+    "deploy:storybook": "npm run build-storybook && firebase deploy",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
