@@ -7,7 +7,6 @@ import { SelectControl } from './controls/SelectControl';
 import { BooleanControl } from './controls/BooleanControl';
 import { TextControl } from './controls/TextControl';
 import { CodeBlock } from '../common/CodeBlock';
-import { CopyButton } from '../common/CopyButton';
 import { ThemeSwitch } from '../common/ThemeSwitch';
 import { useTheme, THEME_COLORS } from '../../contexts/ThemeContext';
 import { generateComponentCode, generateImportStatement } from '../../utils/codeGenerator';
@@ -147,10 +146,7 @@ function App() {
 
       {/* Code */}
       <div className="space-y-2">
-        <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Code</h3>
-          <CopyButton text={generatedCode} />
-        </div>
+        <h3 className="text-lg font-semibold mb-2">Code</h3>
         <CodeBlock code={generatedCode} language="tsx" />
       </div>
 

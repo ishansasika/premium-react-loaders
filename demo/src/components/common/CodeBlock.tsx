@@ -1,4 +1,5 @@
 import { Highlight, themes } from 'prism-react-renderer';
+import { CopyButton } from './CopyButton';
 
 interface CodeBlockProps {
   code: string;
@@ -14,7 +15,10 @@ export function CodeBlock({
   fileName,
 }: CodeBlockProps) {
   return (
-    <div className="code-block rounded-lg overflow-hidden bg-gray-900">
+    <div className="code-block rounded-lg overflow-hidden bg-gray-900 relative group">
+      <div className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+        <CopyButton text={code.trim()} />
+      </div>
       {fileName && (
         <div className="px-4 py-2 bg-gray-800 text-gray-300 text-sm font-mono border-b border-gray-700">
           {fileName}
