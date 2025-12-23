@@ -58,6 +58,11 @@
     "build-storybook": "storybook build",
     "preview-storybook": "serve storybook-static",
     "deploy:storybook": "npm run build-storybook && firebase deploy",
+    "demo": "cd demo && npm run dev",
+    "demo:build": "cd demo && npm run build",
+    "demo:preview": "cd demo && npm run preview",
+    "demo:deploy": "cd demo && npm run deploy",
+    "deploy:all": "npm run build-storybook && cd demo && npm run build && cd .. && firebase deploy",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
