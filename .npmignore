@@ -2,6 +2,7 @@
 src/
 stories/
 .storybook/
+demo/
 
 # Configuration files
 vite.config.ts
