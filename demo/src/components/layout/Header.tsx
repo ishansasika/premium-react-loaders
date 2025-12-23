@@ -27,6 +27,14 @@ export function Header() {
             >
               Documentation
             </Link>
+            <a
+              href="https://premium-react-loaders.web.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+            >
+              Storybook
+            </a>
           </nav>
         </div>
         <div className="flex items-center gap-4">

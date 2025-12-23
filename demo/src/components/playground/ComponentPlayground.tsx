@@ -9,7 +9,7 @@ import { TextControl } from './controls/TextControl';
 import { CodeBlock } from '../common/CodeBlock';
 import { CopyButton } from '../common/CopyButton';
 import { ThemeSwitch } from '../common/ThemeSwitch';
-import { useTheme, THEME_COLORS } from '../../hooks/useTheme';
+import { useTheme, THEME_COLORS } from '../../contexts/ThemeContext';
 import { generateComponentCode, generateImportStatement } from '../../utils/codeGenerator';
 
 interface ComponentPlaygroundProps {
