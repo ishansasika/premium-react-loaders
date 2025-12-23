@@ -4,6 +4,7 @@
   "description": "Premium, production-ready loading components for React with TypeScript and Tailwind CSS",
   "author": "Ishan Karunaratne",
   "license": "MIT",
+  "homepage": "https://premium-react-loaders.ishansasika.dev",
   "repository": {
     "type": "git",
     "url": "https://github.com/ishansasika/premium-react-loaders"

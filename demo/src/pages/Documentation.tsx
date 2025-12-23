@@ -168,12 +168,20 @@ function App() {
         {/* Links */}
         <section>
           <h2 className="section-header">Links</h2>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
+            <a
+              href="https://docs.premium-react-loaders.ishansasika.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+            >
+              📚 Storybook Docs
+            </a>
             <a
               href="https://github.com/ishansasika/premium-react-loaders"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary"
+              className="btn-secondary"
             >
               GitHub
             </a>

@@ -28,7 +28,7 @@ export function Header() {
               Documentation
             </Link>
             <a
-              href="https://premium-react-loaders.web.app"
+              href="https://docs.premium-react-loaders.ishansasika.dev"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-gray-900 font-medium transition-colors"

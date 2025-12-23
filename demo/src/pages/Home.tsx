@@ -12,13 +12,37 @@ export function Home() {
           <p className="text-xl text-gray-600 mb-8">
             18 production-ready loading components for React with TypeScript and Tailwind CSS
           </p>
-          <div className="flex gap-4 justify-center">
+          <div className="flex gap-4 justify-center mb-8">
             <Link to="/playground" className="btn-primary">
               Try Playground
             </Link>
             <Link to="/gallery" className="btn-secondary">
               View Gallery
             </Link>
+          </div>
+          <div className="flex gap-6 justify-center items-center text-sm">
+            <a
+              href="https://docs.premium-react-loaders.ishansasika.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1"
+            >
+              📚 View Storybook Docs
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+            <a
+              href="https://github.com/ishansasika/premium-react-loaders"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-gray-900 font-medium flex items-center gap-1"
+            >
+              View on GitHub
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
           </div>
         </div>
 
