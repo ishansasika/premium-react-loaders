@@ -7,7 +7,9 @@ A comprehensive collection of **18 premium, production-ready loading components*
 
 ## Demo
 
-🚀 **[View Live Demo](https://premium-react-loaders.web.app/)**
+🚀 **[Interactive Demo](https://premium-react-loaders.ishansasika.dev/)** - Playground with live controls and component customization
+
+📚 **[Storybook Documentation](https://docs.premium-react-loaders.ishansasika.dev/)** - Detailed component documentation and examples
 
 See all 18 components in action with interactive examples and customization options.
 
