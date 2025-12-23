@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "premium-react-loaders-demo",
     "public": "dist",
     "ignore": [
       "firebase.json",
