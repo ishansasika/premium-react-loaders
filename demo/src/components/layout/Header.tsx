@@ -1,13 +1,58 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { HamburgerIcon } from '../common/HamburgerIcon';
 
 export function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  // Close mobile menu on window resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && isMobileMenuOpen) {
+        closeMobileMenu();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMobileMenuOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = '';
+      };
+    }
+  }, [isMobileMenuOpen]);
+
   return (
     <header className="border-b bg-white sticky top-0 z-10">
-      <div className="flex items-center justify-between px-6 py-4">
-        <div className="flex items-center gap-8">
-          <Link to="/" className="text-xl font-bold text-gray-900">
+      <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4">
+        <div className="flex items-center gap-4">
+          {/* Hamburger button - mobile only */}
+          <button
+            onClick={toggleMobileMenu}
+            className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+          >
+            <HamburgerIcon isOpen={isMobileMenuOpen} className="text-gray-600" />
+          </button>
+
+          <Link to="/" className="text-lg sm:text-xl font-bold text-gray-900">
             Premium React Loaders
           </Link>
+
+          {/* Desktop navigation */}
           <nav className="hidden md:flex gap-6">
             <Link
               to="/playground"
@@ -37,6 +82,7 @@ export function Header() {
             </a>
           </nav>
         </div>
+
         <div className="flex items-center gap-4">
           <a
             href="https://github.com/ishansasika/premium-react-loaders"
@@ -63,6 +109,66 @@ export function Header() {
           </a>
         </div>
       </div>
+
+      {/* Mobile menu drawer */}
+      {isMobileMenuOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/50 z-40 md:hidden"
+            onClick={closeMobileMenu}
+            aria-hidden="true"
+          />
+
+          {/* Menu drawer */}
+          <nav className="fixed inset-y-0 left-0 w-64 bg-white z-50 p-6 shadow-xl md:hidden transform transition-transform duration-300 ease-in-out">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-lg font-bold text-gray-900">Menu</h2>
+              <button
+                onClick={closeMobileMenu}
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                aria-label="Close menu"
+              >
+                <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="flex flex-col space-y-4">
+              <Link
+                to="/playground"
+                onClick={closeMobileMenu}
+                className="text-gray-600 hover:text-gray-900 font-medium transition-colors px-3 py-2 hover:bg-gray-100 rounded-lg"
+              >
+                Playground
+              </Link>
+              <Link
+                to="/gallery"
+                onClick={closeMobileMenu}
+                className="text-gray-600 hover:text-gray-900 font-medium transition-colors px-3 py-2 hover:bg-gray-100 rounded-lg"
+              >
+                Gallery
+              </Link>
+              <Link
+                to="/docs"
+                onClick={closeMobileMenu}
+                className="text-gray-600 hover:text-gray-900 font-medium transition-colors px-3 py-2 hover:bg-gray-100 rounded-lg"
+              >
+                Documentation
+              </Link>
+              <a
+                href="https://docs.premium-react-loaders.ishansasika.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-gray-900 font-medium transition-colors px-3 py-2 hover:bg-gray-100 rounded-lg"
+              >
+                Storybook
+              </a>
+            </div>
+          </nav>
+        </>
+      )}
     </header>
   );
 }
