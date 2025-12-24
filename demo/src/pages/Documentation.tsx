@@ -1,9 +1,16 @@
 import { Layout } from '../components/layout/Layout';
 import { CodeBlock } from '../components/common/CodeBlock';
+import { SEO } from '../components/common/SEO';
+import { StructuredData } from '../components/common/StructuredData';
+import { docsSEO } from '../utils/seo';
+import { websiteSchema } from '../utils/structuredData';
 
 export function Documentation() {
   return (
-    <Layout>
+    <>
+      <SEO metadata={docsSEO} />
+      <StructuredData data={websiteSchema} />
+      <Layout>
       <div className="p-8 max-w-4xl mx-auto">
         <h1 className="page-header">Documentation</h1>
 
@@ -197,5 +204,6 @@ function App() {
         </section>
       </div>
     </Layout>
+    </>
   );
 }

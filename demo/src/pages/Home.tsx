@@ -1,10 +1,23 @@
 import { Link } from 'react-router-dom';
 import { Layout } from '../components/layout/Layout';
 import { SpinnerCircle, ProgressBar, Skeleton, PulseDots } from '@lib/components';
+import { SEO } from '../components/common/SEO';
+import { StructuredData } from '../components/common/StructuredData';
+import { homeSEO } from '../utils/seo';
+import {
+  organizationSchema,
+  websiteSchema,
+  softwareApplicationSchema,
+} from '../utils/structuredData';
 
 export function Home() {
   return (
-    <Layout>
+    <>
+      <SEO metadata={homeSEO} />
+      <StructuredData
+        data={[organizationSchema, websiteSchema, softwareApplicationSchema]}
+      />
+      <Layout>
       <div className="max-w-6xl mx-auto px-6 py-12">
         {/* Hero */}
         <div className="text-center mb-16">
@@ -121,5 +134,6 @@ function App() {
         </div>
       </div>
     </Layout>
+    </>
   );
 }

@@ -1,10 +1,17 @@
 import { Link } from 'react-router-dom';
 import { Layout } from '../components/layout/Layout';
 import { COMPONENTS, CATEGORIES } from '../data/components';
+import { SEO } from '../components/common/SEO';
+import { StructuredData } from '../components/common/StructuredData';
+import { gallerySEO } from '../utils/seo';
+import { websiteSchema } from '../utils/structuredData';
 
 export function Gallery() {
   return (
-    <Layout>
+    <>
+      <SEO metadata={gallerySEO} />
+      <StructuredData data={websiteSchema} />
+      <Layout>
       <div className="p-8 max-w-7xl mx-auto">
         <h1 className="page-header">Component Gallery</h1>
         <p className="text-gray-600 mb-8">
@@ -44,5 +51,6 @@ export function Gallery() {
         })}
       </div>
     </Layout>
+    </>
   );
 }

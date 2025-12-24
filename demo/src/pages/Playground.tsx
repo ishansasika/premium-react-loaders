@@ -3,6 +3,15 @@ import { Layout } from '../components/layout/Layout';
 import { Sidebar } from '../components/layout/Sidebar';
 import { ComponentPlayground } from '../components/playground/ComponentPlayground';
 import { getComponentById, COMPONENTS } from '../data/components';
+import { SEO } from '../components/common/SEO';
+import { StructuredData } from '../components/common/StructuredData';
+import { getComponentSEO, playgroundHubSEO } from '../utils/seo';
+import {
+  getComponentSchema,
+  getComponentBreadcrumb,
+  websiteSchema,
+  type StructuredData as StructuredDataType,
+} from '../utils/structuredData';
 
 export function Playground() {
   const { componentId } = useParams();
@@ -18,11 +27,24 @@ export function Playground() {
     return <Navigate to={`/playground/${COMPONENTS[0].id}`} replace />;
   }
 
+  const seoData = getComponentSEO(componentId) || playgroundHubSEO;
+
+  // Generate structured data for component pages
+  const structuredData = componentId
+    ? ([getComponentSchema(componentId), getComponentBreadcrumb(componentId)].filter(
+        (item): item is StructuredDataType => item !== null
+      ) as StructuredDataType[])
+    : [websiteSchema];
+
   return (
-    <Layout showSidebar sidebar={<Sidebar />}>
+    <>
+      <SEO metadata={seoData} />
+      <StructuredData data={structuredData} />
+      <Layout showSidebar sidebar={<Sidebar />}>
       <div className="p-8 max-w-5xl mx-auto">
         <ComponentPlayground metadata={metadata} />
       </div>
     </Layout>
+    </>
   );
 }
