@@ -1,6 +1,6 @@
 # Premium React Loaders
 
-A comprehensive collection of **18 premium, production-ready loading components** for React applications. Built with TypeScript and Tailwind CSS for maximum flexibility and customization.
+A comprehensive collection of **20 premium, production-ready loading components** for React applications. Built with TypeScript and Tailwind CSS for maximum flexibility and customization.
 
 [![npm version](https://img.shields.io/npm/v/premium-react-loaders.svg)](https://www.npmjs.com/package/premium-react-loaders)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -11,11 +11,11 @@ A comprehensive collection of **18 premium, production-ready loading components*
 
 📚 **[Storybook Documentation](https://docs.premium-react-loaders.ishansasika.dev/)** - Detailed component documentation and examples
 
-See all 18 components in action with interactive examples and customization options.
+See all 20 components in action with interactive examples and customization options.
 
 ## Features
 
-- **18 Premium Components** across 4 categories (Skeleton, Spinner, Progress, Pulse)
+- **20 Premium Components** across 5 categories (Skeleton, Spinner, Progress, Pulse, Overlay)
 - **Full TypeScript Support** with exported type definitions
 - **Tailwind CSS Integration** for easy customization
 - **Tree-shakeable** - only bundle what you use
@@ -95,7 +95,7 @@ function App() {
 
 ## Component Categories
 
-### Skeleton Loaders (7 components)
+### Skeleton Loaders (8 components)
 
 Placeholder components that mimic content layout while loading:
 
@@ -106,6 +106,7 @@ Placeholder components that mimic content layout while loading:
 - **SkeletonCard** - Card layout with avatar + text
 - **SkeletonList** - List of skeleton items
 - **SkeletonTable** - Table skeleton with rows/columns
+- **SkeletonPage** - Pre-built full page layouts (default, dashboard, article, profile)
 
 ### Spinner Loaders (5 components)
 
@@ -132,6 +133,12 @@ Bouncing, pulsing, wave animations:
 - **PulseDots** - Bouncing dots in sequence
 - **PulseWave** - Wave pattern bars
 - **PulseBars** - Equalizer-style pulsing bars
+
+### Overlay Components (1 component)
+
+Wrapper component for displaying loaders over content:
+
+- **LoaderOverlay** - Displays any loader over content with backdrop (full-screen or container-relative)
 
 ## Usage Examples
 
@@ -228,6 +235,37 @@ import { PulseDots, PulseWave, PulseBars } from 'premium-react-loaders';
 
 // Equalizer bars
 <PulseBars barCount={4} speed="fast" />
+```
+
+### New in v1.0.1
+
+```tsx
+import { LoaderOverlay, SkeletonPage, SpinnerCircle } from 'premium-react-loaders';
+
+// Page skeleton for full page loading
+<SkeletonPage variant="dashboard" />
+<SkeletonPage variant="article" />
+<SkeletonPage variant="profile" />
+
+// Loader overlay over content
+<LoaderOverlay
+  loading={isLoading}
+  loader={<SpinnerCircle size={50} />}
+  blur
+>
+  <YourContent />
+</LoaderOverlay>
+
+// Full-screen overlay with custom backdrop
+<LoaderOverlay
+  loading={isLoading}
+  loader={<SpinnerCircle />}
+  position="fixed"
+  backdropOpacity={0.8}
+  backdropColor="#000000"
+>
+  <YourApp />
+</LoaderOverlay>
 ```
 
 ## Customization

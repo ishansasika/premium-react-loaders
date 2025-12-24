@@ -5,7 +5,45 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2025-12-22
+## [1.0.1] - 2024-12-24
+
+### Added
+
+#### New Components (2)
+- **LoaderOverlay** - Wrapper component for displaying loaders over content with customizable backdrop
+  - Support for both full-screen (`fixed`) and container-relative (`absolute`) positioning
+  - Customizable backdrop color, opacity, and blur effect
+  - Accepts any loader component as a child
+  - Configurable z-index for layering control
+  - Loading state toggle for showing/hiding overlay
+- **SkeletonPage** - Pre-built full page skeleton layouts for common page types
+  - 4 layout variants: `default`, `dashboard`, `article`, `profile`
+  - Default variant: Generic page with header, navigation, and content sections
+  - Dashboard variant: Stats cards, chart area, and data table
+  - Article variant: Hero image, author info, and content blocks
+  - Profile variant: User header, sidebar, and activity feed
+  - Fully customizable animation and colors
+
+#### Features
+- Added new **Overlay** component category (5 categories total: Skeleton, Spinner, Progress, Pulse, Overlay)
+- Expanded Skeleton category from 7 to 8 components
+- Total component count increased from 18 to 20
+
+### Documentation
+- Added live demo site at https://premium-react-loaders.ishansasika.dev/
+- Added Storybook documentation at https://docs.premium-react-loaders.ishansasika.dev/
+- Updated README.md with new component examples and usage guides
+- Added "New in v1.0.1" section with code examples
+- Created Storybook stories for LoaderOverlay and SkeletonPage
+- Updated CLAUDE.md with new architecture details
+
+### Infrastructure
+- Set up GitHub Actions CI/CD for automated Firebase deployments
+- Configured multi-project Firebase hosting (separate Storybook and demo sites)
+- Added deployment workflow documentation in `.github/workflows/README.md`
+- Integrated both new components into demo app with full prop controls and examples
+
+## [1.0.0] - 2024-12-22
 
 ### Added
 
