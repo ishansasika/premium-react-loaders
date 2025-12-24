@@ -35,16 +35,14 @@ jobs:
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PREMIUM_REACT_LOADERS }}'
           projectId: premium-react-loaders
           channelId: live
-          target: docs
 
       - name: Deploy Demo to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
-          projectId: premium-react-loaders
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PREMIUM_REACT_LOADERS_DEMO }}'
+          projectId: premium-react-loaders-demo
           channelId: live
-          target: demo
