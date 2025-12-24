@@ -50,10 +50,11 @@ npm run prepublishOnly     # Runs automatically before npm publish (builds libra
 
 ### Library Structure
 
-The library is organized into 4 main component categories, each in its own directory under `src/components/`:
+The library is organized into 5 main component categories, each in its own directory under `src/components/`:
 
-1. **Skeleton** (`src/components/skeleton/`) - 7 components for placeholder content
-   - Base `Skeleton`, `SkeletonText`, `SkeletonAvatar`, `SkeletonImage`, `SkeletonCard`, `SkeletonList`, `SkeletonTable`
+1. **Skeleton** (`src/components/skeleton/`) - 8 components for placeholder content
+   - Base `Skeleton`, `SkeletonText`, `SkeletonAvatar`, `SkeletonImage`, `SkeletonCard`, `SkeletonList`, `SkeletonTable`, `SkeletonPage`
+   - `SkeletonPage` provides pre-built full page layouts (default, dashboard, article, profile)
 
 2. **Spinner** (`src/components/spinner/`) - 5 rotating/animated spinners
    - `SpinnerCircle`, `SpinnerRing`, `SpinnerDots`, `SpinnerBars`, `SpinnerGrid`
@@ -64,6 +65,9 @@ The library is organized into 4 main component categories, each in its own direc
 
 4. **Pulse** (`src/components/pulse/`) - 3 pulsing/bouncing loaders
    - `PulseDots`, `PulseWave`, `PulseBars`
+
+5. **Overlay** (`src/components/overlay/`) - 1 wrapper component
+   - `LoaderOverlay` - Displays loaders over content with backdrop (full-screen or container-relative)
 
 ### Export Pattern
 
