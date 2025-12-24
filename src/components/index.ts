@@ -9,3 +9,6 @@ export * from './progress';
 
 // Pulse components
 export * from './pulse';
+
+// Overlay components
+export * from './overlay';

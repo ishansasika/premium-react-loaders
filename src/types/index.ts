@@ -6,3 +6,4 @@ export * from './skeleton';
 export * from './spinner';
 export * from './progress';
 export * from './pulse';
+export * from './overlay';

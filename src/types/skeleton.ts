@@ -76,3 +76,11 @@ export interface SkeletonTableProps extends SkeletonBaseProps {
   /** Show table header */
   showHeader?: boolean;
 }
+
+/**
+ * SkeletonPage component props
+ */
+export interface SkeletonPageProps extends SkeletonBaseProps {
+  /** Page layout variant */
+  variant?: 'default' | 'dashboard' | 'article' | 'profile';
+}
