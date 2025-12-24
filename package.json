@@ -1,6 +1,6 @@
 {
   "name": "premium-react-loaders",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Premium, production-ready loading components for React with TypeScript and Tailwind CSS",
   "author": "Ishan Karunaratne",
   "license": "MIT",
