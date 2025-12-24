@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Premium React Loaders is a TypeScript library providing 18 production-ready loading components for React. The library is published to npm and uses Vite for building, with Storybook for documentation and demos hosted on Firebase.
+Premium React Loaders is a TypeScript library providing 20 production-ready loading components for React. The library is published to npm and uses Vite for building, with Storybook for documentation and demos hosted on Firebase.
 
 ## Development Commands
 
@@ -170,11 +170,11 @@ See `.github/workflows/README.md` for detailed setup instructions.
 
 ## Demo App Architecture
 
-The `demo/` directory contains a standalone React + Vite application that showcases all 18 library components:
+The `demo/` directory contains a standalone React + Vite application that showcases all 20 library components:
 
 **Key Features**:
 - Interactive playground with live prop controls (similar to Storybook)
-- Component gallery with all 18 components
+- Component gallery with all 20 components
 - Documentation pages
 - Code generation with copy-to-clipboard
 - Background theme switcher (light/dark/gray)
@@ -193,7 +193,7 @@ The `demo/` directory contains a standalone React + Vite application that showca
 - `src/hooks/` - React hooks (useTheme, useClipboard, useLocalStorage)
 - `src/utils/` - Utility functions (code generation, formatters)
 
-**Component Metadata**: All 18 components are defined in `demo/src/data/components.ts` with:
+**Component Metadata**: All 20 components are defined in `demo/src/data/components.ts` with:
 - Default props
 - Prop definitions with control types (range, color, select, boolean, text)
 - Usage examples

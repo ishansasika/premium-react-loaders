@@ -23,7 +23,7 @@ export function Home() {
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold mb-4">Premium React Loaders</h1>
           <p className="text-xl text-gray-600 mb-8">
-            18 production-ready loading components for React with TypeScript and Tailwind CSS
+            20 production-ready loading components for React with TypeScript and Tailwind CSS
           </p>
           <div className="flex gap-4 justify-center mb-8">
             <Link to="/playground" className="btn-primary">

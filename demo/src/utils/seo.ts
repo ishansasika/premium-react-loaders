@@ -20,9 +20,9 @@ export const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`;
 
 // Homepage SEO
 export const homeSEO: SEOMetadata = {
-  title: 'Premium React Loaders - 18 Production-Ready Loading Components',
+  title: 'Premium React Loaders - 20 Production-Ready Loading Components',
   description:
-    'Premium React Loaders provides 18 beautiful, customizable loading components for React. Includes skeleton screens, spinners, progress bars, and pulse loaders with TypeScript support and Tailwind CSS styling.',
+    'Premium React Loaders provides 20 beautiful, customizable loading components for React. Includes skeleton screens, spinners, progress bars, and pulse loaders with TypeScript support and Tailwind CSS styling.',
   keywords: [
     'react loaders',
     'react loading components',
@@ -46,7 +46,7 @@ export const homeSEO: SEOMetadata = {
 export const gallerySEO: SEOMetadata = {
   title: 'Component Gallery - Premium React Loaders',
   description:
-    'Browse all 18 React loading components: skeleton screens, spinners, progress bars, and pulse animations. Interactive examples with live previews and customization options.',
+    'Browse all 20 React loading components: skeleton screens, spinners, progress bars, and pulse animations. Interactive examples with live previews and customization options.',
   keywords: [
     'react component gallery',
     'loading component examples',
@@ -64,7 +64,7 @@ export const gallerySEO: SEOMetadata = {
 export const docsSEO: SEOMetadata = {
   title: 'Documentation - Premium React Loaders',
   description:
-    'Complete documentation for Premium React Loaders. Installation guide, setup instructions, API reference, and usage examples for all 18 components with TypeScript and Tailwind CSS.',
+    'Complete documentation for Premium React Loaders. Installation guide, setup instructions, API reference, and usage examples for all 20 components with TypeScript and Tailwind CSS.',
   keywords: [
     'react loaders documentation',
     'premium react loaders docs',
@@ -82,7 +82,7 @@ export const docsSEO: SEOMetadata = {
 export const playgroundHubSEO: SEOMetadata = {
   title: 'Interactive Playground - Premium React Loaders',
   description:
-    'Try all Premium React Loaders components interactively. Customize props, see live previews, and copy code snippets instantly. 18 production-ready loading components to explore.',
+    'Try all Premium React Loaders components interactively. Customize props, see live previews, and copy code snippets instantly. 20 production-ready loading components to explore.',
   keywords: [
     'react loader playground',
     'interactive component demo',

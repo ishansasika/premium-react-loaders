@@ -15,7 +15,7 @@ export function Gallery() {
       <div className="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto">
         <h1 className="page-header">Component Gallery</h1>
         <p className="text-gray-600 mb-8">
-          Browse all 18 components. Click any card to try it in the playground.
+          Browse all 20 components. Click any card to try it in the playground.
         </p>
 
         {CATEGORIES.map((category) => {

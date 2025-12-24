@@ -33,7 +33,7 @@ export const websiteSchema: StructuredData = {
   name: 'Premium React Loaders',
   url: BASE_URL,
   description:
-    '18 production-ready loading components for React with TypeScript and Tailwind CSS',
+    '20 production-ready loading components for React with TypeScript and Tailwind CSS',
   author: {
     '@type': 'Person',
     name: 'Ishan Sasika',
