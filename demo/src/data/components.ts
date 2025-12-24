@@ -104,6 +104,7 @@ export const COMPONENTS: ComponentMetadata[] = [
     defaultProps: {
       lines: 3,
       width: '100%',
+      gap: '0.5rem',
     },
     propDefinitions: [
       {
@@ -121,11 +122,32 @@ export const COMPONENTS: ComponentMetadata[] = [
         defaultValue: '100%',
       },
       {
+        name: 'gap',
+        type: 'number | string',
+        control: { type: 'text' },
+        description: 'Gap between lines',
+        defaultValue: '0.5rem',
+      },
+      {
         name: 'animate',
         type: 'boolean',
         control: { type: 'boolean' },
         description: 'Enable shimmer animation',
         defaultValue: true,
+      },
+      {
+        name: 'baseColor',
+        type: 'string',
+        control: { type: 'color' },
+        description: 'Base background color',
+        defaultValue: '#e0e0e0',
+      },
+      {
+        name: 'highlightColor',
+        type: 'string',
+        control: { type: 'color' },
+        description: 'Shimmer highlight color',
+        defaultValue: '#f5f5f5',
       },
     ],
     examples: [
@@ -166,6 +188,20 @@ export const COMPONENTS: ComponentMetadata[] = [
         control: { type: 'boolean' },
         description: 'Enable shimmer animation',
         defaultValue: true,
+      },
+      {
+        name: 'baseColor',
+        type: 'string',
+        control: { type: 'color' },
+        description: 'Base background color',
+        defaultValue: '#e0e0e0',
+      },
+      {
+        name: 'highlightColor',
+        type: 'string',
+        control: { type: 'color' },
+        description: 'Shimmer highlight color',
+        defaultValue: '#f5f5f5',
       },
     ],
     examples: [
@@ -214,6 +250,20 @@ export const COMPONENTS: ComponentMetadata[] = [
         control: { type: 'boolean' },
         description: 'Enable shimmer animation',
         defaultValue: true,
+      },
+      {
+        name: 'baseColor',
+        type: 'string',
+        control: { type: 'color' },
+        description: 'Base background color',
+        defaultValue: '#e0e0e0',
+      },
+      {
+        name: 'highlightColor',
+        type: 'string',
+        control: { type: 'color' },
+        description: 'Shimmer highlight color',
+        defaultValue: '#f5f5f5',
       },
     ],
     examples: [
@@ -271,6 +321,20 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Enable shimmer animation',
         defaultValue: true,
       },
+      {
+        name: 'baseColor',
+        type: 'string',
+        control: { type: 'color' },
+        description: 'Base background color',
+        defaultValue: '#e0e0e0',
+      },
+      {
+        name: 'highlightColor',
+        type: 'string',
+        control: { type: 'color' },
+        description: 'Shimmer highlight color',
+        defaultValue: '#f5f5f5',
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -286,23 +350,30 @@ export const COMPONENTS: ComponentMetadata[] = [
     component: SkeletonList,
     description: 'List of skeleton items with customizable count',
     defaultProps: {
-      count: 5,
-      spacing: 16,
+      items: 5,
+      gap: 12,
     },
     propDefinitions: [
       {
-        name: 'count',
+        name: 'items',
         type: 'number',
         control: { type: 'range', min: 1, max: 10, step: 1 },
         description: 'Number of list items',
         defaultValue: 5,
       },
       {
-        name: 'spacing',
-        type: 'number',
-        control: { type: 'range', min: 4, max: 32, step: 4 },
-        description: 'Spacing between items',
-        defaultValue: 16,
+        name: 'gap',
+        type: 'number | string',
+        control: { type: 'text' },
+        description: 'Gap between items',
+        defaultValue: 12,
+      },
+      {
+        name: 'itemHeight',
+        type: 'number | string',
+        control: { type: 'text' },
+        description: 'Height of each item',
+        defaultValue: '3rem',
       },
       {
         name: 'animate',
@@ -311,11 +382,25 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Enable shimmer animation',
         defaultValue: true,
       },
+      {
+        name: 'baseColor',
+        type: 'string',
+        control: { type: 'color' },
+        description: 'Base background color',
+        defaultValue: '#e0e0e0',
+      },
+      {
+        name: 'highlightColor',
+        type: 'string',
+        control: { type: 'color' },
+        description: 'Shimmer highlight color',
+        defaultValue: '#f5f5f5',
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
-      { name: 'Few Items', props: { count: 3 } },
-      { name: 'Many Items', props: { count: 8, spacing: 12 } },
+      { name: 'Few Items', props: { items: 3 } },
+      { name: 'Many Items', props: { items: 8, gap: 12 } },
     ],
     importPath: "import { SkeletonList } from 'premium-react-loaders';",
   },
@@ -328,6 +413,7 @@ export const COMPONENTS: ComponentMetadata[] = [
     defaultProps: {
       rows: 5,
       columns: 4,
+      showHeader: true,
     },
     propDefinitions: [
       {
@@ -345,17 +431,39 @@ export const COMPONENTS: ComponentMetadata[] = [
         defaultValue: 4,
       },
       {
+        name: 'showHeader',
+        type: 'boolean',
+        control: { type: 'boolean' },
+        description: 'Show table header row',
+        defaultValue: true,
+      },
+      {
         name: 'animate',
         type: 'boolean',
         control: { type: 'boolean' },
         description: 'Enable shimmer animation',
         defaultValue: true,
       },
+      {
+        name: 'baseColor',
+        type: 'string',
+        control: { type: 'color' },
+        description: 'Base background color',
+        defaultValue: '#e0e0e0',
+      },
+      {
+        name: 'highlightColor',
+        type: 'string',
+        control: { type: 'color' },
+        description: 'Shimmer highlight color',
+        defaultValue: '#f5f5f5',
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
       { name: 'Small Table', props: { rows: 3, columns: 3 } },
       { name: 'Large Table', props: { rows: 8, columns: 5 } },
+      { name: 'No Header', props: { showHeader: false } },
     ],
     importPath: "import { SkeletonTable } from 'premium-react-loaders';",
   },
@@ -626,6 +734,7 @@ export const COMPONENTS: ComponentMetadata[] = [
     description: 'Grid of fading squares',
     defaultProps: {
       size: 40,
+      gridSize: 3,
       color: '#3b82f6',
       speed: 'normal',
     },
@@ -636,6 +745,13 @@ export const COMPONENTS: ComponentMetadata[] = [
         control: { type: 'range', min: 24, max: 80, step: 4 },
         description: 'Size of the grid',
         defaultValue: 40,
+      },
+      {
+        name: 'gridSize',
+        type: 'number',
+        control: { type: 'range', min: 2, max: 5, step: 1 },
+        description: 'Grid size (e.g., 3 for 3x3)',
+        defaultValue: 3,
       },
       {
         name: 'color',
@@ -654,8 +770,8 @@ export const COMPONENTS: ComponentMetadata[] = [
     ],
     examples: [
       { name: 'Default', props: {} },
-      { name: 'Small', props: { size: 24 } },
-      { name: 'Large', props: { size: 60 } },
+      { name: 'Small 2x2', props: { size: 24, gridSize: 2 } },
+      { name: 'Large 4x4', props: { size: 60, gridSize: 4 } },
     ],
     importPath: "import { SpinnerGrid } from 'premium-react-loaders';",
   },
