@@ -10,6 +10,7 @@ import {
   SkeletonCard,
   SkeletonList,
   SkeletonTable,
+  SkeletonPage,
   // Spinner
   SpinnerCircle,
   SpinnerRing,
@@ -24,6 +25,8 @@ import {
   PulseDots,
   PulseWave,
   PulseBars,
+  // Overlay
+  LoaderOverlay,
 } from '@lib/components';
 
 export const COMPONENTS: ComponentMetadata[] = [
@@ -355,6 +358,55 @@ export const COMPONENTS: ComponentMetadata[] = [
       { name: 'Large Table', props: { rows: 8, columns: 5 } },
     ],
     importPath: "import { SkeletonTable } from 'premium-react-loaders';",
+  },
+  {
+    id: 'skeleton-page',
+    name: 'SkeletonPage',
+    category: 'skeleton',
+    component: SkeletonPage,
+    description: 'Pre-built full page skeleton layouts for common page types',
+    defaultProps: {
+      variant: 'default',
+      animate: true,
+    },
+    propDefinitions: [
+      {
+        name: 'variant',
+        type: 'string',
+        control: { type: 'select', options: ['default', 'dashboard', 'article', 'profile'] },
+        description: 'Page layout variant',
+        defaultValue: 'default',
+      },
+      {
+        name: 'animate',
+        type: 'boolean',
+        control: { type: 'boolean' },
+        description: 'Enable shimmer animation',
+        defaultValue: true,
+      },
+      {
+        name: 'baseColor',
+        type: 'string',
+        control: { type: 'color' },
+        description: 'Base background color',
+        defaultValue: '#e0e0e0',
+      },
+      {
+        name: 'highlightColor',
+        type: 'string',
+        control: { type: 'color' },
+        description: 'Shimmer highlight color',
+        defaultValue: '#f5f5f5',
+      },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'Dashboard', props: { variant: 'dashboard' } },
+      { name: 'Article', props: { variant: 'article' } },
+      { name: 'Profile', props: { variant: 'profile' } },
+      { name: 'No Animation', props: { animate: false } },
+    ],
+    importPath: "import { SkeletonPage } from 'premium-react-loaders';",
   },
 
   // ==================== SPINNER COMPONENTS ====================
@@ -957,6 +1009,75 @@ export const COMPONENTS: ComponentMetadata[] = [
     ],
     importPath: "import { PulseBars } from 'premium-react-loaders';",
   },
+
+  // ==================== OVERLAY COMPONENTS ====================
+  {
+    id: 'loader-overlay',
+    name: 'LoaderOverlay',
+    category: 'overlay',
+    component: LoaderOverlay,
+    description: 'Overlay wrapper for displaying loaders over content with backdrop',
+    defaultProps: {
+      loading: true,
+      position: 'fixed',
+      backdropOpacity: 0.5,
+      backdropColor: '#000000',
+      blur: false,
+      zIndex: 9999,
+    },
+    propDefinitions: [
+      {
+        name: 'loading',
+        type: 'boolean',
+        control: { type: 'boolean' },
+        description: 'Whether the overlay is active/loading',
+        defaultValue: true,
+      },
+      {
+        name: 'position',
+        type: 'string',
+        control: { type: 'select', options: ['fixed', 'absolute'] },
+        description: 'Position style of the overlay',
+        defaultValue: 'fixed',
+      },
+      {
+        name: 'backdropOpacity',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 1, step: 0.1 },
+        description: 'Backdrop opacity (0-1)',
+        defaultValue: 0.5,
+      },
+      {
+        name: 'backdropColor',
+        type: 'string',
+        control: { type: 'color' },
+        description: 'Backdrop color',
+        defaultValue: '#000000',
+      },
+      {
+        name: 'blur',
+        type: 'boolean',
+        control: { type: 'boolean' },
+        description: 'Apply blur effect to backdrop',
+        defaultValue: false,
+      },
+      {
+        name: 'zIndex',
+        type: 'number',
+        control: { type: 'number' },
+        description: 'Z-index of the overlay',
+        defaultValue: 9999,
+      },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'With Blur', props: { blur: true } },
+      { name: 'Light Backdrop', props: { backdropColor: '#ffffff', backdropOpacity: 0.8 } },
+      { name: 'Heavy Opacity', props: { backdropOpacity: 0.9 } },
+      { name: 'Absolute Position', props: { position: 'absolute' } },
+    ],
+    importPath: "import { LoaderOverlay } from 'premium-react-loaders';",
+  },
 ];
 
 // Helper functions
@@ -973,4 +1094,5 @@ export const CATEGORIES = [
   { id: 'spinner', name: 'Spinner', description: 'Rotating and animated spinners' },
   { id: 'progress', name: 'Progress', description: 'Progress indicators' },
   { id: 'pulse', name: 'Pulse', description: 'Pulsing and bouncing animations' },
+  { id: 'overlay', name: 'Overlay', description: 'Loader overlay wrappers' },
 ];
