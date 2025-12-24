@@ -8,49 +8,44 @@ The `deploy.yml` workflow automatically deploys both Storybook documentation and
 
 ### Required Setup
 
-Before the workflow can run successfully, you need to configure the Firebase service account secret:
+Before the workflow can run successfully, you need to configure two Firebase service account secrets:
 
-1. **Generate Firebase Service Account Key:**
-   ```bash
-   # Login to Firebase CLI
-   firebase login
+1. **Generate Firebase Service Account Keys:**
 
-   # Create a service account key
-   firebase init hosting:github
-   ```
-
-   Or manually create one from the Firebase Console:
-   - Go to Project Settings > Service Accounts
+   For the Storybook project (`premium-react-loaders`):
+   - Go to Firebase Console → Project Settings → Service Accounts
    - Click "Generate New Private Key"
    - Save the JSON file securely
 
-2. **Add Secret to GitHub Repository:**
+   For the Demo project (`premium-react-loaders-demo`):
+   - Go to Firebase Console → Project Settings → Service Accounts
+   - Click "Generate New Private Key"
+   - Save the JSON file securely
+
+2. **Add Secrets to GitHub Repository:**
    - Go to your GitHub repository
    - Navigate to Settings > Secrets and variables > Actions
-   - Click "New repository secret"
-   - Name: `FIREBASE_SERVICE_ACCOUNT`
-   - Value: Paste the entire contents of the service account JSON file
-   - Click "Add secret"
+   - Create two secrets:
 
-### Firebase Multi-Site Configuration
+     **Secret 1:**
+     - Name: `FIREBASE_SERVICE_ACCOUNT_PREMIUM_REACT_LOADERS`
+     - Value: Contents of the Storybook project service account JSON
 
-The project uses Firebase multi-site hosting with two targets:
+     **Secret 2:**
+     - Name: `FIREBASE_SERVICE_ACCOUNT_PREMIUM_REACT_LOADERS_DEMO`
+     - Value: Contents of the demo project service account JSON
 
-- **`docs`** target → Deploys Storybook to `docs.premium-react-loaders.ishansasika.dev`
+### Firebase Project Configuration
+
+The project uses two separate Firebase projects:
+
+- **`premium-react-loaders`** → Deploys Storybook to `docs.premium-react-loaders.ishansasika.dev`
+  - Configuration: Root `firebase.json` and `.firebaserc`
   - Build output: `storybook-static/`
 
-- **`demo`** target → Deploys demo app to `premium-react-loaders.ishansasika.dev`
+- **`premium-react-loaders-demo`** → Deploys demo app to `premium-react-loaders.ishansasika.dev`
+  - Configuration: `demo/firebase.json` and `demo/.firebaserc`
   - Build output: `demo/dist/`
-
-To configure the hosting targets locally:
-
-```bash
-# Apply hosting targets to your Firebase sites
-firebase target:apply hosting docs <your-docs-site-id>
-firebase target:apply hosting demo <your-demo-site-id>
-```
-
-These targets are referenced in `firebase.json` and the GitHub Actions workflow.
 
 ### Workflow Trigger
 

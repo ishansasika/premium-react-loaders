@@ -139,25 +139,30 @@ Components support a `testId` prop for test targeting. When provided, it's appli
 
 ## Firebase Deployment
 
-Both Storybook and the demo app are deployed to Firebase Hosting using multi-site configuration:
+Both Storybook and the demo app are deployed to Firebase Hosting using two separate Firebase projects:
 
 - **Storybook**: https://docs.premium-react-loaders.ishansasika.dev/ (component documentation)
+  - Firebase project: `premium-react-loaders`
+  - Configuration: Root `firebase.json` and `.firebaserc`
+  - Build output: `storybook-static/`
+
 - **Demo App**: https://premium-react-loaders.ishansasika.dev/ (interactive playground)
-
-### Multi-Site Configuration
-
-The root `firebase.json` defines two hosting targets:
-- `docs` target → Deploys `storybook-static/` to docs subdomain
-- `demo` target → Deploys `demo/dist/` to main domain
+  - Firebase project: `premium-react-loaders-demo`
+  - Configuration: `demo/firebase.json` and `demo/.firebaserc`
+  - Build output: `demo/dist/`
 
 ### CI/CD with GitHub Actions
 
 Automated deployments are configured via `.github/workflows/deploy.yml`:
 - Triggers on push to `main` branch
 - Builds both Storybook and demo app
-- Deploys both sites to Firebase Hosting
+- Deploys both to their respective Firebase projects
 
-**Required Secret**: `FIREBASE_SERVICE_ACCOUNT` must be configured in GitHub repository secrets. See `.github/workflows/README.md` for setup instructions.
+**Required Secrets**: Two GitHub repository secrets must be configured:
+- `FIREBASE_SERVICE_ACCOUNT_PREMIUM_REACT_LOADERS` (for Storybook)
+- `FIREBASE_SERVICE_ACCOUNT_PREMIUM_REACT_LOADERS_DEMO` (for demo app)
+
+See `.github/workflows/README.md` for detailed setup instructions.
 
 ## Demo App Architecture
 
