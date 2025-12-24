@@ -1,0 +1,13 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Crawl-delay for politeness
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://premium-react-loaders.ishansasika.dev/sitemap.xml
+
+# Disallow admin or build files (if any)
+Disallow: /dist/
+Disallow: /.firebase/
