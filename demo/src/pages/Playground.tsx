@@ -41,7 +41,7 @@ export function Playground() {
       <SEO metadata={seoData} />
       <StructuredData data={structuredData} />
       <Layout showSidebar sidebar={<Sidebar />}>
-      <div className="p-8 max-w-5xl mx-auto">
+      <div className="p-4 sm:p-6 md:p-8 max-w-5xl mx-auto">
         <ComponentPlayground metadata={metadata} />
       </div>
     </Layout>

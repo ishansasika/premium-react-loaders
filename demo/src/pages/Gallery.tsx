@@ -12,7 +12,7 @@ export function Gallery() {
       <SEO metadata={gallerySEO} />
       <StructuredData data={websiteSchema} />
       <Layout>
-      <div className="p-8 max-w-7xl mx-auto">
+      <div className="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto">
         <h1 className="page-header">Component Gallery</h1>
         <p className="text-gray-600 mb-8">
           Browse all 18 components. Click any card to try it in the playground.
@@ -26,7 +26,7 @@ export function Gallery() {
                 {category.name} <span className="text-gray-400">({components.length})</span>
               </h2>
               <p className="text-gray-600 mb-6">{category.description}</p>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {components.map((component) => {
                   const Component = component.component;
                   return (
