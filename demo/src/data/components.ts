@@ -1134,7 +1134,7 @@ export const COMPONENTS: ComponentMetadata[] = [
     component: LoaderOverlay,
     description: 'Overlay wrapper for displaying loaders over content with backdrop',
     defaultProps: {
-      loading: true,
+      loading: false,
       position: 'fixed',
       backdropOpacity: 0.5,
       backdropColor: '#000000',

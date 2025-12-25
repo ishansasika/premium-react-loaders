@@ -10,6 +10,7 @@ import { CodeBlock } from '../common/CodeBlock';
 import { ThemeSwitch } from '../common/ThemeSwitch';
 import { useTheme, THEME_COLORS } from '../../contexts/ThemeContext';
 import { generateComponentCode, generateImportStatement } from '../../utils/codeGenerator';
+import { SpinnerCircle } from '@lib/components';
 
 interface ComponentPlaygroundProps {
   metadata: ComponentMetadata;
@@ -56,7 +57,18 @@ function App() {
           className="preview-area"
           style={{ backgroundColor: THEME_COLORS[theme] }}
         >
-          <ComponentToRender {...props} />
+          {metadata.id === 'loader-overlay' ? (
+            <ComponentToRender
+              {...props}
+              loader={props.loader || <SpinnerCircle size={40} color="#3b82f6" />}
+            >
+              <div className="p-12 text-center text-gray-500 font-medium">
+                Your content here
+              </div>
+            </ComponentToRender>
+          ) : (
+            <ComponentToRender {...props} />
+          )}
         </div>
       </div>
 
@@ -162,8 +174,22 @@ function App() {
                 className="p-4 border rounded-lg hover:bg-gray-50 transition-colors text-left"
               >
                 <div className="font-medium text-sm mb-2">{example.name}</div>
-                <div className="flex items-center justify-center p-3 bg-gray-100 rounded">
-                  <ComponentToRender {...metadata.defaultProps} {...example.props} />
+                <div className="flex items-center justify-center p-3 bg-gray-100 rounded relative">
+                  {metadata.id === 'loader-overlay' ? (
+                    <ComponentToRender
+                      {...metadata.defaultProps}
+                      {...example.props}
+                      loading={true}
+                      position="absolute"
+                      loader={<SpinnerCircle size={32} color="#3b82f6" />}
+                    >
+                      <div className="p-6 text-center text-gray-500 text-sm">
+                        Content
+                      </div>
+                    </ComponentToRender>
+                  ) : (
+                    <ComponentToRender {...metadata.defaultProps} {...example.props} />
+                  )}
                 </div>
               </button>
             ))}

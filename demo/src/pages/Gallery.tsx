@@ -5,6 +5,7 @@ import { SEO } from '../components/common/SEO';
 import { StructuredData } from '../components/common/StructuredData';
 import { gallerySEO } from '../utils/seo';
 import { websiteSchema } from '../utils/structuredData';
+import { SpinnerCircle } from '@lib/components';
 
 export function Gallery() {
   return (
@@ -39,8 +40,21 @@ export function Gallery() {
                         {component.name}
                       </h3>
                       <p className="text-sm text-gray-600 mb-4">{component.description}</p>
-                      <div className="flex items-center justify-center p-6 bg-gray-50 rounded">
-                        <Component {...component.defaultProps} />
+                      <div className="flex items-center justify-center p-6 bg-gray-50 rounded relative">
+                        {component.id === 'loader-overlay' ? (
+                          <Component
+                            {...component.defaultProps}
+                            loading={true}
+                            position="absolute"
+                            loader={<SpinnerCircle size={40} color="#3b82f6" />}
+                          >
+                            <div className="p-8 text-center text-gray-500">
+                              Your content here
+                            </div>
+                          </Component>
+                        ) : (
+                          <Component {...component.defaultProps} />
+                        )}
                       </div>
                     </Link>
                   );
