@@ -5,6 +5,94 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2024-12-31
+
+### Added
+
+#### New Features
+- **Buffer Progress** - Added `buffer` prop to all progress components (ProgressBar, ProgressCircle, ProgressRing)
+  - YouTube-style loading indicator showing both current progress and buffered amount
+  - Buffer indicator displayed with 30% opacity behind main progress
+  - Works with determinate progress only
+
+- **Gradient Support for ProgressBar** - Added `gradient` prop to ProgressBar component
+  - Creates smooth color transitions from primary to secondary color
+  - Matches existing gradient functionality in ProgressRing
+  - SVG-based gradient implementation for consistent rendering
+
+- **Speed Control for Progress Components** - Added `speed` prop support to all progress components
+  - Controls animation speed for indeterminate progress indicators
+  - Accepts 'slow', 'normal', 'fast', or custom milliseconds
+  - Previously only available in spinner/pulse components
+
+- **Customizable Last Line Width** - Added `lastLineWidth` prop to SkeletonText
+  - Control the width of the final skeleton line
+  - Defaults to '80%' for natural text appearance
+  - Example: `<SkeletonText lines={5} lastLineWidth="60%" />`
+
+- **Secondary Color Support** - Added `secondaryColor` prop usage to SpinnerRing
+  - Customize the background ring color
+  - Defaults to 'rgba(0, 0, 0, 0.1)' for backward compatibility
+  - Example: `<SpinnerRing color="#3b82f6" secondaryColor="#e0e0e0" />`
+
+#### New Utilities
+- **Safe Size Parsing** - Added `parseSizeToNumber()` utility function
+  - Safely parses size values to numbers with fallback
+  - Prevents NaN errors from invalid input like 'auto'
+  - Validates positive numbers
+
+- **Color Luminance Calculation** - Added `getColorLuminance()` utility
+  - Calculates relative luminance using WCAG formula
+  - Supports hex and RGB/RGBA color formats
+  - Used for accessible text color selection
+
+- **Contrast Color Selection** - Added `getContrastColor()` utility
+  - Automatically selects black or white text based on background luminance
+  - Ensures WCAG-compliant color contrast
+  - Improves accessibility for progress indicators with `showValue`
+
+### Fixed
+
+#### Critical Bug Fixes
+- **Size Parsing Bug** - Fixed `parseInt()` returning NaN for non-numeric size values
+  - Affected components: SpinnerDots, SpinnerBars, SpinnerGrid, PulseWave, PulseBars
+  - Now safely handles invalid inputs like 'auto' with proper fallbacks
+  - Prevents rendering breaks and calculation errors
+
+- **Animation Duration Validation** - Fixed `getAnimationDuration()` accepting invalid values
+  - Now validates and clamps numeric speeds to 50ms - 10000ms range
+  - Handles NaN, negative values, and invalid inputs gracefully
+  - Provides fallback to 'normal' (1000ms) for invalid speed strings
+
+- **Progress Bar Color Contrast** - Fixed poor text visibility in ProgressBar with `showValue`
+  - Replaced naive `value > 50` logic with proper luminance calculation
+  - Uses WCAG-compliant contrast color selection
+  - Ensures readable text on both light and dark progress bars
+
+### Changed
+
+#### API Improvements
+- **Standardized Thickness Defaults** - Changed ProgressRing thickness default from 6 to 4
+  - Now consistent with ProgressCircle and spinner components
+  - Maintains visual consistency across progress indicators
+  - **Breaking Change**: May affect existing ProgressRing layouts (minor visual change only)
+
+#### Internal Improvements
+- **Improved Type Safety** - All size/thickness parsing now uses type-safe utility functions
+- **Memoized Gradient IDs** - ProgressBar and ProgressRing now use `useMemo` for stable gradient IDs
+  - Prevents unnecessary re-renders and animation resets
+  - More efficient rendering
+
+#### Accessibility Enhancements
+- **Better Default ARIA Labels** - Improved contextual aria-label generation
+- **Luminance-Based Contrast** - All progress text now uses calculated contrast colors
+- **Consistent ARIA Attributes** - All loaders properly implement role="status" or role="progressbar"
+
+### Documentation
+- Updated component examples with new prop usage
+- Added JSDoc comments for all new utility functions
+- Improved type definitions with detailed prop descriptions
+
 ## [1.0.1] - 2024-12-24
 
 ### Added
