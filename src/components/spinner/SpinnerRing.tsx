@@ -11,6 +11,7 @@ import { cn, normalizeSize, getAnimationDuration } from '../../utils';
  * ```tsx
  * <SpinnerRing size={40} color="#8b5cf6" />
  * <SpinnerRing size={32} thickness={3} speed="slow" />
+ * <SpinnerRing size={40} color="#3b82f6" secondaryColor="#e0e0e0" />
  * ```
  */
 export const SpinnerRing = forwardRef<HTMLDivElement, SpinnerRingProps>(
@@ -18,6 +19,7 @@ export const SpinnerRing = forwardRef<HTMLDivElement, SpinnerRingProps>(
     {
       size = 40,
       color = '#3b82f6',
+      secondaryColor = 'rgba(0, 0, 0, 0.1)',
       thickness = 4,
       speed = 'normal',
       className,
@@ -47,7 +49,7 @@ export const SpinnerRing = forwardRef<HTMLDivElement, SpinnerRingProps>(
           style={{
             width: normalizeSize(size),
             height: normalizeSize(size),
-            border: `${thickness}px solid rgba(0, 0, 0, 0.1)`,
+            border: `${thickness}px solid ${secondaryColor}`,
             borderTopColor: color,
             animation: `spinner-rotate ${getAnimationDuration(speed)} linear infinite`,
           }}
