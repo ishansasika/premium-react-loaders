@@ -5,6 +5,59 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2024-12-31
+
+### Added
+
+#### New Components
+- **SkeletonForm** - Form loading skeleton with configurable fields, labels, and submit button
+  - Perfect for checkout flows, login forms, and data entry UIs
+  - Customizable field count, label visibility, and button positioning
+  - Example: `<SkeletonForm fields={5} showLabels={true} buttonPosition="right" />`
+
+- **SpinnerWave** - Modern ripple/wave spinner with expanding circles
+  - Premium aesthetic for high-end designs (Stripe, Airbnb style)
+  - Configurable ripple count and maximum scale
+  - Example: `<SpinnerWave ripples={3} maxScale={2.5} />`
+
+- **SpinnerPulse** - Heartbeat/pulse spinner for critical operations
+  - Creates emotional urgency for important loading states
+  - Single or multiple pulse circles with static center
+  - Example: `<SpinnerPulse pulses={2} maxScale={1.8} />`
+
+- **ProgressSteps** - Multi-step progress indicator for wizards and workflows
+  - Essential for multi-step forms, checkout flows, and guided processes
+  - Horizontal and vertical orientations with optional labels
+  - Customizable colors for completed, active, and inactive states
+  - Example: `<ProgressSteps steps={5} currentStep={2} labels={['Info', 'Review', 'Payment', 'Confirm', 'Done']} />`
+
+- **TypingIndicator** - Chat typing indicator with bounce and fade animations
+  - Classic pattern for messaging and chat applications
+  - Bounce or fade animation variants
+  - Example: `<TypingIndicator variant="bounce" dotCount={3} />`
+
+#### New Animation Keyframes
+- `ripple-expand` - Expanding circles with fade for SpinnerWave
+- `heartbeat-pulse` - Pulsing scale animation for SpinnerPulse
+- `typing-bounce` - Bouncing dots for TypingIndicator
+- `typing-fade` - Fading dots for TypingIndicator fade variant
+
+### Changed
+- Component count increased from 20 to 25
+  - Skeleton: 8 → 9 (+SkeletonForm)
+  - Spinner: 5 → 7 (+SpinnerWave, +SpinnerPulse)
+  - Progress: 3 → 4 (+ProgressSteps)
+  - Pulse: 3 → 4 (+TypingIndicator)
+  - Overlay: 1 (unchanged)
+
+### Library
+- All new components follow existing architecture patterns
+- Full TypeScript support with comprehensive prop types
+- WCAG-compliant accessibility features (ARIA labels, role="status")
+- CSS-only animations using hardware-accelerated transforms
+- Tree-shakeable - import components individually
+- Zero breaking changes - fully backward compatible
+
 ## [1.0.2] - 2024-12-31
 
 ### Added
