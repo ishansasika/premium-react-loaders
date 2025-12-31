@@ -1,6 +1,6 @@
-import { forwardRef } from 'react';
+import { forwardRef, useMemo } from 'react';
 import { ProgressRingProps } from '../../types';
-import { cn, normalizeSize } from '../../utils';
+import { cn, normalizeSize, parseSizeToNumber, getAnimationDuration } from '../../utils';
 
 /**
  * ProgressRing - Ring-style progress with gradient option
@@ -11,7 +11,8 @@ import { cn, normalizeSize } from '../../utils';
  * ```tsx
  * <ProgressRing value={75} showValue />
  * <ProgressRing value={60} gradient secondaryColor="#8b5cf6" />
- * <ProgressRing indeterminate />
+ * <ProgressRing indeterminate speed="fast" />
+ * <ProgressRing value={50} buffer={75} />
  * ```
  */
 export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
@@ -21,10 +22,12 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
       indeterminate = false,
       showValue = false,
       size = 60,
-      thickness = 6,
+      thickness = 4,
       color = '#3b82f6',
       secondaryColor = '#e0e0e0',
       gradient = false,
+      buffer,
+      speed = 'normal',
       className,
       style,
       testId = 'progress-ring',
@@ -37,13 +40,16 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
     if (!visible) return null;
 
     const clampedValue = Math.min(100, Math.max(0, value));
-    const sizeValue = typeof size === 'number' ? size : parseInt(String(size), 10);
-    const thicknessValue = typeof thickness === 'number' ? thickness : parseInt(String(thickness), 10);
+    const clampedBuffer = buffer !== undefined ? Math.min(100, Math.max(0, buffer)) : undefined;
+    const sizeValue = parseSizeToNumber(size, 60);
+    const thicknessValue = parseSizeToNumber(thickness, 4);
     const radius = (sizeValue - thicknessValue * 2) / 2;
     const circumference = 2 * Math.PI * radius;
     const strokeDashoffset = circumference - (clampedValue / 100) * circumference;
+    const bufferDashoffset = clampedBuffer !== undefined ? circumference - (clampedBuffer / 100) * circumference : undefined;
     const progressLabel = ariaLabel || `Loading ${clampedValue}%`;
-    const gradientId = `progress-gradient-${Math.random().toString(36).substr(2, 9)}`;
+    const animationDuration = getAnimationDuration(speed);
+    const gradientId = useMemo(() => `progress-gradient-${Math.random().toString(36).substr(2, 9)}`, []);
 
     return (
       <div
@@ -67,6 +73,7 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
           width={sizeValue}
           height={sizeValue}
           viewBox={`0 0 ${sizeValue} ${sizeValue}`}
+          style={indeterminate ? { animation: `spinner-rotate ${animationDuration} linear infinite` } : undefined}
         >
           {gradient && (
             <defs>
@@ -85,6 +92,22 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
             stroke={gradient ? '#e0e0e0' : secondaryColor}
             strokeWidth={thicknessValue}
           />
+          {/* Buffer circle (behind progress) */}
+          {bufferDashoffset !== undefined && !indeterminate && (
+            <circle
+              cx={sizeValue / 2}
+              cy={sizeValue / 2}
+              r={radius}
+              fill="none"
+              stroke={gradient ? `url(#${gradientId})` : color}
+              strokeWidth={thicknessValue}
+              strokeLinecap="round"
+              strokeDasharray={circumference}
+              strokeDashoffset={bufferDashoffset}
+              transform={`rotate(-90 ${sizeValue / 2} ${sizeValue / 2})`}
+              opacity={0.3}
+            />
+          )}
           {/* Progress circle */}
           <circle
             cx={sizeValue / 2}
