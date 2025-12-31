@@ -1,6 +1,6 @@
-import { forwardRef } from 'react';
+import { forwardRef, useMemo } from 'react';
 import { ProgressBarProps } from '../../types';
-import { cn, normalizeSize } from '../../utils';
+import { cn, normalizeSize, getContrastColor, getAnimationDuration } from '../../utils';
 
 /**
  * ProgressBar - Linear progress bar
@@ -12,6 +12,8 @@ import { cn, normalizeSize } from '../../utils';
  * <ProgressBar value={75} showValue />
  * <ProgressBar indeterminate />
  * <ProgressBar value={50} height={8} color="#8b5cf6" />
+ * <ProgressBar value={50} buffer={75} /> // YouTube-style buffering
+ * <ProgressBar value={60} gradient /> // Gradient progress
  * ```
  */
 export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
@@ -23,6 +25,9 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
       height = '0.5rem',
       color = '#3b82f6',
       secondaryColor = '#e0e0e0',
+      gradient = false,
+      buffer,
+      speed = 'normal',
       className,
       style,
       testId = 'progress-bar',
@@ -35,7 +40,12 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
     if (!visible) return null;
 
     const clampedValue = Math.min(100, Math.max(0, value));
+    const clampedBuffer = buffer !== undefined ? Math.min(100, Math.max(0, buffer)) : undefined;
     const progressLabel = ariaLabel || `Loading ${clampedValue}%`;
+    const animationDuration = getAnimationDuration(speed);
+
+    // Generate gradient ID for SVG-based gradient
+    const gradientId = useMemo(() => `progress-bar-gradient-${Math.random().toString(36).substr(2, 9)}`, []);
 
     return (
       <div
@@ -54,12 +64,35 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
         aria-valuemax={100}
         {...rest}
       >
+        {/* Gradient SVG definition */}
+        {gradient && !indeterminate && (
+          <svg width="0" height="0" style={{ position: 'absolute' }}>
+            <defs>
+              <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor={color} />
+                <stop offset="100%" stopColor={secondaryColor || '#8b5cf6'} />
+              </linearGradient>
+            </defs>
+          </svg>
+        )}
+
+        {/* Buffer indicator (shows behind main progress) */}
+        {clampedBuffer !== undefined && !indeterminate && (
+          <div
+            className="absolute h-full rounded-full opacity-30"
+            style={{
+              width: `${clampedBuffer}%`,
+              backgroundColor: color,
+            }}
+          />
+        )}
+
         {indeterminate ? (
           <div
             className="absolute h-full rounded-full"
             style={{
-              backgroundColor: color,
-              animation: 'progress-indeterminate 1.5s ease-in-out infinite',
+              backgroundColor: gradient ? `url(#${gradientId})` : color,
+              animation: `progress-indeterminate ${animationDuration} ease-in-out infinite`,
               width: '40%',
             }}
           />
@@ -68,14 +101,17 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
             className="h-full rounded-full transition-all duration-300 ease-in-out"
             style={{
               width: `${clampedValue}%`,
-              backgroundColor: color,
+              background: gradient ? `url(#${gradientId})` : color,
             }}
           />
         )}
+
         {showValue && !indeterminate && (
           <span
             className="absolute inset-0 flex items-center justify-center text-xs font-medium"
-            style={{ color: clampedValue > 50 ? 'white' : color }}
+            style={{
+              color: clampedValue > 50 ? getContrastColor(color) : secondaryColor === '#e0e0e0' ? '#000000' : getContrastColor(secondaryColor)
+            }}
           >
             {clampedValue}%
           </span>
