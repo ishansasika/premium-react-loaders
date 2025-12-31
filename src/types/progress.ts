@@ -6,6 +6,10 @@ import { ProgressLoaderProps } from './common';
 export interface ProgressBarProps extends ProgressLoaderProps {
   /** Height of the progress bar */
   height?: number | string;
+  /** Enable gradient */
+  gradient?: boolean;
+  /** Buffer value (0-100) for showing partial loading */
+  buffer?: number;
 }
 
 /**
@@ -14,6 +18,8 @@ export interface ProgressBarProps extends ProgressLoaderProps {
 export interface ProgressCircleProps extends ProgressLoaderProps {
   /** Size of the circle */
   size?: number | string;
+  /** Buffer value (0-100) for showing partial loading */
+  buffer?: number;
 }
 
 /**
@@ -24,4 +30,6 @@ export interface ProgressRingProps extends ProgressLoaderProps {
   size?: number | string;
   /** Enable gradient */
   gradient?: boolean;
+  /** Buffer value (0-100) for showing partial loading */
+  buffer?: number;
 }
