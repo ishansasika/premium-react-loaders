@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { PulseWaveProps } from '../../types';
-import { cn, normalizeSize, getAnimationDuration } from '../../utils';
+import { cn, normalizeSize, getAnimationDuration, parseSizeToNumber } from '../../utils';
 
 /**
  * PulseWave - Wave pattern loader
@@ -31,7 +31,7 @@ export const PulseWave = forwardRef<HTMLDivElement, PulseWaveProps>(
   ) => {
     if (!visible) return null;
 
-    const sizeValue = typeof size === 'number' ? size : parseInt(String(size), 10);
+    const sizeValue = parseSizeToNumber(size, 40);
     const barWidth = Math.floor(sizeValue / (barCount * 2.5));
     const animationDuration = getAnimationDuration(speed);
 

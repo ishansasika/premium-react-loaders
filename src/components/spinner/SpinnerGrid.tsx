@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { SpinnerGridProps } from '../../types';
-import { cn, normalizeSize, getAnimationDuration } from '../../utils';
+import { cn, normalizeSize, getAnimationDuration, parseSizeToNumber } from '../../utils';
 
 /**
  * SpinnerGrid - Grid of fading squares
@@ -31,7 +31,7 @@ export const SpinnerGrid = forwardRef<HTMLDivElement, SpinnerGridProps>(
   ) => {
     if (!visible) return null;
 
-    const sizeValue = typeof size === 'number' ? size : parseInt(String(size), 10);
+    const sizeValue = parseSizeToNumber(size, 40);
     const cellSize = Math.floor(sizeValue / gridSize) - 2;
     const animationDuration = getAnimationDuration(speed);
 

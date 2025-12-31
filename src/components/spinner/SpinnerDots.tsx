@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { SpinnerDotsProps } from '../../types';
-import { cn, normalizeSize, getAnimationDuration } from '../../utils';
+import { cn, normalizeSize, getAnimationDuration, parseSizeToNumber } from '../../utils';
 
 /**
  * SpinnerDots - Multiple dots rotating around center
@@ -32,8 +32,9 @@ export const SpinnerDots = forwardRef<HTMLDivElement, SpinnerDotsProps>(
   ) => {
     if (!visible) return null;
 
-    const sizeValue = typeof size === 'number' ? size : parseInt(String(size), 10);
-    const radius = (sizeValue - dotSize) / 2;
+    const sizeValue = parseSizeToNumber(size, 40);
+    const dotSizeValue = parseSizeToNumber(dotSize, 4);
+    const radius = (sizeValue - dotSizeValue) / 2;
 
     return (
       <div
