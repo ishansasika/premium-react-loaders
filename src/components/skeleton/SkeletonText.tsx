@@ -11,7 +11,7 @@ import { Skeleton } from './Skeleton';
  * @example
  * ```tsx
  * <SkeletonText lines={3} />
- * <SkeletonText lines={5} gap={8} />
+ * <SkeletonText lines={5} gap={8} lastLineWidth="60%" />
  * ```
  */
 export const SkeletonText = forwardRef<HTMLDivElement, SkeletonTextProps>(
@@ -21,6 +21,7 @@ export const SkeletonText = forwardRef<HTMLDivElement, SkeletonTextProps>(
       width = '100%',
       height = '1rem',
       gap = '0.5rem',
+      lastLineWidth = '80%',
       animate = true,
       baseColor,
       highlightColor,
@@ -49,8 +50,8 @@ export const SkeletonText = forwardRef<HTMLDivElement, SkeletonTextProps>(
         {...rest}
       >
         {Array.from({ length: lines }).map((_, index) => {
-          // Last line is typically shorter (80% width)
-          const lineWidth = index === lines - 1 ? '80%' : width;
+          // Last line uses custom width or default (80%)
+          const lineWidth = index === lines - 1 ? lastLineWidth : width;
 
           return (
             <Skeleton

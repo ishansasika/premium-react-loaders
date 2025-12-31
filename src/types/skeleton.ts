@@ -21,6 +21,8 @@ export interface SkeletonTextProps extends SkeletonBaseProps {
   lines?: number;
   /** Gap between lines */
   gap?: number | string;
+  /** Width of the last line (defaults to '80%') */
+  lastLineWidth?: number | string;
 }
 
 /**
