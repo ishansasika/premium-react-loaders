@@ -41,3 +41,23 @@ export interface SpinnerGridProps extends BaseLoaderProps {
   /** Grid size (e.g., 3 for 3x3) */
   gridSize?: number;
 }
+
+/**
+ * SpinnerWave component props
+ */
+export interface SpinnerWaveProps extends BaseLoaderProps {
+  /** Number of expanding ripples */
+  ripples?: number;
+  /** Maximum scale before fade */
+  maxScale?: number;
+}
+
+/**
+ * SpinnerPulse component props
+ */
+export interface SpinnerPulseProps extends BaseLoaderProps {
+  /** Number of pulse circles (1-3) */
+  pulses?: number;
+  /** Maximum scale at expansion */
+  maxScale?: number;
+}
