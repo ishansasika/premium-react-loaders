@@ -13,6 +13,10 @@ const meta: Meta<typeof ProgressCircle> = {
       control: { type: 'range', min: 0, max: 100, step: 1 },
       description: 'Progress value (0-100)',
     },
+    buffer: {
+      control: { type: 'range', min: 0, max: 100, step: 1 },
+      description: 'Buffer value for YouTube-style loading (0-100)',
+    },
     indeterminate: {
       control: 'boolean',
       description: 'Indeterminate mode',
@@ -20,6 +24,10 @@ const meta: Meta<typeof ProgressCircle> = {
     showValue: {
       control: 'boolean',
       description: 'Show percentage text',
+    },
+    speed: {
+      control: { type: 'select', options: ['slow', 'normal', 'fast'] },
+      description: 'Animation speed',
     },
     size: {
       control: 'number',
@@ -32,6 +40,10 @@ const meta: Meta<typeof ProgressCircle> = {
     color: {
       control: 'color',
       description: 'Progress color',
+    },
+    secondaryColor: {
+      control: 'color',
+      description: 'Background color',
     },
   },
 };
@@ -88,6 +100,21 @@ export const Thick: Story = {
     thickness: 8,
     showValue: true,
     size: 80,
+  },
+};
+
+export const WithBuffer: Story = {
+  args: {
+    value: 50,
+    buffer: 75,
+    showValue: true,
+  },
+};
+
+export const IndeterminateWithSpeed: Story = {
+  args: {
+    indeterminate: true,
+    speed: 'fast',
   },
 };
 

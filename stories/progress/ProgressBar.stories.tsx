@@ -13,6 +13,10 @@ const meta: Meta<typeof ProgressBar> = {
       control: { type: 'range', min: 0, max: 100, step: 1 },
       description: 'Progress value (0-100)',
     },
+    buffer: {
+      control: { type: 'range', min: 0, max: 100, step: 1 },
+      description: 'Buffer value for YouTube-style loading (0-100)',
+    },
     indeterminate: {
       control: 'boolean',
       description: 'Indeterminate mode',
@@ -21,6 +25,14 @@ const meta: Meta<typeof ProgressBar> = {
       control: 'boolean',
       description: 'Show percentage text',
     },
+    gradient: {
+      control: 'boolean',
+      description: 'Enable gradient effect',
+    },
+    speed: {
+      control: { type: 'select', options: ['slow', 'normal', 'fast'] },
+      description: 'Animation speed',
+    },
     height: {
       control: 'text',
       description: 'Height of the progress bar',
@@ -28,6 +40,10 @@ const meta: Meta<typeof ProgressBar> = {
     color: {
       control: 'color',
       description: 'Progress color',
+    },
+    secondaryColor: {
+      control: 'color',
+      description: 'Secondary/background color',
     },
   },
 };
@@ -94,6 +110,50 @@ export const Thick: Story = {
     value: 60,
     height: 12,
     showValue: true,
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '400px' }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export const WithBuffer: Story = {
+  args: {
+    value: 50,
+    buffer: 75,
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '400px' }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export const WithGradient: Story = {
+  args: {
+    value: 60,
+    gradient: true,
+    color: '#3b82f6',
+    secondaryColor: '#8b5cf6',
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '400px' }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export const IndeterminateWithSpeed: Story = {
+  args: {
+    indeterminate: true,
+    speed: 'fast',
   },
   decorators: [
     (Story) => (
