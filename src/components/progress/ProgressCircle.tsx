@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { ProgressCircleProps } from '../../types';
-import { cn, normalizeSize } from '../../utils';
+import { cn, normalizeSize, parseSizeToNumber, getAnimationDuration } from '../../utils';
 
 /**
  * ProgressCircle - SVG-based circular progress indicator
@@ -11,7 +11,8 @@ import { cn, normalizeSize } from '../../utils';
  * ```tsx
  * <ProgressCircle value={75} showValue />
  * <ProgressCircle value={50} size={80} thickness={6} />
- * <ProgressCircle indeterminate />
+ * <ProgressCircle indeterminate speed="fast" />
+ * <ProgressCircle value={50} buffer={75} />
  * ```
  */
 export const ProgressCircle = forwardRef<HTMLDivElement, ProgressCircleProps>(
@@ -24,6 +25,8 @@ export const ProgressCircle = forwardRef<HTMLDivElement, ProgressCircleProps>(
       thickness = 4,
       color = '#3b82f6',
       secondaryColor = '#e0e0e0',
+      buffer,
+      speed = 'normal',
       className,
       style,
       testId = 'progress-circle',
@@ -36,12 +39,15 @@ export const ProgressCircle = forwardRef<HTMLDivElement, ProgressCircleProps>(
     if (!visible) return null;
 
     const clampedValue = Math.min(100, Math.max(0, value));
-    const sizeValue = typeof size === 'number' ? size : parseInt(String(size), 10);
-    const thicknessValue = typeof thickness === 'number' ? thickness : parseInt(String(thickness), 10);
+    const clampedBuffer = buffer !== undefined ? Math.min(100, Math.max(0, buffer)) : undefined;
+    const sizeValue = parseSizeToNumber(size, 60);
+    const thicknessValue = parseSizeToNumber(thickness, 4);
     const radius = (sizeValue - thicknessValue * 2) / 2;
     const circumference = 2 * Math.PI * radius;
     const strokeDashoffset = circumference - (clampedValue / 100) * circumference;
+    const bufferDashoffset = clampedBuffer !== undefined ? circumference - (clampedBuffer / 100) * circumference : undefined;
     const progressLabel = ariaLabel || `Loading ${clampedValue}%`;
+    const animationDuration = getAnimationDuration(speed);
 
     return (
       <div
@@ -65,6 +71,7 @@ export const ProgressCircle = forwardRef<HTMLDivElement, ProgressCircleProps>(
           width={sizeValue}
           height={sizeValue}
           viewBox={`0 0 ${sizeValue} ${sizeValue}`}
+          style={indeterminate ? { animation: `spinner-rotate ${animationDuration} linear infinite` } : undefined}
         >
           {/* Background circle */}
           <circle
@@ -75,6 +82,22 @@ export const ProgressCircle = forwardRef<HTMLDivElement, ProgressCircleProps>(
             stroke={secondaryColor}
             strokeWidth={thicknessValue}
           />
+          {/* Buffer circle (behind progress) */}
+          {bufferDashoffset !== undefined && !indeterminate && (
+            <circle
+              cx={sizeValue / 2}
+              cy={sizeValue / 2}
+              r={radius}
+              fill="none"
+              stroke={color}
+              strokeWidth={thicknessValue}
+              strokeLinecap="round"
+              strokeDasharray={circumference}
+              strokeDashoffset={bufferDashoffset}
+              transform={`rotate(-90 ${sizeValue / 2} ${sizeValue / 2})`}
+              opacity={0.3}
+            />
+          )}
           {/* Progress circle */}
           <circle
             cx={sizeValue / 2}
