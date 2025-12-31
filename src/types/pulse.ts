@@ -25,3 +25,17 @@ export interface PulseBarsProps extends BaseLoaderProps {
   /** Number of bars */
   barCount?: number;
 }
+
+/**
+ * TypingIndicator component props
+ */
+export interface TypingIndicatorProps extends BaseLoaderProps {
+  /** Number of dots */
+  dotCount?: number;
+  /** Size of each dot */
+  dotSize?: number | string;
+  /** Space between dots */
+  gap?: number | string;
+  /** Animation style */
+  variant?: 'bounce' | 'fade';
+}

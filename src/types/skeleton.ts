@@ -86,3 +86,21 @@ export interface SkeletonPageProps extends SkeletonBaseProps {
   /** Page layout variant */
   variant?: 'default' | 'dashboard' | 'article' | 'profile';
 }
+
+/**
+ * SkeletonForm component props
+ */
+export interface SkeletonFormProps extends SkeletonBaseProps {
+  /** Number of form fields */
+  fields?: number;
+  /** Show field labels */
+  showLabels?: boolean;
+  /** Show submit button */
+  showButton?: boolean;
+  /** Spacing between fields */
+  gap?: number | string;
+  /** Button width */
+  buttonWidth?: number | string;
+  /** Button alignment */
+  buttonPosition?: 'left' | 'right' | 'center';
+}

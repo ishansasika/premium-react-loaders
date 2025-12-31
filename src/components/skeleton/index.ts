@@ -6,3 +6,4 @@ export { SkeletonCard } from './SkeletonCard';
 export { SkeletonList } from './SkeletonList';
 export { SkeletonTable } from './SkeletonTable';
 export { SkeletonPage } from './SkeletonPage';
+export { SkeletonForm } from './SkeletonForm';
