@@ -88,6 +88,50 @@
   }
 }
 
+@keyframes ripple-expand {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(var(--max-scale, 2));
+    opacity: 0;
+  }
+}
+
+@keyframes heartbeat-pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(var(--max-scale, 1.8));
+    opacity: 0;
+  }
+}
+
+@keyframes typing-bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes typing-fade {
+  0%,
+  60%,
+  100% {
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
 /* Animation utility classes */
 .animate-skeleton {
   animation: skeleton-shimmer var(--animation-duration-normal, 1.5s) infinite;
