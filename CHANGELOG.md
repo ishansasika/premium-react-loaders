@@ -5,6 +5,54 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2025-01-04
+
+### Added
+
+#### Size Presets
+- **Size presets** for all loader components: `'xs' | 'sm' | 'md' | 'lg' | 'xl'`
+  - `xs`: 16px - Extra small loaders for tight spaces
+  - `sm`: 24px - Small loaders for compact UIs
+  - `md`: 40px - Medium/default size (new default)
+  - `lg`: 56px - Large loaders for prominent loading states
+  - `xl`: 72px - Extra large loaders for hero sections
+  - Numeric and CSS string values still supported (`size={50}`, `size="3rem"`)
+  - Example: `<SpinnerCircle size="lg" />` instead of `<SpinnerCircle size={56} />`
+
+#### Accessibility - Reduced Motion Support
+- **Reduced motion detection** with `respectMotionPreference` prop (default: true)
+  - Automatically respects user's `prefers-reduced-motion` media query
+  - Animations significantly reduced (0.01ms duration) when user prefers reduced motion
+  - Improves accessibility for users sensitive to motion
+  - Example: `<SpinnerCircle respectMotionPreference={false} />` to override
+  - Uses React hook `useReducedMotion()` for real-time detection
+
+#### Animation Direction Control
+- **Reverse animation** with `reverse` prop on all animated loaders
+  - Spinners: Reverse rotation direction (counter-clockwise)
+  - Progress (indeterminate): Reverse sweep direction
+  - Pulse/Dots: Reverse animation sequence
+  - Example: `<SpinnerCircle reverse />`, `<ProgressBar indeterminate reverse />`
+
+### Changed
+
+#### Breaking Changes (Minor)
+- **Default size values** changed from numeric (`40`, `60`) to preset (`'md'`, `'lg'`)
+  - Spinners: `40` → `'md'` (still renders as 40px)
+  - Progress circles: `60` → `'lg'` (now renders as 56px, previously 60px)
+  - This may cause **minor visual changes** in existing implementations using default sizes
+  - To maintain exact previous sizing, explicitly set `size={40}` or `size={60}`
+
+#### Internal Improvements
+- Refactored animation duration calculation with new `getEffectiveDuration()` utility
+- Added `useReducedMotion()` hook for accessibility support
+- Updated `normalizeSize()` utility to support size presets
+- Improved type definitions with `SizePreset` type
+
+### Fixed
+- Fixed PostCSS warning about `@import` order in styles
+- Improved CSS import structure for better build performance
+
 ## [1.1.0] - 2024-12-31
 
 ### Added
