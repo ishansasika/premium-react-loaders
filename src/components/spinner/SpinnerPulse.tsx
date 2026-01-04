@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { SpinnerPulseProps } from '../../types';
-import { cn, normalizeSize, getAnimationDuration } from '../../utils';
+import { cn, normalizeSize, useReducedMotion, getEffectiveDuration } from '../../utils';
 
 /**
  * SpinnerPulse - Heartbeat pulse spinner
@@ -9,19 +9,21 @@ import { cn, normalizeSize, getAnimationDuration } from '../../utils';
  *
  * @example
  * ```tsx
- * <SpinnerPulse size={60} color="#3b82f6" />
- * <SpinnerPulse size={80} pulses={3} />
- * <SpinnerPulse size={50} maxScale={2.5} speed="slow" />
+ * <SpinnerPulse size="lg" color="#3b82f6" />
+ * <SpinnerPulse size="xl" pulses={3} reverse />
+ * <SpinnerPulse size="md" maxScale={2.5} speed="slow" />
  * ```
  */
 export const SpinnerPulse = forwardRef<HTMLDivElement, SpinnerPulseProps>(
   (
     {
-      size = 40,
+      size = 'md',
       color = '#3b82f6',
       pulses = 2,
       maxScale = 1.8,
       speed = 'normal',
+      reverse = false,
+      respectMotionPreference = true,
       className,
       style,
       testId = 'spinner-pulse',
@@ -33,7 +35,8 @@ export const SpinnerPulse = forwardRef<HTMLDivElement, SpinnerPulseProps>(
   ) => {
     if (!visible) return null;
 
-    const animationDuration = getAnimationDuration(speed);
+    const prefersReducedMotion = useReducedMotion();
+    const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
     const sizeValue = normalizeSize(size);
 
     return (
@@ -61,8 +64,9 @@ export const SpinnerPulse = forwardRef<HTMLDivElement, SpinnerPulseProps>(
               className="absolute inset-0 rounded-full"
               style={{
                 backgroundColor: color,
-                animation: `heartbeat-pulse ${animationDuration} ease-out infinite`,
-                animationDelay: `${index * 0.3}s`,
+                animation: `heartbeat-pulse ${effectiveDuration} ease-out infinite`,
+                animationDelay: reverse ? `${(pulses - index - 1) * 0.3}s` : `${index * 0.3}s`,
+                animationDirection: reverse ? 'reverse' : 'normal',
                 // @ts-ignore - CSS variable for animation
                 '--max-scale': maxScale,
               }}

@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { TypingIndicatorProps } from '../../types';
-import { cn, normalizeSize, getAnimationDuration } from '../../utils';
+import { cn, normalizeSize, useReducedMotion, getEffectiveDuration } from '../../utils';
 
 /**
  * TypingIndicator - Chat typing indicator
@@ -25,6 +25,8 @@ export const TypingIndicator = forwardRef<HTMLDivElement, TypingIndicatorProps>(
       gap = 4,
       variant = 'bounce',
       speed = 'normal',
+      reverse = false,
+      respectMotionPreference = true,
       className,
       style,
       testId = 'typing-indicator',
@@ -36,7 +38,8 @@ export const TypingIndicator = forwardRef<HTMLDivElement, TypingIndicatorProps>(
   ) => {
     if (!visible) return null;
 
-    const animationDuration = getAnimationDuration(speed);
+    const prefersReducedMotion = useReducedMotion();
+    const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
     const gapValue = normalizeSize(gap);
 
     return (
@@ -62,8 +65,8 @@ export const TypingIndicator = forwardRef<HTMLDivElement, TypingIndicatorProps>(
               width: normalizeSize(dotSize),
               height: normalizeSize(dotSize),
               backgroundColor: color,
-              animation: `typing-${variant} ${animationDuration} ease-in-out infinite`,
-              animationDelay: `${index * 0.2}s`,
+              animation: `typing-${variant} ${effectiveDuration} ease-in-out infinite`,
+              animationDelay: reverse ? `${(dotCount - index - 1) * 0.2}s` : `${index * 0.2}s`,
             }}
           />
         ))}

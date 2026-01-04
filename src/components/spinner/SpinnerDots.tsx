@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { SpinnerDotsProps } from '../../types';
-import { cn, normalizeSize, getAnimationDuration, parseSizeToNumber } from '../../utils';
+import { cn, normalizeSize, parseSizeToNumber, useReducedMotion, getEffectiveDuration } from '../../utils';
 
 /**
  * SpinnerDots - Multiple dots rotating around center
@@ -9,18 +9,20 @@ import { cn, normalizeSize, getAnimationDuration, parseSizeToNumber } from '../.
  *
  * @example
  * ```tsx
- * <SpinnerDots size={40} color="#3b82f6" />
- * <SpinnerDots size={48} dotCount={8} dotSize={6} />
+ * <SpinnerDots size="lg" color="#3b82f6" />
+ * <SpinnerDots size="md" dotCount={8} dotSize={6} reverse />
  * ```
  */
 export const SpinnerDots = forwardRef<HTMLDivElement, SpinnerDotsProps>(
   (
     {
-      size = 40,
+      size = 'md',
       color = '#3b82f6',
       dotCount = 8,
       dotSize = 4,
       speed = 'normal',
+      reverse = false,
+      respectMotionPreference = true,
       className,
       style,
       testId = 'spinner-dots',
@@ -31,6 +33,9 @@ export const SpinnerDots = forwardRef<HTMLDivElement, SpinnerDotsProps>(
     ref
   ) => {
     if (!visible) return null;
+
+    const prefersReducedMotion = useReducedMotion();
+    const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
 
     const sizeValue = parseSizeToNumber(size, 40);
     const dotSizeValue = parseSizeToNumber(dotSize, 4);
@@ -52,7 +57,8 @@ export const SpinnerDots = forwardRef<HTMLDivElement, SpinnerDotsProps>(
           style={{
             width: normalizeSize(size),
             height: normalizeSize(size),
-            animation: `spinner-rotate ${getAnimationDuration(speed)} linear infinite`,
+            animation: `spinner-rotate ${effectiveDuration} linear infinite`,
+            animationDirection: reverse ? 'reverse' : 'normal',
           }}
         >
           {Array.from({ length: dotCount }).map((_, index) => {

@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { SpinnerRingProps } from '../../types';
-import { cn, normalizeSize, getAnimationDuration } from '../../utils';
+import { cn, normalizeSize, useReducedMotion, getEffectiveDuration } from '../../utils';
 
 /**
  * SpinnerRing - Border-only rotating spinner
@@ -9,19 +9,21 @@ import { cn, normalizeSize, getAnimationDuration } from '../../utils';
  *
  * @example
  * ```tsx
- * <SpinnerRing size={40} color="#8b5cf6" />
- * <SpinnerRing size={32} thickness={3} speed="slow" />
- * <SpinnerRing size={40} color="#3b82f6" secondaryColor="#e0e0e0" />
+ * <SpinnerRing size="lg" color="#8b5cf6" />
+ * <SpinnerRing size="sm" thickness={3} speed="slow" />
+ * <SpinnerRing size="md" color="#3b82f6" secondaryColor="#e0e0e0" reverse />
  * ```
  */
 export const SpinnerRing = forwardRef<HTMLDivElement, SpinnerRingProps>(
   (
     {
-      size = 40,
+      size = 'md',
       color = '#3b82f6',
       secondaryColor = 'rgba(0, 0, 0, 0.1)',
       thickness = 4,
       speed = 'normal',
+      reverse = false,
+      respectMotionPreference = true,
       className,
       style,
       testId = 'spinner-ring',
@@ -32,6 +34,9 @@ export const SpinnerRing = forwardRef<HTMLDivElement, SpinnerRingProps>(
     ref
   ) => {
     if (!visible) return null;
+
+    const prefersReducedMotion = useReducedMotion();
+    const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
 
     return (
       <div
@@ -51,7 +56,8 @@ export const SpinnerRing = forwardRef<HTMLDivElement, SpinnerRingProps>(
             height: normalizeSize(size),
             border: `${thickness}px solid ${secondaryColor}`,
             borderTopColor: color,
-            animation: `spinner-rotate ${getAnimationDuration(speed)} linear infinite`,
+            animation: `spinner-rotate ${effectiveDuration} linear infinite`,
+            animationDirection: reverse ? 'reverse' : 'normal',
           }}
         />
       </div>

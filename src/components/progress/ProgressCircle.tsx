@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { ProgressCircleProps } from '../../types';
-import { cn, normalizeSize, parseSizeToNumber, getAnimationDuration } from '../../utils';
+import { cn, normalizeSize, parseSizeToNumber, useReducedMotion, getEffectiveDuration } from '../../utils';
 
 /**
  * ProgressCircle - SVG-based circular progress indicator
@@ -21,12 +21,14 @@ export const ProgressCircle = forwardRef<HTMLDivElement, ProgressCircleProps>(
       value = 0,
       indeterminate = false,
       showValue = false,
-      size = 60,
+      size = 'lg',
       thickness = 4,
       color = '#3b82f6',
       secondaryColor = '#e0e0e0',
       buffer,
       speed = 'normal',
+      reverse = false,
+      respectMotionPreference = true,
       className,
       style,
       testId = 'progress-circle',
@@ -38,16 +40,18 @@ export const ProgressCircle = forwardRef<HTMLDivElement, ProgressCircleProps>(
   ) => {
     if (!visible) return null;
 
+    const prefersReducedMotion = useReducedMotion();
+    const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
+
     const clampedValue = Math.min(100, Math.max(0, value));
     const clampedBuffer = buffer !== undefined ? Math.min(100, Math.max(0, buffer)) : undefined;
-    const sizeValue = parseSizeToNumber(size, 60);
+    const sizeValue = parseSizeToNumber(size, 56);
     const thicknessValue = parseSizeToNumber(thickness, 4);
     const radius = (sizeValue - thicknessValue * 2) / 2;
     const circumference = 2 * Math.PI * radius;
     const strokeDashoffset = circumference - (clampedValue / 100) * circumference;
     const bufferDashoffset = clampedBuffer !== undefined ? circumference - (clampedBuffer / 100) * circumference : undefined;
     const progressLabel = ariaLabel || `Loading ${clampedValue}%`;
-    const animationDuration = getAnimationDuration(speed);
 
     return (
       <div
@@ -71,7 +75,10 @@ export const ProgressCircle = forwardRef<HTMLDivElement, ProgressCircleProps>(
           width={sizeValue}
           height={sizeValue}
           viewBox={`0 0 ${sizeValue} ${sizeValue}`}
-          style={indeterminate ? { animation: `spinner-rotate ${animationDuration} linear infinite` } : undefined}
+          style={indeterminate ? {
+            animation: `spinner-rotate ${effectiveDuration} linear infinite`,
+            animationDirection: reverse ? 'reverse' : 'normal',
+          } : undefined}
         >
           {/* Background circle */}
           <circle

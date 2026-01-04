@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 import { ProgressRingProps } from '../../types';
-import { cn, normalizeSize, parseSizeToNumber, getAnimationDuration } from '../../utils';
+import { cn, normalizeSize, parseSizeToNumber, useReducedMotion, getEffectiveDuration } from '../../utils';
 
 /**
  * ProgressRing - Ring-style progress with gradient option
@@ -21,13 +21,15 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
       value = 0,
       indeterminate = false,
       showValue = false,
-      size = 60,
+      size = 'lg',
       thickness = 4,
       color = '#3b82f6',
       secondaryColor = '#e0e0e0',
       gradient = false,
       buffer,
       speed = 'normal',
+      reverse = false,
+      respectMotionPreference = true,
       className,
       style,
       testId = 'progress-ring',
@@ -39,16 +41,18 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
   ) => {
     if (!visible) return null;
 
+    const prefersReducedMotion = useReducedMotion();
+    const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
+
     const clampedValue = Math.min(100, Math.max(0, value));
     const clampedBuffer = buffer !== undefined ? Math.min(100, Math.max(0, buffer)) : undefined;
-    const sizeValue = parseSizeToNumber(size, 60);
+    const sizeValue = parseSizeToNumber(size, 56);
     const thicknessValue = parseSizeToNumber(thickness, 4);
     const radius = (sizeValue - thicknessValue * 2) / 2;
     const circumference = 2 * Math.PI * radius;
     const strokeDashoffset = circumference - (clampedValue / 100) * circumference;
     const bufferDashoffset = clampedBuffer !== undefined ? circumference - (clampedBuffer / 100) * circumference : undefined;
     const progressLabel = ariaLabel || `Loading ${clampedValue}%`;
-    const animationDuration = getAnimationDuration(speed);
     const gradientId = useMemo(() => `progress-gradient-${Math.random().toString(36).substr(2, 9)}`, []);
 
     return (
@@ -73,7 +77,10 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
           width={sizeValue}
           height={sizeValue}
           viewBox={`0 0 ${sizeValue} ${sizeValue}`}
-          style={indeterminate ? { animation: `spinner-rotate ${animationDuration} linear infinite` } : undefined}
+          style={indeterminate ? {
+            animation: `spinner-rotate ${effectiveDuration} linear infinite`,
+            animationDirection: reverse ? 'reverse' : 'normal',
+          } : undefined}
         >
           {gradient && (
             <defs>

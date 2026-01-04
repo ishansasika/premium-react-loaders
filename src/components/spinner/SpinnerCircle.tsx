@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { SpinnerCircleProps } from '../../types';
-import { cn, normalizeSize, getAnimationDuration } from '../../utils';
+import { cn, normalizeSize, useReducedMotion, getEffectiveDuration } from '../../utils';
 
 /**
  * SpinnerCircle - Basic rotating circle spinner
@@ -10,16 +10,19 @@ import { cn, normalizeSize, getAnimationDuration } from '../../utils';
  * @example
  * ```tsx
  * <SpinnerCircle size={40} color="#3b82f6" />
- * <SpinnerCircle size={24} thickness={3} speed="fast" />
+ * <SpinnerCircle size="lg" thickness={3} speed="fast" />
+ * <SpinnerCircle size="md" reverse />
  * ```
  */
 export const SpinnerCircle = forwardRef<HTMLDivElement, SpinnerCircleProps>(
   (
     {
-      size = 40,
+      size = 'md',
       color = '#3b82f6',
       thickness = 4,
       speed = 'normal',
+      reverse = false,
+      respectMotionPreference = true,
       className,
       style,
       testId = 'spinner-circle',
@@ -30,6 +33,9 @@ export const SpinnerCircle = forwardRef<HTMLDivElement, SpinnerCircleProps>(
     ref
   ) => {
     if (!visible) return null;
+
+    const prefersReducedMotion = useReducedMotion();
+    const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
 
     return (
       <div
@@ -47,7 +53,8 @@ export const SpinnerCircle = forwardRef<HTMLDivElement, SpinnerCircleProps>(
           style={{
             width: normalizeSize(size),
             height: normalizeSize(size),
-            animationDuration: getAnimationDuration(speed),
+            animationDuration: effectiveDuration,
+            animationDirection: reverse ? 'reverse' : 'normal',
           }}
           viewBox="0 0 50 50"
         >

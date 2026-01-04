@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { PulseDotsProps } from '../../types';
-import { cn, normalizeSize, getAnimationDuration } from '../../utils';
+import { cn, normalizeSize, useReducedMotion, getEffectiveDuration } from '../../utils';
 
 /**
  * PulseDots - Bouncing dots loader
@@ -9,18 +9,20 @@ import { cn, normalizeSize, getAnimationDuration } from '../../utils';
  *
  * @example
  * ```tsx
- * <PulseDots size={40} color="#3b82f6" />
- * <PulseDots size={32} dotCount={5} speed="fast" />
+ * <PulseDots size="lg" color="#3b82f6" />
+ * <PulseDots size="sm" dotCount={5} speed="fast" reverse />
  * ```
  */
 export const PulseDots = forwardRef<HTMLDivElement, PulseDotsProps>(
   (
     {
-      size = 40,
+      size = 'md',
       color = '#3b82f6',
       dotCount = 3,
       dotSize = 10,
       speed = 'normal',
+      reverse = false,
+      respectMotionPreference = true,
       className,
       style,
       testId = 'pulse-dots',
@@ -32,7 +34,8 @@ export const PulseDots = forwardRef<HTMLDivElement, PulseDotsProps>(
   ) => {
     if (!visible) return null;
 
-    const animationDuration = getAnimationDuration(speed);
+    const prefersReducedMotion = useReducedMotion();
+    const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
 
     return (
       <div
@@ -56,8 +59,8 @@ export const PulseDots = forwardRef<HTMLDivElement, PulseDotsProps>(
               width: normalizeSize(dotSize),
               height: normalizeSize(dotSize),
               backgroundColor: color,
-              animation: `pulse-bounce ${animationDuration} ease-in-out infinite`,
-              animationDelay: `${index * 0.15}s`,
+              animation: `pulse-bounce ${effectiveDuration} ease-in-out infinite`,
+              animationDelay: reverse ? `${(dotCount - index - 1) * 0.15}s` : `${index * 0.15}s`,
             }}
           />
         ))}

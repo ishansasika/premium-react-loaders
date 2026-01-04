@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { SpinnerGridProps } from '../../types';
-import { cn, normalizeSize, getAnimationDuration, parseSizeToNumber } from '../../utils';
+import { cn, normalizeSize, parseSizeToNumber, useReducedMotion, getEffectiveDuration } from '../../utils';
 
 /**
  * SpinnerGrid - Grid of fading squares
@@ -9,17 +9,19 @@ import { cn, normalizeSize, getAnimationDuration, parseSizeToNumber } from '../.
  *
  * @example
  * ```tsx
- * <SpinnerGrid size={40} color="#3b82f6" />
- * <SpinnerGrid size={48} gridSize={4} />
+ * <SpinnerGrid size="lg" color="#3b82f6" />
+ * <SpinnerGrid size="md" gridSize={4} reverse />
  * ```
  */
 export const SpinnerGrid = forwardRef<HTMLDivElement, SpinnerGridProps>(
   (
     {
-      size = 40,
+      size = 'md',
       color = '#3b82f6',
       gridSize = 3,
       speed = 'normal',
+      reverse = false,
+      respectMotionPreference = true,
       className,
       style,
       testId = 'spinner-grid',
@@ -31,9 +33,11 @@ export const SpinnerGrid = forwardRef<HTMLDivElement, SpinnerGridProps>(
   ) => {
     if (!visible) return null;
 
+    const prefersReducedMotion = useReducedMotion();
+    const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
+
     const sizeValue = parseSizeToNumber(size, 40);
     const cellSize = Math.floor(sizeValue / gridSize) - 2;
-    const animationDuration = getAnimationDuration(speed);
 
     return (
       <div
@@ -57,7 +61,8 @@ export const SpinnerGrid = forwardRef<HTMLDivElement, SpinnerGridProps>(
           {Array.from({ length: gridSize * gridSize }).map((_, index) => {
             const row = Math.floor(index / gridSize);
             const col = index % gridSize;
-            const delay = (row + col) * 0.1;
+            const maxDelay = (gridSize - 1) * 2;
+            const delay = reverse ? (maxDelay - (row + col)) * 0.1 : (row + col) * 0.1;
 
             return (
               <div
@@ -67,7 +72,7 @@ export const SpinnerGrid = forwardRef<HTMLDivElement, SpinnerGridProps>(
                   width: `${cellSize}px`,
                   height: `${cellSize}px`,
                   backgroundColor: color,
-                  animation: `fade-pulse ${animationDuration} ease-in-out infinite`,
+                  animation: `fade-pulse ${effectiveDuration} ease-in-out infinite`,
                   animationDelay: `${delay}s`,
                 }}
               />

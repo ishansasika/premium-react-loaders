@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { PulseBarsProps } from '../../types';
-import { cn, normalizeSize, getAnimationDuration, parseSizeToNumber } from '../../utils';
+import { cn, normalizeSize, parseSizeToNumber, useReducedMotion, getEffectiveDuration } from '../../utils';
 
 /**
  * PulseBars - Equalizer-style bars loader
@@ -9,17 +9,19 @@ import { cn, normalizeSize, getAnimationDuration, parseSizeToNumber } from '../.
  *
  * @example
  * ```tsx
- * <PulseBars size={40} color="#3b82f6" />
- * <PulseBars size={48} barCount={6} speed="fast" />
+ * <PulseBars size="lg" color="#3b82f6" />
+ * <PulseBars size="md" barCount={6} speed="fast" reverse />
  * ```
  */
 export const PulseBars = forwardRef<HTMLDivElement, PulseBarsProps>(
   (
     {
-      size = 40,
+      size = 'md',
       color = '#3b82f6',
       barCount = 4,
       speed = 'normal',
+      reverse = false,
+      respectMotionPreference = true,
       className,
       style,
       testId = 'pulse-bars',
@@ -31,9 +33,11 @@ export const PulseBars = forwardRef<HTMLDivElement, PulseBarsProps>(
   ) => {
     if (!visible) return null;
 
+    const prefersReducedMotion = useReducedMotion();
+    const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
+
     const sizeValue = parseSizeToNumber(size, 40);
     const barWidth = Math.floor(sizeValue / (barCount * 2));
-    const animationDuration = getAnimationDuration(speed);
 
     return (
       <div
@@ -52,7 +56,8 @@ export const PulseBars = forwardRef<HTMLDivElement, PulseBarsProps>(
         {Array.from({ length: barCount }).map((_, index) => {
           // Random-looking delays for equalizer effect
           const delays = [0, 0.2, 0.4, 0.1, 0.3, 0.5];
-          const delay = delays[index % delays.length];
+          const reversedDelays = [...delays].reverse();
+          const delay = reverse ? reversedDelays[index % reversedDelays.length] : delays[index % delays.length];
 
           return (
             <div
@@ -63,7 +68,7 @@ export const PulseBars = forwardRef<HTMLDivElement, PulseBarsProps>(
                 minHeight: '30%',
                 height: '100%',
                 backgroundColor: color,
-                animation: `pulse-wave ${animationDuration} ease-in-out infinite`,
+                animation: `pulse-wave ${effectiveDuration} ease-in-out infinite`,
                 animationDelay: `${delay}s`,
                 transformOrigin: 'center',
               }}

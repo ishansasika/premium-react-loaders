@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { SpinnerBarsProps } from '../../types';
-import { cn, normalizeSize, getAnimationDuration, parseSizeToNumber } from '../../utils';
+import { cn, normalizeSize, parseSizeToNumber, useReducedMotion, getEffectiveDuration } from '../../utils';
 
 /**
  * SpinnerBars - Vertical bars with wave animation
@@ -9,17 +9,19 @@ import { cn, normalizeSize, getAnimationDuration, parseSizeToNumber } from '../.
  *
  * @example
  * ```tsx
- * <SpinnerBars size={40} color="#3b82f6" />
- * <SpinnerBars size={32} barCount={5} speed="fast" />
+ * <SpinnerBars size="lg" color="#3b82f6" />
+ * <SpinnerBars size="sm" barCount={5} speed="fast" reverse />
  * ```
  */
 export const SpinnerBars = forwardRef<HTMLDivElement, SpinnerBarsProps>(
   (
     {
-      size = 40,
+      size = 'md',
       color = '#3b82f6',
       barCount = 5,
       speed = 'normal',
+      reverse = false,
+      respectMotionPreference = true,
       className,
       style,
       testId = 'spinner-bars',
@@ -31,9 +33,11 @@ export const SpinnerBars = forwardRef<HTMLDivElement, SpinnerBarsProps>(
   ) => {
     if (!visible) return null;
 
+    const prefersReducedMotion = useReducedMotion();
+    const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
+
     const sizeValue = parseSizeToNumber(size, 40);
     const barWidth = Math.floor(sizeValue / (barCount * 2));
-    const animationDuration = getAnimationDuration(speed);
 
     return (
       <div
@@ -57,8 +61,8 @@ export const SpinnerBars = forwardRef<HTMLDivElement, SpinnerBarsProps>(
               width: `${barWidth}px`,
               height: '100%',
               backgroundColor: color,
-              animation: `pulse-wave ${animationDuration} ease-in-out infinite`,
-              animationDelay: `${index * 0.1}s`,
+              animation: `pulse-wave ${effectiveDuration} ease-in-out infinite`,
+              animationDelay: reverse ? `${(barCount - index - 1) * 0.1}s` : `${index * 0.1}s`,
             }}
           />
         ))}

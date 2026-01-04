@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 import { ProgressBarProps } from '../../types';
-import { cn, normalizeSize, getContrastColor, getAnimationDuration } from '../../utils';
+import { cn, normalizeSize, getContrastColor, useReducedMotion, getEffectiveDuration } from '../../utils';
 
 /**
  * ProgressBar - Linear progress bar
@@ -28,6 +28,8 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
       gradient = false,
       buffer,
       speed = 'normal',
+      reverse = false,
+      respectMotionPreference = true,
       className,
       style,
       testId = 'progress-bar',
@@ -39,10 +41,12 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
   ) => {
     if (!visible) return null;
 
+    const prefersReducedMotion = useReducedMotion();
+    const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
+
     const clampedValue = Math.min(100, Math.max(0, value));
     const clampedBuffer = buffer !== undefined ? Math.min(100, Math.max(0, buffer)) : undefined;
     const progressLabel = ariaLabel || `Loading ${clampedValue}%`;
-    const animationDuration = getAnimationDuration(speed);
 
     // Generate gradient ID for SVG-based gradient
     const gradientId = useMemo(() => `progress-bar-gradient-${Math.random().toString(36).substr(2, 9)}`, []);
@@ -92,7 +96,8 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
             className="absolute h-full rounded-full"
             style={{
               backgroundColor: gradient ? `url(#${gradientId})` : color,
-              animation: `progress-indeterminate ${animationDuration} ease-in-out infinite`,
+              animation: `progress-indeterminate ${effectiveDuration} ease-in-out infinite`,
+              animationDirection: reverse ? 'reverse' : 'normal',
               width: '40%',
             }}
           />
