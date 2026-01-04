@@ -1,6 +1,6 @@
 # Premium React Loaders
 
-A comprehensive collection of **20 premium, production-ready loading components** for React applications. Built with TypeScript and Tailwind CSS for maximum flexibility and customization.
+A comprehensive collection of **25 premium, production-ready loading components** for React applications. Built with TypeScript and Tailwind CSS for maximum flexibility and customization.
 
 [![npm version](https://img.shields.io/npm/v/premium-react-loaders.svg)](https://www.npmjs.com/package/premium-react-loaders)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -11,11 +11,14 @@ A comprehensive collection of **20 premium, production-ready loading components*
 
 📚 **[Storybook Documentation](https://docs.premium-react-loaders.ishansasika.dev/)** - Detailed component documentation and examples
 
-See all 20 components in action with interactive examples and customization options.
+See all 25 components in action with interactive examples and customization options.
 
 ## Features
 
-- **20 Premium Components** across 5 categories (Skeleton, Spinner, Progress, Pulse, Overlay)
+- **25 Premium Components** across 5 categories (Skeleton, Spinner, Progress, Pulse, Overlay)
+- **Size Presets** - Easy sizing with `xs`, `sm`, `md`, `lg`, `xl` presets ✨ *New in v1.2.0*
+- **Reduced Motion Support** - Respects `prefers-reduced-motion` for accessibility ✨ *New in v1.2.0*
+- **Animation Direction Control** - Reverse animations with `reverse` prop ✨ *New in v1.2.0*
 - **Full TypeScript Support** with exported type definitions
 - **Tailwind CSS Integration** for easy customization
 - **Tree-shakeable** - only bundle what you use
@@ -80,14 +83,16 @@ function App() {
       <Skeleton width={200} height={20} />
       <SkeletonCard hasAvatar lines={3} />
 
-      {/* Spinners */}
-      <SpinnerCircle size={40} color="#3b82f6" />
+      {/* Spinners with Size Presets (v1.2.0+) */}
+      <SpinnerCircle size="lg" color="#3b82f6" />
+      <SpinnerCircle size="md" reverse /> {/* Reverse animation */}
 
       {/* Progress Bars */}
       <ProgressBar value={75} showValue />
+      <ProgressBar indeterminate reverse /> {/* Reverse sweep */}
 
       {/* Pulse Loaders */}
-      <PulseDots dotCount={3} />
+      <PulseDots size="sm" dotCount={3} />
     </div>
   );
 }
@@ -266,6 +271,50 @@ import { LoaderOverlay, SkeletonPage, SpinnerCircle } from 'premium-react-loader
 >
   <YourApp />
 </LoaderOverlay>
+```
+
+### New in v1.2.0
+
+**Size Presets** - Use semantic size names instead of pixel values:
+
+```tsx
+import { SpinnerCircle, ProgressBar, PulseDots } from 'premium-react-loaders';
+
+// Size presets: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+<SpinnerCircle size="xs" />  {/* 16px */}
+<SpinnerCircle size="sm" />  {/* 24px */}
+<SpinnerCircle size="md" />  {/* 40px - default */}
+<SpinnerCircle size="lg" />  {/* 56px */}
+<SpinnerCircle size="xl" />  {/* 72px */}
+
+// Still works with numbers and CSS strings
+<SpinnerCircle size={50} />
+<SpinnerCircle size="3rem" />
+```
+
+**Reduced Motion Support** - Automatically respects user accessibility preferences:
+
+```tsx
+// Respects prefers-reduced-motion by default
+<SpinnerCircle size="md" />
+
+// Disable reduced motion support if needed
+<SpinnerCircle size="md" respectMotionPreference={false} />
+```
+
+**Animation Direction Control** - Reverse animations for creative effects:
+
+```tsx
+import { SpinnerCircle, ProgressBar, PulseDots } from 'premium-react-loaders';
+
+// Reverse spinner rotation (counter-clockwise)
+<SpinnerCircle size="lg" reverse />
+
+// Reverse progress sweep direction
+<ProgressBar indeterminate reverse />
+
+// Reverse pulse/dot animation sequence
+<PulseDots size="md" reverse />
 ```
 
 ## Customization
