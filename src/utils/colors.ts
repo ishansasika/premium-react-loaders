@@ -47,8 +47,22 @@ export function getAnimationDuration(speed: 'slow' | 'normal' | 'fast' | number 
 
 /**
  * Normalize size value to CSS string
+ * Supports size presets ('xs', 'sm', 'md', 'lg', 'xl'), numeric values, or CSS strings
  */
-export function normalizeSize(size?: number | string): string {
+export function normalizeSize(size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number | string): string {
+  // Handle size presets
+  const sizePresetMap = {
+    xs: 16,
+    sm: 24,
+    md: 40,
+    lg: 56,
+    xl: 72,
+  };
+
+  if (typeof size === 'string' && size in sizePresetMap) {
+    return `${sizePresetMap[size as keyof typeof sizePresetMap]}px`;
+  }
+
   if (typeof size === 'number') {
     return `${size}px`;
   }

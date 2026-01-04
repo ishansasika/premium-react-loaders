@@ -1,11 +1,27 @@
 import { CSSProperties, HTMLAttributes } from 'react';
 
 /**
+ * Size preset options
+ */
+export type SizePreset = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+/**
+ * Size preset to pixel mapping
+ */
+export const SIZE_PRESET_MAP: Record<SizePreset, number> = {
+  xs: 16,
+  sm: 24,
+  md: 40,
+  lg: 56,
+  xl: 72,
+};
+
+/**
  * Base props for all loader components
  */
 export interface BaseLoaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'color'> {
-  /** Size of the loader (numeric for px, or CSS string like '2rem') */
-  size?: number | string;
+  /** Size of the loader (preset, numeric for px, or CSS string like '2rem') */
+  size?: SizePreset | number | string;
 
   /** Primary color of the loader */
   color?: string;
@@ -27,6 +43,12 @@ export interface BaseLoaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'c
 
   /** Animation speed: 'slow' | 'normal' | 'fast' or milliseconds */
   speed?: 'slow' | 'normal' | 'fast' | number;
+
+  /** Reverse animation direction */
+  reverse?: boolean;
+
+  /** Respect user's reduced motion preference (default: true) */
+  respectMotionPreference?: boolean;
 
   /** Test ID for testing */
   testId?: string;
