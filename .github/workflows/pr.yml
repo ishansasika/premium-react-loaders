@@ -1,0 +1,106 @@
+name: Pull Request Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18, 20]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Run TypeScript type check
+        run: npm run type-check
+
+      - name: Build library
+        run: npm run build
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Install demo dependencies
+        run: cd demo && npm ci
+
+      - name: Build demo app
+        run: cd demo && npm run build
+
+      - name: Check package size
+        run: |
+          echo "📦 Package Size Report"
+          echo "====================="
+          du -sh dist
+          echo ""
+          echo "CSS Size:"
+          ls -lh dist/premium-react-loaders.css | awk '{print $5}'
+          echo ""
+          echo "Total Files:"
+          find dist -type f | wc -l
+
+  lint-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check for Tailwind references
+        run: |
+          echo "🔍 Checking for Tailwind references in library code..."
+          TAILWIND_COUNT=$(grep -r "tailwindcss\|@tailwind" src --include="*.ts" --include="*.tsx" --include="*.css" 2>/dev/null | wc -l || echo 0)
+          if [ "$TAILWIND_COUNT" -ne 0 ]; then
+            echo "❌ Found $TAILWIND_COUNT Tailwind references in library code"
+            grep -r "tailwindcss\|@tailwind" src --include="*.ts" --include="*.tsx" --include="*.css"
+            exit 1
+          else
+            echo "✅ No Tailwind references found in library code"
+          fi
+
+      - name: Check for clsx imports
+        run: |
+          echo "🔍 Checking for clsx imports..."
+          CLSX_COUNT=$(grep -r "from 'clsx'" src --include="*.ts" --include="*.tsx" 2>/dev/null | wc -l || echo 0)
+          if [ "$CLSX_COUNT" -ne 0 ]; then
+            echo "❌ Found $CLSX_COUNT clsx imports"
+            grep -r "from 'clsx'" src --include="*.ts" --include="*.tsx"
+            exit 1
+          else
+            echo "✅ No clsx imports found"
+          fi
+
+      - name: Verify all components exist
+        run: |
+          echo "🔍 Verifying component count..."
+          COMPONENT_COUNT=$(find src/components -name "*.tsx" -type f | wc -l)
+          echo "Found $COMPONENT_COUNT component files"
+          if [ "$COMPONENT_COUNT" -ne 25 ]; then
+            echo "❌ Expected 25 components, found $COMPONENT_COUNT"
+            exit 1
+          else
+            echo "✅ All 25 components present"
+          fi
