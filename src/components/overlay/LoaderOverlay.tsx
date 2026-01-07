@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { LoaderOverlayProps } from '../../types';
-import { cn } from '../../utils';
+import { cn, useLoaderVisibility } from '../../utils';
 
 /**
  * LoaderOverlay - Overlay wrapper for displaying loaders over content
@@ -37,6 +37,9 @@ export const LoaderOverlay = forwardRef<HTMLDivElement, LoaderOverlayProps>(
       backdropOpacity = 0.5,
       backdropColor = '#000000',
       blur = false,
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'loader-overlay',
@@ -46,6 +49,13 @@ export const LoaderOverlay = forwardRef<HTMLDivElement, LoaderOverlayProps>(
     },
     ref
   ) => {
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      loading,
+      delay,
+      minDuration,
+      transition
+    );
+
     const backdropStyles = {
       backgroundColor: backdropColor,
       opacity: backdropOpacity,
@@ -63,7 +73,7 @@ export const LoaderOverlay = forwardRef<HTMLDivElement, LoaderOverlayProps>(
       >
         {children}
 
-        {loading && (
+        {shouldRender && (
           <div
             className={cn(
               'inset-0 flex items-center justify-center',
@@ -71,6 +81,8 @@ export const LoaderOverlay = forwardRef<HTMLDivElement, LoaderOverlayProps>(
             )}
             style={{
               zIndex,
+              opacity,
+              transition: transitionStyle,
             }}
             role="status"
             aria-label={ariaLabel}

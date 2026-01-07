@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { SkeletonTextProps } from '../../types';
-import { cn, normalizeSize } from '../../utils';
+import { cn, normalizeSize, useLoaderVisibility } from '../../utils';
 import { Skeleton } from './Skeleton';
 
 /**
@@ -25,6 +25,9 @@ export const SkeletonText = forwardRef<HTMLDivElement, SkeletonTextProps>(
       animate = true,
       baseColor,
       highlightColor,
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'skeleton-text',
@@ -33,7 +36,14 @@ export const SkeletonText = forwardRef<HTMLDivElement, SkeletonTextProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     return (
       <div
@@ -43,6 +53,8 @@ export const SkeletonText = forwardRef<HTMLDivElement, SkeletonTextProps>(
         style={{
           gap: normalizeSize(gap),
           ...style,
+          opacity,
+          transition: transitionStyle,
         }}
         role="status"
         aria-label="Loading text..."

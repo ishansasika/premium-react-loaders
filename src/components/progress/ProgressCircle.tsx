@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { ProgressCircleProps } from '../../types';
-import { cn, normalizeSize, parseSizeToNumber, useReducedMotion, getEffectiveDuration } from '../../utils';
+import { cn, normalizeSize, parseSizeToNumber, useReducedMotion, getEffectiveDuration, useLoaderVisibility } from '../../utils';
 
 /**
  * ProgressCircle - SVG-based circular progress indicator
@@ -29,6 +29,9 @@ export const ProgressCircle = forwardRef<HTMLDivElement, ProgressCircleProps>(
       speed = 'normal',
       reverse = false,
       respectMotionPreference = true,
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'progress-circle',
@@ -38,10 +41,16 @@ export const ProgressCircle = forwardRef<HTMLDivElement, ProgressCircleProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
-
     const prefersReducedMotion = useReducedMotion();
     const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     const clampedValue = Math.min(100, Math.max(0, value));
     const clampedBuffer = buffer !== undefined ? Math.min(100, Math.max(0, buffer)) : undefined;
@@ -62,6 +71,8 @@ export const ProgressCircle = forwardRef<HTMLDivElement, ProgressCircleProps>(
           width: normalizeSize(size),
           height: normalizeSize(size),
           ...style,
+          opacity,
+          transition: transitionStyle,
         }}
         role="progressbar"
         aria-label={progressLabel}

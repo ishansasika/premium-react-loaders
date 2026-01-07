@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { SkeletonCardProps } from '../../types';
-import { cn } from '../../utils';
+import { cn, useLoaderVisibility } from '../../utils';
 import { Skeleton } from './Skeleton';
 import { SkeletonAvatar } from './SkeletonAvatar';
 
@@ -26,6 +26,9 @@ export const SkeletonCard = forwardRef<HTMLDivElement, SkeletonCardProps>(
       animate = true,
       baseColor,
       highlightColor,
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'skeleton-card',
@@ -34,14 +37,25 @@ export const SkeletonCard = forwardRef<HTMLDivElement, SkeletonCardProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     return (
       <div
         ref={ref}
         data-testid={testId}
         className={cn('flex gap-3', className)}
-        style={style}
+        style={{
+          ...style,
+          opacity,
+          transition: transitionStyle,
+        }}
         role="status"
         aria-label="Loading card..."
         aria-busy="true"

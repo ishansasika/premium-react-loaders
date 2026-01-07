@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { SkeletonTableProps } from '../../types';
-import { cn } from '../../utils';
+import { cn, useLoaderVisibility } from '../../utils';
 import { Skeleton } from './Skeleton';
 
 /**
@@ -23,6 +23,9 @@ export const SkeletonTable = forwardRef<HTMLDivElement, SkeletonTableProps>(
       animate = true,
       baseColor,
       highlightColor,
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'skeleton-table',
@@ -31,7 +34,14 @@ export const SkeletonTable = forwardRef<HTMLDivElement, SkeletonTableProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     const renderRow = (isHeader: boolean = false) => (
       <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
@@ -54,7 +64,11 @@ export const SkeletonTable = forwardRef<HTMLDivElement, SkeletonTableProps>(
         ref={ref}
         data-testid={testId}
         className={cn('flex flex-col gap-3', className)}
-        style={style}
+        style={{
+          ...style,
+          opacity,
+          transition: transitionStyle,
+        }}
         role="status"
         aria-label="Loading table..."
         aria-busy="true"

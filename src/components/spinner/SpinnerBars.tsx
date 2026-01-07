@@ -1,6 +1,13 @@
 import { forwardRef } from 'react';
 import { SpinnerBarsProps } from '../../types';
-import { cn, normalizeSize, parseSizeToNumber, useReducedMotion, getEffectiveDuration } from '../../utils';
+import {
+  cn,
+  normalizeSize,
+  parseSizeToNumber,
+  useReducedMotion,
+  getEffectiveDuration,
+  useLoaderVisibility,
+} from '../../utils';
 
 /**
  * SpinnerBars - Vertical bars with wave animation
@@ -22,6 +29,9 @@ export const SpinnerBars = forwardRef<HTMLDivElement, SpinnerBarsProps>(
       speed = 'normal',
       reverse = false,
       respectMotionPreference = true,
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'spinner-bars',
@@ -31,10 +41,16 @@ export const SpinnerBars = forwardRef<HTMLDivElement, SpinnerBarsProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
-
     const prefersReducedMotion = useReducedMotion();
     const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     const sizeValue = parseSizeToNumber(size, 40);
     const barWidth = Math.floor(sizeValue / (barCount * 2));
@@ -47,6 +63,8 @@ export const SpinnerBars = forwardRef<HTMLDivElement, SpinnerBarsProps>(
         style={{
           height: normalizeSize(size),
           ...style,
+          opacity,
+          transition: transitionStyle,
         }}
         role="status"
         aria-label={ariaLabel}

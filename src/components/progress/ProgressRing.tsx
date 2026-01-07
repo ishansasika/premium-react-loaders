@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 import { ProgressRingProps } from '../../types';
-import { cn, normalizeSize, parseSizeToNumber, useReducedMotion, getEffectiveDuration } from '../../utils';
+import { cn, normalizeSize, parseSizeToNumber, useReducedMotion, getEffectiveDuration, useLoaderVisibility } from '../../utils';
 
 /**
  * ProgressRing - Ring-style progress with gradient option
@@ -30,6 +30,9 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
       speed = 'normal',
       reverse = false,
       respectMotionPreference = true,
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'progress-ring',
@@ -39,10 +42,20 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
-
     const prefersReducedMotion = useReducedMotion();
     const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
+
+    // Generate gradient ID for SVG-based gradient (must be before early return)
+    const gradientId = useMemo(() => `progress-gradient-${Math.random().toString(36).substr(2, 9)}`, []);
+
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     const clampedValue = Math.min(100, Math.max(0, value));
     const clampedBuffer = buffer !== undefined ? Math.min(100, Math.max(0, buffer)) : undefined;
@@ -53,7 +66,6 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
     const strokeDashoffset = circumference - (clampedValue / 100) * circumference;
     const bufferDashoffset = clampedBuffer !== undefined ? circumference - (clampedBuffer / 100) * circumference : undefined;
     const progressLabel = ariaLabel || `Loading ${clampedValue}%`;
-    const gradientId = useMemo(() => `progress-gradient-${Math.random().toString(36).substr(2, 9)}`, []);
 
     return (
       <div
@@ -64,6 +76,8 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
           width: normalizeSize(size),
           height: normalizeSize(size),
           ...style,
+          opacity,
+          transition: transitionStyle,
         }}
         role="progressbar"
         aria-label={progressLabel}

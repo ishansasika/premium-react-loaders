@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { SkeletonAvatarProps } from '../../types';
-import { normalizeSize } from '../../utils';
+import { normalizeSize, useLoaderVisibility } from '../../utils';
 import { Skeleton } from './Skeleton';
 
 /**
@@ -22,6 +22,9 @@ export const SkeletonAvatar = forwardRef<HTMLDivElement, SkeletonAvatarProps>(
       animate = true,
       baseColor,
       highlightColor,
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'skeleton-avatar',
@@ -30,7 +33,14 @@ export const SkeletonAvatar = forwardRef<HTMLDivElement, SkeletonAvatarProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     const sizeValue = normalizeSize(size);
 
@@ -45,7 +55,11 @@ export const SkeletonAvatar = forwardRef<HTMLDivElement, SkeletonAvatarProps>(
         baseColor={baseColor}
         highlightColor={highlightColor}
         className={className}
-        style={style}
+        style={{
+          ...style,
+          opacity,
+          transition: transitionStyle,
+        }}
         aria-label="Loading avatar..."
         {...rest}
       />

@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { PulseWaveProps } from '../../types';
-import { cn, normalizeSize, parseSizeToNumber, useReducedMotion, getEffectiveDuration } from '../../utils';
+import { cn, normalizeSize, parseSizeToNumber, useReducedMotion, getEffectiveDuration, useLoaderVisibility } from '../../utils';
 
 /**
  * PulseWave - Wave pattern loader
@@ -22,6 +22,9 @@ export const PulseWave = forwardRef<HTMLDivElement, PulseWaveProps>(
       speed = 'normal',
       reverse = false,
       respectMotionPreference = true,
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'pulse-wave',
@@ -31,10 +34,16 @@ export const PulseWave = forwardRef<HTMLDivElement, PulseWaveProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
-
     const prefersReducedMotion = useReducedMotion();
     const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     const sizeValue = parseSizeToNumber(size, 40);
     const barWidth = Math.floor(sizeValue / (barCount * 2.5));
@@ -47,6 +56,8 @@ export const PulseWave = forwardRef<HTMLDivElement, PulseWaveProps>(
         style={{
           height: normalizeSize(size),
           ...style,
+          opacity,
+          transition: transitionStyle,
         }}
         role="status"
         aria-label={ariaLabel}

@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { SkeletonProps } from '../../types';
-import { cn, normalizeSize } from '../../utils';
+import { cn, normalizeSize, useLoaderVisibility } from '../../utils';
 
 /**
  * Skeleton - Base skeleton loader component
@@ -23,6 +23,9 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
       animate = true,
       baseColor = '#e0e0e0',
       highlightColor = '#f5f5f5',
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'skeleton',
@@ -31,7 +34,14 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     const getBorderRadius = () => {
       if (borderRadius !== undefined) return normalizeSize(borderRadius);
@@ -65,6 +75,8 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
           backgroundColor: baseColor,
           '--skeleton-highlight-color': highlightColor,
           ...style,
+          opacity,
+          transition: transitionStyle,
         } as React.CSSProperties}
         role="status"
         aria-label="Loading..."

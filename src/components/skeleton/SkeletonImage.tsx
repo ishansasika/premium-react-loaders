@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 import { SkeletonImageProps } from '../../types';
+import { useLoaderVisibility } from '../../utils';
 import { Skeleton } from './Skeleton';
 
 /**
@@ -23,6 +24,9 @@ export const SkeletonImage = forwardRef<HTMLDivElement, SkeletonImageProps>(
       baseColor,
       highlightColor,
       borderRadius = '0.5rem',
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'skeleton-image',
@@ -31,7 +35,14 @@ export const SkeletonImage = forwardRef<HTMLDivElement, SkeletonImageProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     return (
       <Skeleton
@@ -48,6 +59,8 @@ export const SkeletonImage = forwardRef<HTMLDivElement, SkeletonImageProps>(
         style={{
           aspectRatio: aspectRatio || undefined,
           ...style,
+          opacity,
+          transition: transitionStyle,
         }}
         aria-label="Loading image..."
         {...rest}

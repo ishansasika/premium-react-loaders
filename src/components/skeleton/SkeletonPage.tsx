@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { SkeletonPageProps } from '../../types';
-import { cn } from '../../utils';
+import { cn, useLoaderVisibility } from '../../utils';
 import { Skeleton } from './Skeleton';
 import { SkeletonText } from './SkeletonText';
 import { SkeletonAvatar } from './SkeletonAvatar';
@@ -25,6 +25,9 @@ export const SkeletonPage = forwardRef<HTMLDivElement, SkeletonPageProps>(
       animate = true,
       baseColor = '#e0e0e0',
       highlightColor = '#f5f5f5',
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'skeleton-page',
@@ -33,7 +36,14 @@ export const SkeletonPage = forwardRef<HTMLDivElement, SkeletonPageProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     const commonProps = {
       animate,
@@ -199,7 +209,11 @@ export const SkeletonPage = forwardRef<HTMLDivElement, SkeletonPageProps>(
         ref={ref}
         data-testid={testId}
         className={cn('w-full p-6', className)}
-        style={style}
+        style={{
+          ...style,
+          opacity,
+          transition: transitionStyle,
+        }}
         role="status"
         aria-label="Loading page..."
         aria-busy="true"

@@ -1,6 +1,13 @@
 import { forwardRef } from 'react';
 import { SpinnerDotsProps } from '../../types';
-import { cn, normalizeSize, parseSizeToNumber, useReducedMotion, getEffectiveDuration } from '../../utils';
+import {
+  cn,
+  normalizeSize,
+  parseSizeToNumber,
+  useReducedMotion,
+  getEffectiveDuration,
+  useLoaderVisibility,
+} from '../../utils';
 
 /**
  * SpinnerDots - Multiple dots rotating around center
@@ -23,6 +30,9 @@ export const SpinnerDots = forwardRef<HTMLDivElement, SpinnerDotsProps>(
       speed = 'normal',
       reverse = false,
       respectMotionPreference = true,
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'spinner-dots',
@@ -32,10 +42,16 @@ export const SpinnerDots = forwardRef<HTMLDivElement, SpinnerDotsProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
-
     const prefersReducedMotion = useReducedMotion();
     const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     const sizeValue = parseSizeToNumber(size, 40);
     const dotSizeValue = parseSizeToNumber(dotSize, 4);
@@ -46,7 +62,11 @@ export const SpinnerDots = forwardRef<HTMLDivElement, SpinnerDotsProps>(
         ref={ref}
         data-testid={testId}
         className={cn('inline-flex items-center justify-center', className)}
-        style={style}
+        style={{
+          ...style,
+          opacity,
+          transition: transitionStyle,
+        }}
         role="status"
         aria-label={ariaLabel}
         aria-busy="true"

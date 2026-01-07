@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { SpinnerPulseProps } from '../../types';
-import { cn, normalizeSize, useReducedMotion, getEffectiveDuration } from '../../utils';
+import { cn, normalizeSize, useReducedMotion, getEffectiveDuration, useLoaderVisibility } from '../../utils';
 
 /**
  * SpinnerPulse - Heartbeat pulse spinner
@@ -24,6 +24,9 @@ export const SpinnerPulse = forwardRef<HTMLDivElement, SpinnerPulseProps>(
       speed = 'normal',
       reverse = false,
       respectMotionPreference = true,
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'spinner-pulse',
@@ -33,10 +36,16 @@ export const SpinnerPulse = forwardRef<HTMLDivElement, SpinnerPulseProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
-
     const prefersReducedMotion = useReducedMotion();
     const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
     const sizeValue = normalizeSize(size);
 
     return (
@@ -44,7 +53,11 @@ export const SpinnerPulse = forwardRef<HTMLDivElement, SpinnerPulseProps>(
         ref={ref}
         data-testid={testId}
         className={cn('inline-flex items-center justify-center', className)}
-        style={style}
+        style={{
+          ...style,
+          opacity,
+          transition: transitionStyle,
+        }}
         role="status"
         aria-label={ariaLabel}
         aria-busy="true"

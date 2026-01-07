@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 import { ProgressBarProps } from '../../types';
-import { cn, normalizeSize, getContrastColor, useReducedMotion, getEffectiveDuration } from '../../utils';
+import { cn, normalizeSize, getContrastColor, useReducedMotion, getEffectiveDuration, useLoaderVisibility } from '../../utils';
 
 /**
  * ProgressBar - Linear progress bar
@@ -30,6 +30,9 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
       speed = 'normal',
       reverse = false,
       respectMotionPreference = true,
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'progress-bar',
@@ -39,17 +42,24 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
-
     const prefersReducedMotion = useReducedMotion();
     const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
+
+    // Generate gradient ID for SVG-based gradient (must be before early return)
+    const gradientId = useMemo(() => `progress-bar-gradient-${Math.random().toString(36).substr(2, 9)}`, []);
+
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     const clampedValue = Math.min(100, Math.max(0, value));
     const clampedBuffer = buffer !== undefined ? Math.min(100, Math.max(0, buffer)) : undefined;
     const progressLabel = ariaLabel || `Loading ${clampedValue}%`;
-
-    // Generate gradient ID for SVG-based gradient
-    const gradientId = useMemo(() => `progress-bar-gradient-${Math.random().toString(36).substr(2, 9)}`, []);
 
     return (
       <div
@@ -60,6 +70,8 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
           height: normalizeSize(height),
           backgroundColor: secondaryColor,
           ...style,
+          opacity,
+          transition: transitionStyle,
         }}
         role="progressbar"
         aria-label={progressLabel}

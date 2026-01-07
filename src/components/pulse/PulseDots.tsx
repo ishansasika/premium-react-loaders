@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { PulseDotsProps } from '../../types';
-import { cn, normalizeSize, useReducedMotion, getEffectiveDuration } from '../../utils';
+import { cn, normalizeSize, useReducedMotion, getEffectiveDuration, useLoaderVisibility } from '../../utils';
 
 /**
  * PulseDots - Bouncing dots loader
@@ -23,6 +23,9 @@ export const PulseDots = forwardRef<HTMLDivElement, PulseDotsProps>(
       speed = 'normal',
       reverse = false,
       respectMotionPreference = true,
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'pulse-dots',
@@ -32,10 +35,16 @@ export const PulseDots = forwardRef<HTMLDivElement, PulseDotsProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
-
     const prefersReducedMotion = useReducedMotion();
     const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     return (
       <div
@@ -45,6 +54,8 @@ export const PulseDots = forwardRef<HTMLDivElement, PulseDotsProps>(
         style={{
           height: normalizeSize(size),
           ...style,
+          opacity,
+          transition: transitionStyle,
         }}
         role="status"
         aria-label={ariaLabel}

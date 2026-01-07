@@ -1,6 +1,6 @@
 import { forwardRef, Fragment } from 'react';
 import { ProgressStepsProps } from '../../types';
-import { cn } from '../../utils';
+import { cn, useLoaderVisibility } from '../../utils';
 
 /**
  * ProgressSteps - Multi-step progress indicator
@@ -28,6 +28,9 @@ export const ProgressSteps = forwardRef<HTMLDivElement, ProgressStepsProps>(
       completedColor,
       activeColor,
       inactiveColor = '#e0e0e0',
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'progress-steps',
@@ -37,7 +40,14 @@ export const ProgressSteps = forwardRef<HTMLDivElement, ProgressStepsProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     const completed = completedColor || color;
     const active = activeColor || color;
@@ -69,7 +79,11 @@ export const ProgressSteps = forwardRef<HTMLDivElement, ProgressStepsProps>(
           isHorizontal ? 'flex-row items-center w-full' : 'flex-col items-start',
           className
         )}
-        style={style}
+        style={{
+          ...style,
+          opacity,
+          transition: transitionStyle,
+        }}
         role="progressbar"
         aria-label={ariaLabel}
         aria-valuenow={currentStep}

@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { SkeletonFormProps } from '../../types';
-import { cn, normalizeSize } from '../../utils';
+import { cn, normalizeSize, useLoaderVisibility } from '../../utils';
 import { Skeleton } from './Skeleton';
 
 /**
@@ -28,6 +28,9 @@ export const SkeletonForm = forwardRef<HTMLDivElement, SkeletonFormProps>(
       animate = true,
       baseColor,
       highlightColor,
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'skeleton-form',
@@ -36,7 +39,14 @@ export const SkeletonForm = forwardRef<HTMLDivElement, SkeletonFormProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     const gapValue = normalizeSize(gap);
     const buttonAlign =
@@ -51,7 +61,7 @@ export const SkeletonForm = forwardRef<HTMLDivElement, SkeletonFormProps>(
         ref={ref}
         data-testid={testId}
         className={cn('w-full', className)}
-        style={{ ...style, display: 'flex', flexDirection: 'column', gap: gapValue }}
+        style={{ ...style, display: 'flex', flexDirection: 'column', gap: gapValue, opacity, transition: transitionStyle }}
         role="status"
         aria-label="Loading form..."
         aria-busy="true"

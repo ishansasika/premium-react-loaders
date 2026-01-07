@@ -1,6 +1,12 @@
 import { forwardRef } from 'react';
 import { SpinnerRingProps } from '../../types';
-import { cn, normalizeSize, useReducedMotion, getEffectiveDuration } from '../../utils';
+import {
+  cn,
+  normalizeSize,
+  useReducedMotion,
+  getEffectiveDuration,
+  useLoaderVisibility,
+} from '../../utils';
 
 /**
  * SpinnerRing - Border-only rotating spinner
@@ -24,6 +30,9 @@ export const SpinnerRing = forwardRef<HTMLDivElement, SpinnerRingProps>(
       speed = 'normal',
       reverse = false,
       respectMotionPreference = true,
+      delay = 0,
+      minDuration = 0,
+      transition,
       className,
       style,
       testId = 'spinner-ring',
@@ -33,17 +42,27 @@ export const SpinnerRing = forwardRef<HTMLDivElement, SpinnerRingProps>(
     },
     ref
   ) => {
-    if (!visible) return null;
-
     const prefersReducedMotion = useReducedMotion();
     const effectiveDuration = getEffectiveDuration(speed, respectMotionPreference, prefersReducedMotion);
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+
+    if (!shouldRender) return null;
 
     return (
       <div
         ref={ref}
         data-testid={testId}
         className={cn('inline-flex items-center justify-center', className)}
-        style={style}
+        style={{
+          ...style,
+          opacity,
+          transition: transitionStyle,
+        }}
         role="status"
         aria-label={ariaLabel}
         aria-busy="true"
