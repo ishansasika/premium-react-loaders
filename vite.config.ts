@@ -31,11 +31,13 @@ export default defineConfig({
         exports: 'named',
       },
     },
-    sourcemap: true,
+    sourcemap: false, // Disabled to reduce package size
     minify: false, // Let consumers minify
   },
   css: {
     postcss: './postcss.config.js',
+    preprocessorOptions: {},
+    devSourcemap: true, // Source maps in dev only
   },
   resolve: {
     alias: {
