@@ -5,6 +5,107 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2025-01-07
+
+### Added
+
+#### Smart Loading UX Features
+- **Delayed Appearance** with `delay` prop (all components)
+  - Prevents loader flash on fast-completing operations
+  - Loader only appears if loading takes longer than specified delay
+  - Default: 0ms (immediate), Recommended: 200-300ms for optimal UX
+  - Example: `<SpinnerCircle delay={200} />` - shows loader only if loading takes >200ms
+  - Perfect for API calls that usually complete quickly but occasionally take longer
+
+- **Minimum Display Duration** with `minDuration` prop (all components)
+  - Prevents jarring quick disappear of loader once shown
+  - Ensures loader remains visible for minimum duration after appearing
+  - Default: 0ms (no minimum), Recommended: 500-1000ms for smooth UX
+  - Example: `<ProgressBar minDuration={800} />` - stays visible for at least 800ms
+  - Creates more polished, professional loading experience
+
+- **Smooth Fade Transitions** with `transition` prop (all components)
+  - Adds elegant fade-in/fade-out animations when loader appears/disappears
+  - Set to `true` for default 150ms transition, or specify custom duration in milliseconds
+  - Default: `undefined` (no transition), Example: `<SpinnerCircle transition={200} />`
+  - Works seamlessly with delay and minDuration for complete loading UX control
+  - Hardware-accelerated CSS transitions for 60fps performance
+
+#### New Utilities
+- **useLoaderVisibility() Hook** - Core visibility management system
+  - Handles delay timing, minimum duration enforcement, and transition states
+  - Returns `shouldRender`, `opacity`, and `transitionStyle` for components
+  - Automatically manages timers and cleanup for optimal performance
+  - Example usage in custom loaders:
+    ```typescript
+    const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(
+      visible,
+      delay,
+      minDuration,
+      transition
+    );
+    ```
+
+### Changed
+
+#### API Enhancements
+- All 25 loader components now support smart loading UX props
+  - Spinners (7): SpinnerCircle, SpinnerRing, SpinnerDots, SpinnerBars, SpinnerGrid, SpinnerWave, SpinnerPulse
+  - Skeletons (9): Skeleton, SkeletonText, SkeletonAvatar, SkeletonImage, SkeletonCard, SkeletonList, SkeletonTable, SkeletonPage, SkeletonForm
+  - Progress (4): ProgressBar, ProgressCircle, ProgressRing, ProgressSteps
+  - Pulse (4): PulseDots, PulseWave, PulseBars, TypingIndicator
+  - Overlay (1): LoaderOverlay
+
+#### Internal Improvements
+- Refactored all components to use centralized visibility management
+- Improved timer cleanup and memory management
+- Enhanced TypeScript types with new smart loading UX props in BaseLoaderProps
+- Added transition utility CSS classes (loader-fade-enter, loader-fade-exit)
+
+### Best Practices
+
+#### Optimal UX Patterns
+```typescript
+// Pattern 1: Fast operations (API calls, form submissions)
+<SpinnerCircle
+  visible={isLoading}
+  delay={200}           // Don't show unless takes >200ms
+  minDuration={600}     // Stay visible for at least 600ms
+  transition={150}      // Smooth 150ms fade
+/>
+
+// Pattern 2: Data fetching with progress
+<ProgressBar
+  visible={isLoading}
+  value={progress}
+  delay={300}           // Delay appearance
+  minDuration={1000}    // Ensure users can see progress
+  transition={200}      // Smooth transitions
+/>
+
+// Pattern 3: Skeleton screens (page loads)
+<SkeletonCard
+  visible={!dataLoaded}
+  transition={250}      // Smooth content swap
+/>
+
+// Pattern 4: Full-screen overlays
+<LoaderOverlay
+  loading={isProcessing}
+  delay={400}           // Only for long operations
+  minDuration={800}     // Professional feel
+  transition={300}      // Smooth overlay
+>
+  <SpinnerCircle size="xl" />
+</LoaderOverlay>
+```
+
+### Documentation
+- Updated component prop documentation with smart loading UX examples
+- Added best practice guidelines for delay and minDuration values
+- Included common UX patterns and anti-patterns
+- Enhanced TypeScript JSDoc comments for new props
+
 ## [1.2.0] - 2025-01-04
 
 ### Added
