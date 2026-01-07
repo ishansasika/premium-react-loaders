@@ -50,6 +50,15 @@ export interface BaseLoaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'c
   /** Respect user's reduced motion preference (default: true) */
   respectMotionPreference?: boolean;
 
+  /** Delay in milliseconds before showing the loader (prevents flash on fast loads, default: 0) */
+  delay?: number;
+
+  /** Minimum duration in milliseconds to show loader once visible (prevents jarring quick disappear, default: 0) */
+  minDuration?: number;
+
+  /** Enable fade transition (true for 150ms default, or specify duration in milliseconds) */
+  transition?: boolean | number;
+
   /** Test ID for testing */
   testId?: string;
 }
