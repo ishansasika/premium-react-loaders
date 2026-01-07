@@ -88,9 +88,9 @@ export function useLoaderVisibility(
   const [shouldRender, setShouldRender] = useState(visible && delay === 0);
   const [isTransitioning, setIsTransitioning] = useState(visible && delay === 0 && hasTransition);
   const showTimeRef = useRef<number | null>(visible && delay === 0 ? Date.now() : null);
-  const delayTimerRef = useRef<number | null>(null);
-  const minDurationTimerRef = useRef<number | null>(null);
-  const transitionTimerRef = useRef<number | null>(null);
+  const delayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const minDurationTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const transitionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     // Clear any existing timers
