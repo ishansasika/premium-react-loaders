@@ -47,6 +47,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       height: 20,
       variant: 'text',
       animate: true,
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -91,6 +94,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Shimmer highlight color',
         defaultValue: '#f5f5f5',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -111,6 +135,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       width: '100%',
       gap: '0.5rem',
       lastLineWidth: '80%',
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -162,6 +189,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Shimmer highlight color',
         defaultValue: '#f5f5f5',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -180,6 +228,9 @@ export const COMPONENTS: ComponentMetadata[] = [
     defaultProps: {
       size: 48,
       shape: 'circle',
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -217,6 +268,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Shimmer highlight color',
         defaultValue: '#f5f5f5',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -235,6 +307,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       width: 300,
       height: 200,
       aspectRatio: '16/9',
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -279,6 +354,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Shimmer highlight color',
         defaultValue: '#f5f5f5',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -298,6 +394,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       lines: 3,
       titleWidth: '80%',
       avatarSize: 48,
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -349,6 +448,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Shimmer highlight color',
         defaultValue: '#f5f5f5',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -366,6 +486,9 @@ export const COMPONENTS: ComponentMetadata[] = [
     defaultProps: {
       items: 5,
       gap: 12,
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -410,6 +533,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Shimmer highlight color',
         defaultValue: '#f5f5f5',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -428,6 +572,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       rows: 5,
       columns: 4,
       showHeader: true,
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -472,6 +619,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Shimmer highlight color',
         defaultValue: '#f5f5f5',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -490,6 +658,9 @@ export const COMPONENTS: ComponentMetadata[] = [
     defaultProps: {
       variant: 'default',
       animate: true,
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -520,6 +691,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Shimmer highlight color',
         defaultValue: '#f5f5f5',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -544,6 +736,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       buttonWidth: '120px',
       buttonPosition: 'left',
       animate: true,
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -609,6 +804,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Shimmer highlight color',
         defaultValue: '#f5f5f5',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -632,6 +848,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       color: '#3b82f6',
       thickness: 4,
       speed: 'normal',
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -662,6 +881,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Animation speed',
         defaultValue: 'normal',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -685,6 +925,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       secondaryColor: 'rgba(0, 0, 0, 0.1)',
       thickness: 4,
       speed: 'normal',
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -722,6 +965,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Background ring color',
         defaultValue: 'rgba(0, 0, 0, 0.1)',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -744,6 +1008,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       dotSize: 6,
       color: '#3b82f6',
       speed: 'normal',
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -781,6 +1048,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Animation speed',
         defaultValue: 'normal',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -800,6 +1088,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       barCount: 5,
       color: '#3b82f6',
       speed: 'normal',
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -830,6 +1121,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Animation speed',
         defaultValue: 'normal',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -849,6 +1161,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       gridSize: 3,
       color: '#3b82f6',
       speed: 'normal',
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -879,6 +1194,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Animation speed',
         defaultValue: 'normal',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -899,6 +1235,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       ripples: 3,
       maxScale: 2,
       speed: 'normal',
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -936,6 +1275,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Animation speed',
         defaultValue: 'normal',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -958,6 +1318,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       pulses: 2,
       maxScale: 1.8,
       speed: 'normal',
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -995,6 +1358,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Animation speed',
         defaultValue: 'normal',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: {} },
@@ -1021,6 +1405,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       color: '#3b82f6',
       gradient: false,
       speed: 'normal',
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -1086,6 +1473,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Background/gradient end color',
         defaultValue: '#e0e0e0',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: { value: 75 } },
@@ -1111,6 +1519,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       indeterminate: false,
       color: '#3b82f6',
       speed: 'normal',
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -1176,6 +1587,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Background color',
         defaultValue: '#e0e0e0',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: { value: 75 } },
@@ -1200,6 +1632,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       gradient: false,
       color: '#3b82f6',
       speed: 'normal',
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -1265,6 +1700,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         description: 'Background/gradient end color',
         defaultValue: '#e0e0e0',
       },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
+      },
     ],
     examples: [
       { name: 'Default', props: { value: 75 } },
@@ -1288,6 +1744,9 @@ export const COMPONENTS: ComponentMetadata[] = [
       connector: 'line',
       color: '#3b82f6',
       inactiveColor: '#e0e0e0',
+      delay: 0,
+      minDuration: 0,
+      transition: false,
     },
     propDefinitions: [
       {
@@ -1352,6 +1811,27 @@ export const COMPONENTS: ComponentMetadata[] = [
         control: { type: 'color' },
         description: 'Color for inactive steps',
         defaultValue: '#e0e0e0',
+      },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader (prevents flash on fast loads)',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader once visible',
+        defaultValue: 0,
+      },
+      {
+        name: 'transition',
+        type: 'boolean | number',
+        control: { type: 'boolean' },
+        description: 'Enable fade transition (true for 150ms default)',
+        defaultValue: false,
       },
     ],
     examples: [
