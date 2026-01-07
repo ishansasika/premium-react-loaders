@@ -1,7 +1,7 @@
 {
   "name": "premium-react-loaders",
-  "version": "1.3.0",
-  "description": "Premium, production-ready loading components for React with TypeScript and Tailwind CSS",
+  "version": "2.0.0",
+  "description": "Premium, production-ready loading components for React with TypeScript",
   "author": "Ishan Karunaratne",
   "license": "MIT",
   "homepage": "https://premium-react-loaders.ishansasika.dev",
@@ -16,10 +16,10 @@
     "skeleton",
     "loading",
     "progress",
-    "tailwind",
     "typescript",
     "components",
-    "ui"
+    "ui",
+    "css"
   ],
   "type": "module",
   "main": "./dist/index.cjs",
@@ -68,8 +68,7 @@
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0",
-    "tailwindcss": "^3.4.0"
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.4.7",
@@ -82,12 +81,10 @@
     "@types/react-dom": "^19.0.2",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
-    "clsx": "^2.1.1",
     "postcss": "^8.4.49",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "storybook": "^8.4.7",
-    "tailwindcss": "^3.4.17",
     "typescript": "^5.7.2",
     "vite": "^6.0.5",
     "vite-plugin-dts": "^4.3.0"
