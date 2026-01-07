@@ -161,3 +161,22 @@
 .animate-fast {
   animation-duration: var(--animation-duration-fast, 0.5s);
 }
+
+/* Transition utility classes */
+.loader-fade-enter {
+  opacity: 0;
+}
+
+.loader-fade-enter-active {
+  opacity: 1;
+  transition: opacity var(--transition-duration, 150ms) ease-in;
+}
+
+.loader-fade-exit {
+  opacity: 1;
+}
+
+.loader-fade-exit-active {
+  opacity: 0;
+  transition: opacity var(--transition-duration, 150ms) ease-out;
+}
