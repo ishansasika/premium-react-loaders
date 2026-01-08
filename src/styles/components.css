@@ -1,0 +1,50 @@
+/* Base Component Styles */
+
+/* Skeleton base */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: #e5e7eb; /* gray-200 */
+}
+
+.skeleton-animate {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-animate::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+/* Spinner base */
+.spinner-base {
+  display: inline-block;
+  animation: spinner-rotate 1s linear infinite;
+}
+
+/* Progress base */
+.progress-base {
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-indeterminate {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

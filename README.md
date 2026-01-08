@@ -1,6 +1,6 @@
 # Premium React Loaders
 
-A comprehensive collection of **25 premium, production-ready loading components** for React applications. Built with TypeScript and Tailwind CSS for maximum flexibility and customization.
+A comprehensive collection of **25 premium, production-ready loading components** for React applications. Built with TypeScript and custom CSS for maximum flexibility and zero configuration.
 
 [![npm version](https://img.shields.io/npm/v/premium-react-loaders.svg)](https://www.npmjs.com/package/premium-react-loaders)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -16,16 +16,17 @@ See all 25 components in action with interactive examples and customization opti
 ## Features
 
 - **25 Premium Components** across 5 categories (Skeleton, Spinner, Progress, Pulse, Overlay)
-- **Size Presets** - Easy sizing with `xs`, `sm`, `md`, `lg`, `xl` presets ✨ *New in v1.2.0*
-- **Reduced Motion Support** - Respects `prefers-reduced-motion` for accessibility ✨ *New in v1.2.0*
-- **Animation Direction Control** - Reverse animations with `reverse` prop ✨ *New in v1.2.0*
+- **Zero Configuration** - No Tailwind or build setup required ✨ *New in v2.0.0*
+- **Tiny Bundle Size** - 70% smaller CSS (6.27 KB → 1.64 KB gzipped) ✨ *New in v2.0.0*
+- **Zero Runtime Dependencies** - No external dependencies needed ✨ *New in v2.0.0*
+- **Size Presets** - Easy sizing with `xs`, `sm`, `md`, `lg`, `xl` presets
+- **Reduced Motion Support** - Respects `prefers-reduced-motion` for accessibility
+- **Animation Direction Control** - Reverse animations with `reverse` prop
 - **Full TypeScript Support** with exported type definitions
-- **Tailwind CSS Integration** for easy customization
 - **Tree-shakeable** - only bundle what you use
 - **Accessible** - built with ARIA labels and best practices
 - **Performant** - hardware-accelerated CSS animations (60fps)
 - **Customizable** - multiple ways to style components
-- **Zero Dependencies** (except peer dependencies)
 
 ## Installation
 
@@ -35,15 +36,15 @@ npm install premium-react-loaders
 
 ### Peer Dependencies
 
-This library requires React and Tailwind CSS:
+This library only requires React:
 
 ```bash
-npm install react react-dom tailwindcss
+npm install react react-dom
 ```
 
-## Setup
+> **Note:** v2.0.0+ no longer requires Tailwind CSS! See [Migration Guide](#migrating-from-v1x-to-v20) below.
 
-### 1. Import Styles
+## Setup
 
 Import the styles in your main entry file (e.g., `main.tsx` or `App.tsx`):
 
@@ -51,19 +52,7 @@ Import the styles in your main entry file (e.g., `main.tsx` or `App.tsx`):
 import 'premium-react-loaders/styles';
 ```
 
-### 2. Configure Tailwind
-
-Add the library to your `tailwind.config.js` content array:
-
-```javascript
-module.exports = {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/premium-react-loaders/dist/**/*.{js,ts,jsx,tsx}',
-  ],
-  // ... rest of your config
-};
-```
+That's it! No Tailwind configuration or additional setup needed.
 
 ## Quick Start
 
@@ -100,7 +89,7 @@ function App() {
 
 ## Component Categories
 
-### Skeleton Loaders (8 components)
+### Skeleton Loaders (9 components)
 
 Placeholder components that mimic content layout while loading:
 
@@ -109,11 +98,12 @@ Placeholder components that mimic content layout while loading:
 - **SkeletonAvatar** - Avatar placeholder (circle/square)
 - **SkeletonImage** - Image placeholder with aspect ratio
 - **SkeletonCard** - Card layout with avatar + text
+- **SkeletonForm** - Form skeleton with inputs and labels
 - **SkeletonList** - List of skeleton items
 - **SkeletonTable** - Table skeleton with rows/columns
 - **SkeletonPage** - Pre-built full page layouts (default, dashboard, article, profile)
 
-### Spinner Loaders (5 components)
+### Spinner Loaders (7 components)
 
 Rotating and animated spinners:
 
@@ -122,22 +112,26 @@ Rotating and animated spinners:
 - **SpinnerDots** - Multiple dots rotating around center
 - **SpinnerBars** - Vertical bars with wave animation
 - **SpinnerGrid** - Grid of fading squares
+- **SpinnerPulse** - Pulsing circle spinner
+- **SpinnerWave** - Wave pattern spinner
 
-### Progress Loaders (3 components)
+### Progress Loaders (4 components)
 
 Progress indicators (determinate/indeterminate):
 
 - **ProgressBar** - Linear horizontal progress bar
 - **ProgressCircle** - Circular progress indicator
 - **ProgressRing** - Ring progress with gradient option
+- **ProgressSteps** - Multi-step progress indicator
 
-### Pulse Loaders (3 components)
+### Pulse Loaders (4 components)
 
 Bouncing, pulsing, wave animations:
 
 - **PulseDots** - Bouncing dots in sequence
 - **PulseWave** - Wave pattern bars
 - **PulseBars** - Equalizer-style pulsing bars
+- **TypingIndicator** - Typing animation indicator
 
 ### Overlay Components (1 component)
 
@@ -323,10 +317,10 @@ All components support multiple customization methods:
 
 ### 1. className Prop
 
-Pass Tailwind utility classes:
+Pass custom CSS classes:
 
 ```tsx
-<SpinnerCircle size={40} className="my-4 mx-auto" />
+<SpinnerCircle size={40} className="my-spinner" />
 ```
 
 ### 2. style Prop
@@ -456,12 +450,52 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 MIT © Ishan Karunaratne
 
+## Migrating from v1.x to v2.0
+
+v2.0.0 removes the Tailwind CSS dependency for a simpler, lighter library. Here's what changed:
+
+### Breaking Changes
+
+1. **No Tailwind Required** - The library now uses custom CSS instead of Tailwind
+2. **No Tailwind Configuration Needed** - Remove the library path from your `tailwind.config.js`
+3. **Slightly Different Styling** - Components use the same class names but with custom CSS utilities
+
+### Migration Steps
+
+1. **Update the package:**
+   ```bash
+   npm install premium-react-loaders@latest
+   ```
+
+2. **Remove Tailwind configuration** (if you're not using Tailwind for other parts of your app):
+   ```javascript
+   // Remove this from tailwind.config.js
+   './node_modules/premium-react-loaders/dist/**/*.{js,ts,jsx,tsx}'
+   ```
+
+3. **That's it!** Your components will continue to work with the same API. The styling is now self-contained.
+
+### What Stayed the Same
+
+- ✅ All component APIs are identical
+- ✅ All props work exactly the same
+- ✅ TypeScript types unchanged
+- ✅ Same import paths
+- ✅ Same customization options (className, style, color props)
+
+### Benefits of v2.0
+
+- 🎉 **70% smaller CSS bundle** (21KB → 6.27KB, 1.64KB gzipped)
+- 🎉 **36% smaller total package** (1.0MB → 640KB)
+- 🎉 **Zero configuration** - no Tailwind setup required
+- 🎉 **Works in any React project** - not just Tailwind projects
+- 🎉 **Faster installation** - fewer dependencies to download
+
 ## Acknowledgments
 
 Built with:
 - [React](https://react.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
 - [Vite](https://vite.dev/)
 - [Storybook](https://storybook.js.org/)
 

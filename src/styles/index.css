@@ -1,8 +1,7 @@
+/* Import custom styles */
+@import './utilities.css';
+@import './components.css';
 @import './animations.css';
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 /* CSS Variables for theming */
 :root {
@@ -13,44 +12,4 @@
   --animation-duration-slow: 2s;
   --animation-duration-normal: 1s;
   --animation-duration-fast: 0.5s;
-}
-
-/* Base loader styles */
-@layer components {
-  /* Skeleton base */
-  .skeleton {
-    @apply relative overflow-hidden bg-gray-200;
-  }
-
-  .skeleton-animate {
-    @apply relative overflow-hidden;
-  }
-
-  .skeleton-animate::after {
-    @apply absolute inset-0;
-    content: '';
-    transform: translateX(-100%);
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.4),
-      transparent
-    );
-    animation: skeleton-shimmer 1.5s infinite;
-  }
-
-  /* Spinner base */
-  .spinner-base {
-    @apply inline-block;
-    animation: spinner-rotate 1s linear infinite;
-  }
-
-  /* Progress base */
-  .progress-base {
-    @apply relative overflow-hidden;
-  }
-
-  .progress-indeterminate {
-    @apply absolute inset-0;
-  }
 }

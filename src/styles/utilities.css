@@ -1,0 +1,208 @@
+/* Layout Utilities - Flexbox */
+.flex {
+  display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+/* Alignment Utilities */
+.items-center {
+  align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+/* Grid Utilities */
+.grid {
+  display: grid;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Gap Utilities */
+.gap-0\.5 {
+  gap: 0.125rem; /* 2px */
+}
+
+.gap-1 {
+  gap: 0.25rem; /* 4px */
+}
+
+.gap-2 {
+  gap: 0.5rem; /* 8px */
+}
+
+.gap-3 {
+  gap: 0.75rem; /* 12px */
+}
+
+.gap-4 {
+  gap: 1rem; /* 16px */
+}
+
+.gap-6 {
+  gap: 1.5rem; /* 24px */
+}
+
+/* Space-Y Utilities (vertical spacing between children) */
+.space-y-2 > * + * {
+  margin-top: 0.5rem; /* 8px */
+}
+
+.space-y-3 > * + * {
+  margin-top: 0.75rem; /* 12px */
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem; /* 16px */
+}
+
+.space-y-6 > * + * {
+  margin-top: 1.5rem; /* 24px */
+}
+
+/* Padding Utilities */
+.p-6 {
+  padding: 1.5rem; /* 24px */
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem; /* 8px */
+}
+
+.pb-4 {
+  padding-bottom: 1rem; /* 16px */
+}
+
+.pb-6 {
+  padding-bottom: 1.5rem; /* 24px */
+}
+
+/* Width/Height Utilities */
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+/* Positioning Utilities */
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* Border Radius Utilities */
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem; /* 8px */
+}
+
+.rounded-sm {
+  border-radius: 0.125rem; /* 2px */
+}
+
+/* Border Utilities */
+.border {
+  border: 1px solid #e5e7eb;
+}
+
+.border-b {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.border-gray-200 {
+  border-color: #e5e7eb;
+}
+
+/* Typography Utilities */
+.text-xs {
+  font-size: 0.75rem; /* 12px */
+  line-height: 1rem; /* 16px */
+}
+
+.text-sm {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+/* Misc Utilities */
+.z-10 {
+  z-index: 10;
+}
+
+.opacity-30 {
+  opacity: 0.3;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}

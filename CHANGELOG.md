@@ -5,6 +5,128 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2025-01-07
+
+### 🎉 Major Release - Zero Configuration, Smaller Bundle
+
+This release removes the Tailwind CSS dependency, making the library easier to use and significantly smaller.
+
+### Breaking Changes
+
+#### Removed Dependencies
+- **Removed Tailwind CSS peer dependency** - No longer required
+  - The library now uses custom CSS utilities instead of Tailwind
+  - Users no longer need to configure `tailwind.config.js`
+  - Zero configuration required - just import styles and go
+
+#### Migration Guide
+
+**For v1.x users:**
+1. Update to v2.0.0: `npm install premium-react-loaders@latest`
+2. Remove library path from `tailwind.config.js` (if not using Tailwind elsewhere)
+3. That's it! All component APIs remain identical
+
+**What stays the same:**
+- ✅ All component APIs unchanged
+- ✅ All props work exactly the same
+- ✅ TypeScript types unchanged
+- ✅ Same import paths
+- ✅ Same customization options (className, style, color props)
+
+### Added
+
+#### Custom CSS System
+- **Custom utility classes** replacing Tailwind dependencies
+  - Layout utilities: flex, grid, gap, spacing
+  - Positioning utilities: relative, absolute, fixed, inset
+  - Border utilities: rounded-*, border-*
+  - Typography utilities: text-*, font-*
+  - All utilities are self-contained in the package
+
+- **Component-specific styles**
+  - Base skeleton, spinner, and progress styles
+  - Optimized for small bundle size
+  - Hardware-accelerated animations
+
+#### Internal Improvements
+- **Inline className utility** - Replaced clsx dependency
+  - Lightweight 10-line utility function
+  - Zero runtime dependencies
+  - Maintains same API as clsx
+
+### Changed
+
+#### Bundle Size Optimizations
+- **70% smaller CSS bundle**
+  - Before: 21 KB (uncompressed)
+  - After: 6.27 KB (1.64 KB gzipped)
+  - Removed unused Tailwind utilities
+
+- **36% smaller total package**
+  - Before: 1.0 MB
+  - After: 640 KB
+  - Removed JavaScript source maps from distribution
+  - Removed unnecessary dependencies
+
+#### Build Configuration
+- **Disabled source maps** in production builds
+  - Reduces package size by ~500 KB
+  - Source maps available in development mode
+  - Users can still debug with preserved module structure
+
+- **Optimized PostCSS configuration**
+  - Removed Tailwind plugin
+  - Kept autoprefixer for browser compatibility
+
+#### Developer Experience
+- **Simplified installation**
+  - No Tailwind configuration needed
+  - No additional build setup required
+  - Works in any React project (not just Tailwind projects)
+
+- **Faster installation**
+  - Fewer peer dependencies to download
+  - No Tailwind CSS installation required
+
+### Removed
+
+#### Dependencies
+- Removed `tailwindcss` from peer dependencies
+- Removed `clsx` from dependencies
+- Removed `tailwind.config.js` configuration file
+
+#### Configuration Requirements
+- No longer need to add library path to Tailwind config
+- No longer need Tailwind CSS installed
+
+### Benefits
+
+#### For Library Users
+- 🎉 **Zero configuration** - no Tailwind setup required
+- 🎉 **Smaller bundle** - 70% smaller CSS, 36% smaller package
+- 🎉 **Faster installation** - fewer dependencies to download
+- 🎉 **Works everywhere** - compatible with any React project
+- 🎉 **Same great API** - drop-in replacement for v1.x
+
+#### For Package Maintainers
+- Simpler build process
+- Smaller npm package
+- Fewer dependency conflicts
+- Better tree-shaking support
+
+### Notes
+
+This is a **major version** release due to the Tailwind CSS removal. While the component APIs remain unchanged, the removal of a peer dependency is considered a breaking change following semantic versioning.
+
+All 25 components continue to work exactly as before:
+- 9 Skeleton components
+- 7 Spinner components
+- 4 Progress components
+- 4 Pulse components
+- 1 Overlay component
+
+---
+
 ## [1.3.0] - 2025-01-07
 
 ### Added

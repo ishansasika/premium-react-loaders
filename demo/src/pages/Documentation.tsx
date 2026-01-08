@@ -27,19 +27,21 @@ export function Documentation() {
         <section className="mb-12">
           <h3 className="text-xl font-semibold mb-4">Peer Dependencies</h3>
           <p className="text-gray-600 mb-4">
-            This library requires React and Tailwind CSS:
+            This library only requires React (v2.0.0+):
           </p>
           <CodeBlock
-            code="npm install react react-dom tailwindcss"
+            code="npm install react react-dom"
             language="bash"
           />
+          <p className="text-sm text-blue-600 mt-2">
+            ✨ <strong>New in v2.0.0:</strong> No Tailwind CSS required!
+          </p>
         </section>
 
         {/* Setup */}
         <section className="mb-12">
           <h2 className="section-header">Setup</h2>
 
-          <h3 className="text-xl font-semibold mb-4">1. Import Styles</h3>
           <p className="text-gray-600 mb-4">
             Import the styles in your main entry file (e.g., main.tsx or App.tsx):
           </p>
@@ -47,21 +49,9 @@ export function Documentation() {
             code="import 'premium-react-loaders/styles';"
             language="tsx"
           />
-
-          <h3 className="text-xl font-semibold mb-4 mt-8">2. Configure Tailwind</h3>
-          <p className="text-gray-600 mb-4">
-            Add the library to your tailwind.config.js content array:
+          <p className="text-gray-600 mt-4">
+            That's it! No Tailwind configuration or additional setup needed.
           </p>
-          <CodeBlock
-            code={`module.exports = {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/premium-react-loaders/dist/**/*.{js,ts,jsx,tsx}',
-  ],
-  // ... rest of your config
-};`}
-            language="javascript"
-          />
         </section>
 
         {/* Quick Start */}
@@ -95,7 +85,7 @@ function App() {
 
           <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-semibold mb-2">Skeleton (7 components)</h3>
+              <h3 className="text-xl font-semibold mb-2">Skeleton (9 components)</h3>
               <p className="text-gray-600">
                 Placeholder components: Skeleton, SkeletonText, SkeletonAvatar,
                 SkeletonImage, SkeletonCard, SkeletonList, SkeletonTable
