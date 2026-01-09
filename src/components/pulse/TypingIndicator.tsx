@@ -51,6 +51,13 @@ export const TypingIndicator = forwardRef<HTMLDivElement, TypingIndicatorProps>(
     if (!shouldRender) return null;
     const gapValue = normalizeSize(gap);
 
+    // Calculate delay based on animation duration for smoother timing
+    // Use 15% of the animation duration as delay between dots
+    const durationMs = typeof effectiveDuration === 'string'
+      ? parseFloat(effectiveDuration) * 1000
+      : effectiveDuration;
+    const delayBetweenDots = (durationMs * 0.15) / 1000;
+
     return (
       <div
         ref={ref}
@@ -77,7 +84,10 @@ export const TypingIndicator = forwardRef<HTMLDivElement, TypingIndicatorProps>(
               height: normalizeSize(dotSize),
               backgroundColor: color,
               animation: `typing-${variant} ${effectiveDuration} ease-in-out infinite`,
-              animationDelay: reverse ? `${(dotCount - index - 1) * 0.2}s` : `${index * 0.2}s`,
+              animationDelay: reverse
+                ? `${(dotCount - index - 1) * delayBetweenDots}s`
+                : `${index * delayBetweenDots}s`,
+              willChange: 'transform, opacity',
             }}
           />
         ))}

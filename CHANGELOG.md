@@ -5,6 +5,71 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2025-01-07
+
+### Added
+
+#### Theming System
+- **ThemeProvider Component** - Global theme configuration for all loaders
+  - Set default colors, sizes, speeds, and UX options
+  - Automatically applies to all loader components
+  - Optional - components work without it
+  - Example:
+    ```tsx
+    <ThemeProvider theme={{ primaryColor: '#8b5cf6', defaultSpeed: 'fast' }}>
+      <App />
+    </ThemeProvider>
+    ```
+
+- **useTheme Hook** - Access theme configuration in custom components
+  - Returns current theme from ThemeProvider
+  - Falls back to empty theme if no provider present
+  - Useful for creating custom loaders
+
+#### Loading State Management
+- **useLoader Hook** - Smart loading state management
+  - Built-in delay, minimum duration, and auto-hide
+  - Returns loading state and control functions
+  - Provides `isVisible` for optimal UX
+  - Example:
+    ```tsx
+    const { loading, startLoading, stopLoading, isVisible } = useLoader({
+      delay: 200,
+      minDuration: 600,
+    });
+    ```
+
+#### Enhanced CSS Variables
+- Added comprehensive CSS custom properties for theming
+  - Size presets: `--loader-size-xs` through `--loader-size-xl`
+  - Spacing variables: `--loader-gap`, `--loader-padding`
+  - Border radius: `--loader-radius-sm/md/lg/full`
+  - Transition durations: `--loader-transition-fast/normal/slow`
+- **Dark mode support** - Automatic skeleton color adjustment for dark themes
+  - Uses `@media (prefers-color-scheme: dark)`
+  - Adjusts skeleton base and highlight colors
+
+### Fixed
+
+#### TypingIndicator Component
+- **Improved animation timing** - Delay between dots now scales with animation duration
+  - Uses 15% of animation duration for smoother sequencing
+  - Works correctly with all speed settings (slow, normal, fast)
+- **Enhanced animation smoothness**
+  - Adjusted keyframe timing (70% idle instead of 60%)
+  - Increased bounce height for better visibility
+  - Improved fade opacity range
+- **Performance optimization** - Added `willChange: 'transform, opacity'` for better rendering
+
+### Changed
+
+- Updated version to 2.1.0
+- CSS bundle slightly increased to 6.94 KB (was 6.27 KB) due to enhanced theme variables
+  - Still 67% smaller than v1.x (21 KB)
+  - Gzipped: 1.85 KB
+
+---
+
 ## [2.0.0] - 2025-01-07
 
 ### 🎉 Major Release - Zero Configuration, Smaller Bundle

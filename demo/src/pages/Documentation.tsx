@@ -52,6 +52,35 @@ export function Documentation() {
           <p className="text-gray-600 mt-4">
             That's it! No Tailwind configuration or additional setup needed.
           </p>
+
+          <h3 className="text-xl font-semibold mt-8 mb-4">
+            Optional: Global Theming (v2.1.0+)
+          </h3>
+          <p className="text-sm text-blue-600 mb-4">
+            ✨ <strong>New in v2.1.0:</strong> ThemeProvider for app-wide customization
+          </p>
+          <p className="text-gray-600 mb-4">
+            Wrap your app with ThemeProvider to customize all loaders globally:
+          </p>
+          <CodeBlock
+            code={`import { ThemeProvider } from 'premium-react-loaders';
+
+function App() {
+  return (
+    <ThemeProvider
+      theme={{
+        primaryColor: '#8b5cf6',
+        secondaryColor: '#ec4899',
+        defaultSize: 'lg',
+        defaultSpeed: 'fast',
+      }}
+    >
+      <YourApp />
+    </ThemeProvider>
+  );
+}`}
+            language="tsx"
+          />
         </section>
 
         {/* Quick Start */}
@@ -72,6 +101,47 @@ function App() {
       <SpinnerCircle size={40} color="#3b82f6" />
       <ProgressBar value={75} showValue />
       <PulseDots dotCount={3} />
+    </div>
+  );
+}`}
+            language="tsx"
+          />
+        </section>
+
+        {/* Smart Loading UX */}
+        <section className="mb-12">
+          <h2 className="section-header">Smart Loading UX (v2.1.0+)</h2>
+          <p className="text-sm text-blue-600 mb-4">
+            ✨ <strong>New in v2.1.0:</strong> useLoader hook for better UX
+          </p>
+          <p className="text-gray-600 mb-4">
+            The useLoader hook provides smart loading state management with delay,
+            minimum duration, and auto-hide capabilities:
+          </p>
+          <CodeBlock
+            code={`import { useLoader } from 'premium-react-loaders';
+import { SpinnerCircle } from 'premium-react-loaders';
+
+function MyComponent() {
+  const { loading, startLoading, stopLoading, isVisible } = useLoader({
+    delay: 200,        // Don't show for quick operations
+    minDuration: 600,  // Prevent flashing
+    autoHide: 5000,    // Auto-hide after timeout (optional)
+  });
+
+  const fetchData = async () => {
+    startLoading();
+    try {
+      await api.fetchData();
+    } finally {
+      stopLoading();
+    }
+  };
+
+  return (
+    <div>
+      <button onClick={fetchData}>Load Data</button>
+      <SpinnerCircle visible={isVisible} />
     </div>
   );
 }`}
@@ -160,6 +230,47 @@ function App() {
               </tbody>
             </table>
           </div>
+        </section>
+
+        {/* CSS Variables */}
+        <section className="mb-12">
+          <h2 className="section-header">CSS Variables (Enhanced in v2.1.0)</h2>
+          <p className="text-sm text-blue-600 mb-4">
+            ✨ <strong>New in v2.1.0:</strong> Comprehensive CSS variables with dark mode support
+          </p>
+          <p className="text-gray-600 mb-4">
+            Customize the library globally using CSS variables:
+          </p>
+          <CodeBlock
+            code={`:root {
+  /* Colors */
+  --loader-primary: #3b82f6;
+  --loader-secondary: #8b5cf6;
+  --skeleton-base: #e5e7eb;
+  --skeleton-highlight: #f5f5f5;
+
+  /* Sizes */
+  --loader-size-xs: 16px;
+  --loader-size-sm: 24px;
+  --loader-size-md: 40px;
+  --loader-size-lg: 56px;
+  --loader-size-xl: 72px;
+
+  /* Animation speeds */
+  --loader-transition-fast: 150ms;
+  --loader-transition-normal: 300ms;
+  --loader-transition-slow: 500ms;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --skeleton-base: #2d3748;
+    --skeleton-highlight: #4a5568;
+  }
+}`}
+            language="css"
+          />
         </section>
 
         {/* Links */}

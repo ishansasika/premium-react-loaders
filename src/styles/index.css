@@ -5,11 +5,44 @@
 
 /* CSS Variables for theming */
 :root {
+  /* Colors */
   --loader-primary: #3b82f6;
   --loader-secondary: #8b5cf6;
   --skeleton-base: #e0e0e0;
   --skeleton-highlight: #f5f5f5;
+
+  /* Animation durations */
   --animation-duration-slow: 2s;
   --animation-duration-normal: 1s;
   --animation-duration-fast: 0.5s;
+
+  /* Sizes */
+  --loader-size-xs: 16px;
+  --loader-size-sm: 24px;
+  --loader-size-md: 40px;
+  --loader-size-lg: 56px;
+  --loader-size-xl: 72px;
+
+  /* Spacing */
+  --loader-gap: 0.5rem;
+  --loader-padding: 1rem;
+
+  /* Border radius */
+  --loader-radius-sm: 0.125rem;
+  --loader-radius-md: 0.25rem;
+  --loader-radius-lg: 0.5rem;
+  --loader-radius-full: 9999px;
+
+  /* Transitions */
+  --loader-transition-fast: 150ms;
+  --loader-transition-normal: 300ms;
+  --loader-transition-slow: 500ms;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --skeleton-base: #2d3748;
+    --skeleton-highlight: #4a5568;
+  }
 }

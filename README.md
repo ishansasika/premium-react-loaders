@@ -16,6 +16,9 @@ See all 25 components in action with interactive examples and customization opti
 ## Features
 
 - **25 Premium Components** across 5 categories (Skeleton, Spinner, Progress, Pulse, Overlay)
+- **Global Theming** - ThemeProvider for app-wide customization ✨ *New in v2.1.0*
+- **Smart Loading UX** - useLoader hook with delay, minDuration, and autoHide ✨ *New in v2.1.0*
+- **Enhanced CSS Variables** - Comprehensive theming with dark mode support ✨ *New in v2.1.0*
 - **Zero Configuration** - No Tailwind or build setup required ✨ *New in v2.0.0*
 - **Tiny Bundle Size** - 70% smaller CSS (6.27 KB → 1.64 KB gzipped) ✨ *New in v2.0.0*
 - **Zero Runtime Dependencies** - No external dependencies needed ✨ *New in v2.0.0*
@@ -53,6 +56,29 @@ import 'premium-react-loaders/styles';
 ```
 
 That's it! No Tailwind configuration or additional setup needed.
+
+### Optional: Global Theming (v2.1.0+)
+
+Wrap your app with `ThemeProvider` to customize all loaders globally:
+
+```tsx
+import { ThemeProvider } from 'premium-react-loaders';
+
+function App() {
+  return (
+    <ThemeProvider
+      theme={{
+        primaryColor: '#8b5cf6',
+        secondaryColor: '#ec4899',
+        defaultSize: 'lg',
+        defaultSpeed: 'fast',
+      }}
+    >
+      <YourApp />
+    </ThemeProvider>
+  );
+}
+```
 
 ## Quick Start
 
@@ -311,6 +337,101 @@ import { SpinnerCircle, ProgressBar, PulseDots } from 'premium-react-loaders';
 <PulseDots size="md" reverse />
 ```
 
+### New in v2.1.0
+
+**Global Theming** - Customize all loaders from one place:
+
+```tsx
+import { ThemeProvider } from 'premium-react-loaders';
+
+function App() {
+  return (
+    <ThemeProvider
+      theme={{
+        primaryColor: '#8b5cf6',
+        secondaryColor: '#ec4899',
+        skeletonBase: '#e2e8f0',
+        skeletonHighlight: '#f1f5f9',
+        defaultSize: 'lg',
+        defaultSpeed: 'fast',
+        defaultDelay: 200,
+        defaultMinDuration: 600,
+        respectMotionPreference: true,
+      }}
+    >
+      {/* All loaders inherit these settings */}
+      <SpinnerCircle /> {/* Uses theme colors and size */}
+      <Skeleton /> {/* Uses theme skeleton colors */}
+    </ThemeProvider>
+  );
+}
+```
+
+**Smart Loading State Management** - Better UX with the `useLoader` hook:
+
+```tsx
+import { useLoader } from 'premium-react-loaders';
+import { SpinnerCircle } from 'premium-react-loaders';
+
+function MyComponent() {
+  const { loading, startLoading, stopLoading, isVisible } = useLoader({
+    delay: 200,        // Don't show loader for quick operations (<200ms)
+    minDuration: 600,  // Show loader for at least 600ms to avoid flashing
+    autoHide: 5000,    // Auto-hide after 5 seconds (optional)
+  });
+
+  const fetchData = async () => {
+    startLoading();
+    try {
+      await api.fetchData();
+    } finally {
+      stopLoading();
+    }
+  };
+
+  return (
+    <div>
+      <button onClick={fetchData}>Load Data</button>
+      <SpinnerCircle visible={isVisible} />
+    </div>
+  );
+}
+```
+
+**Enhanced CSS Variables** - More control with comprehensive theming:
+
+```css
+:root {
+  /* Colors */
+  --loader-primary: #3b82f6;
+  --loader-secondary: #8b5cf6;
+  --skeleton-base: #e5e7eb;
+  --skeleton-highlight: #f5f5f5;
+
+  /* Sizes */
+  --loader-size-xs: 16px;
+  --loader-size-sm: 24px;
+  --loader-size-md: 40px;
+  --loader-size-lg: 56px;
+  --loader-size-xl: 72px;
+
+  /* Animation */
+  --loader-transition-fast: 150ms;
+  --loader-transition-normal: 300ms;
+  --loader-transition-slow: 500ms;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --skeleton-base: #2d3748;
+    --skeleton-highlight: #4a5568;
+  }
+}
+```
+
+**Improved TypingIndicator** - Smoother animations with dynamic timing that scales with speed settings.
+
 ## Customization
 
 All components support multiple customization methods:
@@ -339,16 +460,77 @@ Direct color control:
 <SpinnerCircle color="#8b5cf6" secondaryColor="#e0e0e0" />
 ```
 
-### 4. CSS Variables
+### 4. CSS Variables (Enhanced in v2.1.0)
 
-Override theme variables globally:
+Override theme variables globally for comprehensive customization:
 
 ```css
 :root {
+  /* Primary colors */
   --loader-primary: #3b82f6;
   --loader-secondary: #8b5cf6;
-  --skeleton-base: #e0e0e0;
+
+  /* Skeleton colors */
+  --skeleton-base: #e5e7eb;
   --skeleton-highlight: #f5f5f5;
+
+  /* Size presets */
+  --loader-size-xs: 16px;
+  --loader-size-sm: 24px;
+  --loader-size-md: 40px;
+  --loader-size-lg: 56px;
+  --loader-size-xl: 72px;
+
+  /* Spacing and layout */
+  --loader-gap: 0.5rem;
+  --loader-radius-sm: 0.25rem;
+  --loader-radius-md: 0.5rem;
+  --loader-radius-lg: 1rem;
+  --loader-radius-full: 9999px;
+
+  /* Animation speeds */
+  --loader-transition-fast: 150ms;
+  --loader-transition-normal: 300ms;
+  --loader-transition-slow: 500ms;
+
+  /* Overlay */
+  --loader-overlay-backdrop: rgba(0, 0, 0, 0.5);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --skeleton-base: #2d3748;
+    --skeleton-highlight: #4a5568;
+  }
+}
+```
+
+### 5. ThemeProvider (v2.1.0+)
+
+Use the `ThemeProvider` component for runtime theming:
+
+```tsx
+import { ThemeProvider, useTheme } from 'premium-react-loaders';
+
+function App() {
+  return (
+    <ThemeProvider
+      theme={{
+        primaryColor: '#8b5cf6',
+        secondaryColor: '#ec4899',
+        defaultSize: 'lg',
+      }}
+    >
+      <YourComponents />
+    </ThemeProvider>
+  );
+}
+
+// Access theme in child components
+function ChildComponent() {
+  const { theme } = useTheme();
+  return <SpinnerCircle />; // Automatically uses theme settings
 }
 ```
 
@@ -362,6 +544,9 @@ import type {
   SpinnerCircleProps,
   ProgressBarProps,
   PulseDotsProps,
+  LoaderTheme,
+  UseLoaderOptions,
+  UseLoaderReturn,
 } from 'premium-react-loaders';
 
 const MyComponent: React.FC = () => {
@@ -372,6 +557,21 @@ const MyComponent: React.FC = () => {
   };
 
   return <Skeleton {...skeletonProps} />;
+};
+
+// Theme typing (v2.1.0+)
+const customTheme: LoaderTheme = {
+  primaryColor: '#8b5cf6',
+  secondaryColor: '#ec4899',
+  defaultSize: 'lg',
+  defaultSpeed: 'fast',
+};
+
+// useLoader hook typing (v2.1.0+)
+const loaderOptions: UseLoaderOptions = {
+  delay: 200,
+  minDuration: 600,
+  autoHide: 5000,
 };
 ```
 
