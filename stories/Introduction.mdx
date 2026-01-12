@@ -8,9 +8,9 @@ Welcome to **Premium React Loaders** - a comprehensive collection of production-
 
 ## Features
 
-- **20 Premium Components** across 5 categories
+- **28 Premium Components** across 7 categories
 - **Full TypeScript Support** with exported type definitions
-- **Tailwind CSS Integration** for easy customization
+- **Zero Configuration** - no Tailwind or build setup required
 - **Tree-shakeable** - only bundle what you use
 - **Accessible** - built with ARIA labels and best practices
 - **Performant** - hardware-accelerated CSS animations
@@ -18,38 +18,52 @@ Welcome to **Premium React Loaders** - a comprehensive collection of production-
 
 ## Component Categories
 
-### Skeleton Loaders
+### Skeleton Loaders (9 components)
 Placeholder components that mimic content layout while loading:
 - Skeleton (base)
 - SkeletonText
 - SkeletonAvatar
 - SkeletonImage
 - SkeletonCard
+- SkeletonForm
 - SkeletonList
 - SkeletonTable
 - SkeletonPage
 
-### Spinner Loaders
+### Spinner Loaders (7 components)
 Rotating and animated spinners:
 - SpinnerCircle
 - SpinnerRing
 - SpinnerDots
 - SpinnerBars
 - SpinnerGrid
+- SpinnerWave
+- SpinnerPulse
 
-### Progress Loaders
+### Progress Loaders (4 components)
 Progress indicators (determinate/indeterminate):
 - ProgressBar
 - ProgressCircle
 - ProgressRing
+- ProgressSteps
 
-### Pulse Loaders
+### Pulse Loaders (4 components)
 Bouncing, pulsing, wave animations:
 - PulseDots
 - PulseWave
 - PulseBars
+- TypingIndicator
 
-### Overlay Loaders
+### Button Loaders (1 component) ✨ New in v2.2.0
+Specialized loaders for button loading states:
+- ButtonSpinner (with circle, dots, bars variants)
+
+### Status Indicators (2 components) ✨ New in v2.2.0
+Animated success and error indicators:
+- SuccessCheckmark
+- ErrorIndicator
+
+### Overlay Loaders (1 component)
 Full-screen or container-relative loader overlays:
 - LoaderOverlay
 
@@ -61,32 +75,23 @@ npm install premium-react-loaders
 
 ### Prerequisites
 
-This library requires React and Tailwind CSS as peer dependencies:
+This library only requires React:
 
 ```bash
-npm install react react-dom tailwindcss
+npm install react react-dom
 ```
+
+> **Note:** v2.0.0+ no longer requires Tailwind CSS!
 
 ### Setup
 
-1. Import the styles in your main file:
+Import the styles in your main entry file (e.g., `main.tsx` or `App.tsx`):
 
 ```typescript
 import 'premium-react-loaders/styles';
 ```
 
-2. Add the library to your Tailwind config's content array:
-
-```javascript
-// tailwind.config.js
-module.exports = {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/premium-react-loaders/dist/**/*.{js,ts,jsx,tsx}',
-  ],
-  // ... rest of your config
-};
-```
+That's it! No Tailwind configuration or additional setup needed.
 
 ## Quick Start
 
@@ -113,10 +118,11 @@ function App() {
 
 All components support multiple customization methods:
 
-- **className prop** - Pass Tailwind utilities
+- **className prop** - Pass custom CSS classes
 - **style prop** - Inline CSS styles
 - **color props** - Direct color control
 - **CSS variables** - Global theming
+- **ThemeProvider** - App-wide theme configuration (v2.1.0+)
 
 Example:
 
@@ -127,6 +133,16 @@ Example:
   className="my-4"
   style={{ opacity: 0.8 }}
 />
+```
+
+With ThemeProvider (v2.1.0+):
+
+```typescript
+import { ThemeProvider } from 'premium-react-loaders';
+
+<ThemeProvider theme={{ primaryColor: '#8b5cf6', defaultSize: 'lg' }}>
+  <App />
+</ThemeProvider>
 ```
 
 ## TypeScript

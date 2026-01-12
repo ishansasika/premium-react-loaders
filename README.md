@@ -1,6 +1,6 @@
 # Premium React Loaders
 
-A comprehensive collection of **25 premium, production-ready loading components** for React applications. Built with TypeScript and custom CSS for maximum flexibility and zero configuration.
+A comprehensive collection of **28 premium, production-ready loading components** for React applications. Built with TypeScript and custom CSS for maximum flexibility and zero configuration.
 
 [![npm version](https://img.shields.io/npm/v/premium-react-loaders.svg)](https://www.npmjs.com/package/premium-react-loaders)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -11,11 +11,11 @@ A comprehensive collection of **25 premium, production-ready loading components*
 
 📚 **[Storybook Documentation](https://docs.premium-react-loaders.ishansasika.dev/)** - Detailed component documentation and examples
 
-See all 25 components in action with interactive examples and customization options.
+See all 28 components in action with interactive examples and customization options.
 
 ## Features
 
-- **25 Premium Components** across 5 categories (Skeleton, Spinner, Progress, Pulse, Overlay)
+- **28 Premium Components** across 7 categories (Skeleton, Spinner, Progress, Pulse, Overlay, Button, Status)
 - **Global Theming** - ThemeProvider for app-wide customization ✨ *New in v2.1.0*
 - **Smart Loading UX** - useLoader hook with delay, minDuration, and autoHide ✨ *New in v2.1.0*
 - **Enhanced CSS Variables** - Comprehensive theming with dark mode support ✨ *New in v2.1.0*
@@ -164,6 +164,19 @@ Bouncing, pulsing, wave animations:
 Wrapper component for displaying loaders over content:
 
 - **LoaderOverlay** - Displays any loader over content with backdrop (full-screen or container-relative)
+
+### Button Components (1 component) ✨ *New in v2.2.0*
+
+Specialized loaders for button loading states:
+
+- **ButtonSpinner** - Compact spinner optimized for buttons with multiple variants (circle, dots, bars) and positioning options
+
+### Status Components (2 components) ✨ *New in v2.2.0*
+
+Animated indicators for success and error states:
+
+- **SuccessCheckmark** - Animated checkmark with optional circle background
+- **ErrorIndicator** - Animated X mark with optional shake effect and circle background
 
 ## Usage Examples
 
@@ -335,6 +348,49 @@ import { SpinnerCircle, ProgressBar, PulseDots } from 'premium-react-loaders';
 
 // Reverse pulse/dot animation sequence
 <PulseDots size="md" reverse />
+```
+
+### New in v2.2.0
+
+**Button Loaders** - Specialized spinners for button states:
+
+```tsx
+import { ButtonSpinner } from 'premium-react-loaders';
+
+// Inside a button
+<button style={{ padding: '10px 20px', backgroundColor: '#3b82f6', color: 'white' }}>
+  <ButtonSpinner variant="circle" size={16} color="white">
+    Submit Form
+  </ButtonSpinner>
+</button>
+
+// Different variants
+<ButtonSpinner variant="dots" position="right">Next</ButtonSpinner>
+<ButtonSpinner variant="bars" showContent={false}>Loading</ButtonSpinner>
+```
+
+**Status Indicators** - Show success and error states with smooth animations:
+
+```tsx
+import { SuccessCheckmark, ErrorIndicator } from 'premium-react-loaders';
+
+// Success state
+<SuccessCheckmark
+  visible={isSuccess}
+  showCircle
+  fillCircle
+  size={64}
+  color="#10b981"
+/>
+
+// Error state with shake
+<ErrorIndicator
+  visible={hasError}
+  showCircle
+  shake
+  size={64}
+  color="#ef4444"
+/>
 ```
 
 ### New in v2.1.0

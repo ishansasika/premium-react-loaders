@@ -5,6 +5,78 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2025-01-12
+
+### Added
+
+#### Button Loaders (New Category)
+- **ButtonSpinner Component** - Specialized spinner for button loading states
+  - Three visual variants: `circle`, `dots`, `bars`
+  - Positioning options: `left`, `right`, `center`
+  - Compact size optimized for buttons (default 16px)
+  - Option to hide content when loading with `showContent={false}`
+  - Customizable gap between spinner and content
+  - Uses `currentColor` by default for easy theming
+  - Example:
+    ```tsx
+    <button>
+      <ButtonSpinner variant="circle" size={16} color="white">
+        Submit Form
+      </ButtonSpinner>
+    </button>
+    ```
+
+#### Status Indicators (New Category)
+- **SuccessCheckmark Component** - Animated checkmark for successful operations
+  - Smooth drawing animation
+  - Optional circle background with `showCircle`
+  - Filled or outlined circle with `fillCircle`
+  - Customizable animation duration
+  - Perfect for form submissions, uploads, and confirmations
+  - Example:
+    ```tsx
+    <SuccessCheckmark
+      visible={isSuccess}
+      showCircle
+      fillCircle
+      size={64}
+    />
+    ```
+
+- **ErrorIndicator Component** - Animated error indicator with X mark
+  - Smooth X mark drawing animation
+  - Optional shake animation for emphasis
+  - Optional circle background with `showCircle`
+  - Filled or outlined circle with `fillCircle`
+  - Customizable animation duration
+  - Perfect for error states and validation feedback
+  - Example:
+    ```tsx
+    <ErrorIndicator
+      visible={hasError}
+      showCircle
+      shake
+      size={64}
+    />
+    ```
+
+#### New Animations
+- `button-dot-pulse` - Sequenced pulsing animation for button dots
+- `button-bar-pulse` - Wave animation for button bars
+- `success-scale` - Bouncy scale-in animation for success indicator
+- `success-circle` - Circle drawing animation for success background
+- `success-check` - Checkmark drawing animation
+- `error-shake` - Shake animation for error emphasis
+- `error-scale` - Scale-in animation for error indicator
+- `error-circle` - Circle drawing animation for error background
+- `error-x` - X mark drawing animation
+
+### Updated
+- **Component Count**: Increased from 25 to 28 components
+- **Category Count**: Increased from 5 to 7 categories
+- **Demo App**: Added Button and Status categories to playground
+- **Storybook**: Added comprehensive stories for new components
+
 ## [2.1.0] - 2025-01-07
 
 ### Added
