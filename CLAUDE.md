@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Premium React Loaders is a TypeScript library providing 20 production-ready loading components for React. The library is published to npm and uses Vite for building, with Storybook for documentation and demos hosted on Firebase.
+Premium React Loaders is a TypeScript library providing 28 production-ready loading components for React. The library is published to npm and uses Vite for building, with Storybook for documentation and demos hosted on Firebase.
 
 ## Development Commands
 
@@ -50,24 +50,31 @@ npm run prepublishOnly     # Runs automatically before npm publish (builds libra
 
 ### Library Structure
 
-The library is organized into 5 main component categories, each in its own directory under `src/components/`:
+The library is organized into 7 main component categories, each in its own directory under `src/components/`:
 
-1. **Skeleton** (`src/components/skeleton/`) - 8 components for placeholder content
-   - Base `Skeleton`, `SkeletonText`, `SkeletonAvatar`, `SkeletonImage`, `SkeletonCard`, `SkeletonList`, `SkeletonTable`, `SkeletonPage`
+1. **Skeleton** (`src/components/skeleton/`) - 9 components for placeholder content
+   - Base `Skeleton`, `SkeletonText`, `SkeletonAvatar`, `SkeletonImage`, `SkeletonCard`, `SkeletonForm`, `SkeletonList`, `SkeletonTable`, `SkeletonPage`
    - `SkeletonPage` provides pre-built full page layouts (default, dashboard, article, profile)
 
-2. **Spinner** (`src/components/spinner/`) - 5 rotating/animated spinners
-   - `SpinnerCircle`, `SpinnerRing`, `SpinnerDots`, `SpinnerBars`, `SpinnerGrid`
+2. **Spinner** (`src/components/spinner/`) - 7 rotating/animated spinners
+   - `SpinnerCircle`, `SpinnerRing`, `SpinnerDots`, `SpinnerBars`, `SpinnerGrid`, `SpinnerWave`, `SpinnerPulse`
 
-3. **Progress** (`src/components/progress/`) - 3 progress indicators
-   - `ProgressBar`, `ProgressCircle`, `ProgressRing`
+3. **Progress** (`src/components/progress/`) - 4 progress indicators
+   - `ProgressBar`, `ProgressCircle`, `ProgressRing`, `ProgressSteps`
    - Support both determinate (value-based) and indeterminate modes
 
-4. **Pulse** (`src/components/pulse/`) - 3 pulsing/bouncing loaders
-   - `PulseDots`, `PulseWave`, `PulseBars`
+4. **Pulse** (`src/components/pulse/`) - 4 pulsing/bouncing loaders
+   - `PulseDots`, `PulseWave`, `PulseBars`, `TypingIndicator`
 
 5. **Overlay** (`src/components/overlay/`) - 1 wrapper component
    - `LoaderOverlay` - Displays loaders over content with backdrop (full-screen or container-relative)
+
+6. **Button** (`src/components/button/`) - 1 button loading component (v2.2.0+)
+   - `ButtonSpinner` - Compact spinner for button loading states with multiple variants (circle, dots, bars) and positioning options
+
+7. **Status** (`src/components/status/`) - 2 status indicator components (v2.2.0+)
+   - `SuccessCheckmark` - Animated checkmark for successful operations with optional circle background
+   - `ErrorIndicator` - Animated error indicator with X mark and optional shake effect
 
 ### Export Pattern
 
