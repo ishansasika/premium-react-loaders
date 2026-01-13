@@ -37,6 +37,8 @@ import {
   // Status
   SuccessCheckmark,
   ErrorIndicator,
+  // Transition
+  LoaderTransition,
 } from '@lib/components';
 
 export const COMPONENTS: ComponentMetadata[] = [
@@ -2466,6 +2468,93 @@ export const COMPONENTS: ComponentMetadata[] = [
     ],
     importPath: "import { ErrorIndicator } from 'premium-react-loaders';",
   },
+
+  // ==================== TRANSITION COMPONENTS ====================
+  {
+    id: 'loader-transition',
+    name: 'LoaderTransition',
+    category: 'transition',
+    component: LoaderTransition,
+    description: 'Smooth transitions between loading and loaded states with multiple animation types',
+    defaultProps: {
+      loading: false,
+      loadingContent: null,
+      transitionType: 'fade',
+      duration: 300,
+      timing: 'ease-out',
+      keepMounted: false,
+      exitDelay: 0,
+      delay: 0,
+      minDuration: 0,
+      transition: false,
+    },
+    propDefinitions: [
+      {
+        name: 'loading',
+        type: 'boolean',
+        control: { type: 'boolean' },
+        description: 'Whether currently in loading state',
+        defaultValue: false,
+      },
+      {
+        name: 'transitionType',
+        type: 'string',
+        control: { type: 'select', options: ['fade', 'slide-up', 'slide-down', 'slide-left', 'slide-right', 'scale', 'none'] },
+        description: 'Type of transition animation',
+        defaultValue: 'fade',
+      },
+      {
+        name: 'duration',
+        type: 'number',
+        control: { type: 'range', min: 100, max: 1000, step: 50 },
+        description: 'Duration of transition in milliseconds',
+        defaultValue: 300,
+      },
+      {
+        name: 'timing',
+        type: 'string',
+        control: { type: 'select', options: ['ease', 'ease-in', 'ease-out', 'ease-in-out', 'linear', 'spring'] },
+        description: 'Timing function for the transition',
+        defaultValue: 'ease-out',
+      },
+      {
+        name: 'keepMounted',
+        type: 'boolean',
+        control: { type: 'boolean' },
+        description: 'Keep loading content mounted',
+        defaultValue: false,
+      },
+      {
+        name: 'exitDelay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay before starting transition out',
+        defaultValue: 0,
+      },
+      {
+        name: 'delay',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 2000, step: 100 },
+        description: 'Delay in ms before showing loader',
+        defaultValue: 0,
+      },
+      {
+        name: 'minDuration',
+        type: 'number',
+        control: { type: 'range', min: 0, max: 3000, step: 100 },
+        description: 'Minimum duration in ms to show loader',
+        defaultValue: 0,
+      },
+    ],
+    examples: [
+      { name: 'Fade Transition', props: { transitionType: 'fade', duration: 300 } },
+      { name: 'Slide Up', props: { transitionType: 'slide-up', duration: 400 } },
+      { name: 'Slide Down', props: { transitionType: 'slide-down', duration: 400 } },
+      { name: 'Scale', props: { transitionType: 'scale', duration: 350, timing: 'spring' } },
+      { name: 'With Delay', props: { transitionType: 'fade', delay: 500 } },
+    ],
+    importPath: "import { LoaderTransition } from 'premium-react-loaders';",
+  },
 ];
 
 // Helper functions
@@ -2485,4 +2574,5 @@ export const CATEGORIES = [
   { id: 'overlay', name: 'Overlay', description: 'Loader overlay wrappers' },
   { id: 'button', name: 'Button', description: 'Button loading states' },
   { id: 'status', name: 'Status', description: 'Success and error indicators' },
+  { id: 'transition', name: 'Transition', description: 'Smooth content transitions' },
 ];
