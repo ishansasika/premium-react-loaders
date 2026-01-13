@@ -18,3 +18,6 @@ export * from './button';
 
 // Status components
 export * from './status';
+
+// Transition components
+export * from './transition';
