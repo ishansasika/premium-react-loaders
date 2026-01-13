@@ -312,6 +312,100 @@
   animation: error-x var(--animation-duration-normal, 500ms) ease-out forwards;
 }
 
+/* Transition animations for LoaderTransition */
+.loader-transition {
+  transition-property: opacity, transform;
+}
+
+/* Timing functions */
+.loader-transition-ease {
+  transition-timing-function: ease;
+}
+
+.loader-transition-ease-in {
+  transition-timing-function: ease-in;
+}
+
+.loader-transition-ease-out {
+  transition-timing-function: ease-out;
+}
+
+.loader-transition-ease-in-out {
+  transition-timing-function: ease-in-out;
+}
+
+.loader-transition-linear {
+  transition-timing-function: linear;
+}
+
+.loader-transition-spring {
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Fade transitions */
+.loader-transition-fade-enter-active {
+  opacity: 1;
+}
+
+.loader-transition-fade-exit-active {
+  opacity: 0;
+}
+
+/* Slide up transitions */
+.loader-transition-slide-up-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.loader-transition-slide-up-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+/* Slide down transitions */
+.loader-transition-slide-down-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.loader-transition-slide-down-exit-active {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Slide left transitions */
+.loader-transition-slide-left-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.loader-transition-slide-left-exit-active {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+/* Slide right transitions */
+.loader-transition-slide-right-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.loader-transition-slide-right-exit-active {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+/* Scale transitions */
+.loader-transition-scale-enter-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.loader-transition-scale-exit-active {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
 /* Speed variants */
 .animate-slow {
   animation-duration: var(--animation-duration-slow, 2s);

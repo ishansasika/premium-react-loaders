@@ -1,6 +1,6 @@
 import { ComponentType } from 'react';
 
-export type ComponentCategory = 'skeleton' | 'spinner' | 'progress' | 'pulse' | 'overlay' | 'button' | 'status';
+export type ComponentCategory = 'skeleton' | 'spinner' | 'progress' | 'pulse' | 'overlay' | 'button' | 'status' | 'transition';
 
 export type ControlType = 'number' | 'color' | 'select' | 'boolean' | 'range' | 'text';
 
