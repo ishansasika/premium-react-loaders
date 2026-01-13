@@ -5,6 +5,88 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2025-01-13
+
+### Added
+
+#### Transition Component (New Category)
+- **LoaderTransition Component** - Smooth transitions between loading and loaded states
+  - Eliminates jarring content switches with smooth animations
+  - Six transition types: `fade`, `slide-up`, `slide-down`, `slide-left`, `slide-right`, `scale`
+  - Six timing functions: `ease`, `ease-in`, `ease-out`, `ease-in-out`, `linear`, `spring`
+  - Customizable duration and exit delay
+  - Built-in delay and minDuration for optimal UX (prevents flash on fast loads)
+  - Optional keepMounted for better animation performance
+  - Example:
+    ```tsx
+    <LoaderTransition
+      loading={isLoading}
+      loadingContent={<Skeleton width={300} height={100} />}
+      transitionType="fade"
+      duration={300}
+      delay={200}
+    >
+      <YourActualContent />
+    </LoaderTransition>
+    ```
+
+#### Enhanced useLoader Hook
+- **useEnhancedLoader Hook** - Supercharged loading state management
+  - **Retry Logic** with exponential backoff
+    - Configurable max retries, initial delay, and backoff multiplier
+    - Custom shouldRetry function for conditional retries
+  - **Success/Error States** - Full state machine (idle → loading → success/error)
+    - Automatic state transitions
+    - Error capture and storage
+    - Retry attempt tracking
+  - **Loading History** - Track all loading sessions with timestamps and durations
+    - Useful for analytics and debugging
+    - Clearable history with `clearHistory()`
+  - **Debounce/Throttle** - Prevent excessive loading triggers
+    - Debounce for search-like scenarios
+    - Throttle for rate-limited operations
+  - **Lifecycle Callbacks**
+    - `onLoadingStart`, `onSuccess`, `onError` hooks
+  - **Auto Success/Error Display Duration**
+    - Configurable display time before auto-reset
+  - Example:
+    ```tsx
+    const {
+      status,
+      error,
+      retryAttempt,
+      startLoading,
+      stopLoading,
+      setError,
+      retry,
+      history,
+    } = useEnhancedLoader({
+      delay: 200,
+      minDuration: 600,
+      retry: {
+        maxRetries: 3,
+        initialDelay: 1000,
+        backoffMultiplier: 2,
+      },
+      onSuccess: () => console.log('Success!'),
+      onError: (err) => console.error(err),
+    });
+    ```
+
+#### New CSS Transitions
+- Fade transitions: `.loader-transition-fade-enter-active`, `.loader-transition-fade-exit-active`
+- Slide transitions (up, down, left, right): `.loader-transition-slide-*-enter-active`, `.loader-transition-slide-*-exit-active`
+- Scale transition: `.loader-transition-scale-enter-active`, `.loader-transition-scale-exit-active`
+- Timing function utilities: `.loader-transition-ease`, `.loader-transition-spring`, etc.
+
+### Updated
+- **Component Count**: Increased from 28 to 29 components
+- **Category Count**: Increased from 7 to 8 categories
+- **Hook Count**: Added useEnhancedLoader (now 3 hooks: useLoader, useEnhancedLoader, useTheme)
+- **Demo App**: Added Transition category to playground
+- **Storybook**: Added comprehensive stories for LoaderTransition and useEnhancedLoader
+- **Type System**: Added comprehensive types for hooks (LoadingStatus, RetryConfig, UseLoaderOptions, etc.)
+
 ## [2.2.0] - 2025-01-12
 
 ### Added

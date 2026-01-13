@@ -350,6 +350,89 @@ import { SpinnerCircle, ProgressBar, PulseDots } from 'premium-react-loaders';
 <PulseDots size="md" reverse />
 ```
 
+### New in v2.3.0
+
+**LoaderTransition** - Smooth transitions between loading and loaded states:
+
+```tsx
+import { LoaderTransition, Skeleton } from 'premium-react-loaders';
+
+// Eliminate jarring content switches
+<LoaderTransition
+  loading={isLoading}
+  loadingContent={<Skeleton width={300} height={100} />}
+  transitionType="fade"
+  duration={300}
+  delay={200}
+  minDuration={600}
+>
+  <YourActualContent />
+</LoaderTransition>
+
+// Different transition types
+<LoaderTransition loading={isLoading} loadingContent={<Spinner />} transitionType="slide-up">
+  <Content />
+</LoaderTransition>
+
+<LoaderTransition loading={isLoading} loadingContent={<Skeleton />} transitionType="scale" timing="spring">
+  <Content />
+</LoaderTransition>
+```
+
+**useEnhancedLoader** - Supercharged loading state management:
+
+```tsx
+import { useEnhancedLoader } from 'premium-react-loaders';
+
+function MyComponent() {
+  const {
+    status,              // 'idle' | 'loading' | 'success' | 'error'
+    error,               // Error object if failed
+    retryAttempt,        // Current retry attempt number
+    history,             // Loading history with timestamps
+    startLoading,
+    stopLoading,
+    setError,
+    retry,
+    reset,
+  } = useEnhancedLoader({
+    delay: 200,
+    minDuration: 600,
+    retry: {
+      maxRetries: 3,
+      initialDelay: 1000,
+      backoffMultiplier: 2,
+    },
+    debounce: 300,       // Debounce loading starts
+    onSuccess: () => console.log('Success!'),
+    onError: (err) => console.error(err),
+  });
+
+  const fetchData = async () => {
+    startLoading();
+    try {
+      const data = await api.fetch();
+      stopLoading();
+    } catch (err) {
+      setError(err);
+    }
+  };
+
+  return (
+    <div>
+      {status === 'loading' && <SpinnerCircle visible={isVisible} />}
+      {status === 'success' && <SuccessCheckmark visible />}
+      {status === 'error' && (
+        <>
+          <ErrorIndicator visible />
+          <button onClick={retry}>Retry ({retryAttempt}/3)</button>
+        </>
+      )}
+    </div>
+  );
+}
+```
+
 ### New in v2.2.0
 
 **Button Loaders** - Specialized spinners for button states:

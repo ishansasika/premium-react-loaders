@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Premium React Loaders is a TypeScript library providing 28 production-ready loading components for React. The library is published to npm and uses Vite for building, with Storybook for documentation and demos hosted on Firebase.
+Premium React Loaders is a TypeScript library providing 29 production-ready loading components for React. The library is published to npm and uses Vite for building, with Storybook for documentation and demos hosted on Firebase.
 
 ## Development Commands
 
@@ -50,7 +50,7 @@ npm run prepublishOnly     # Runs automatically before npm publish (builds libra
 
 ### Library Structure
 
-The library is organized into 7 main component categories, each in its own directory under `src/components/`:
+The library is organized into 8 main component categories, each in its own directory under `src/components/`:
 
 1. **Skeleton** (`src/components/skeleton/`) - 9 components for placeholder content
    - Base `Skeleton`, `SkeletonText`, `SkeletonAvatar`, `SkeletonImage`, `SkeletonCard`, `SkeletonForm`, `SkeletonList`, `SkeletonTable`, `SkeletonPage`
@@ -75,6 +75,9 @@ The library is organized into 7 main component categories, each in its own direc
 7. **Status** (`src/components/status/`) - 2 status indicator components (v2.2.0+)
    - `SuccessCheckmark` - Animated checkmark for successful operations with optional circle background
    - `ErrorIndicator` - Animated error indicator with X mark and optional shake effect
+
+8. **Transition** (`src/components/transition/`) - 1 transition component (v2.3.0+)
+   - `LoaderTransition` - Smooth transitions between loading and loaded states with multiple animation types (fade, slide-up, slide-down, slide-left, slide-right, scale)
 
 ### Export Pattern
 
