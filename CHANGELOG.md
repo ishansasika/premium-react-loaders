@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.1] - 2025-01-14
+
+### Added
+- **useEnhancedLoader**: Added `toggleLoading()` function for toggling loading state
+- **useEnhancedLoader**: Added `setLoading(boolean)` function for direct state control
+- These additions make useEnhancedLoader API-consistent with the basic useLoader hook
+
+### Fixed
+- **Documentation**: Updated component count from 28 to 29 across all documentation
+- **Documentation**: Updated category count from 7 to 8 across all documentation
+- **Storybook Introduction**: Added missing Transition category section
+
 ## [2.3.0] - 2025-01-13
 
 ### Added

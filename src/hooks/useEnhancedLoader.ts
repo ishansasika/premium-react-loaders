@@ -368,6 +368,25 @@ export function useEnhancedLoader(options: UseLoaderOptions = {}): UseLoaderRetu
     setHistory([]);
   }, []);
 
+  const toggleLoading = useCallback(() => {
+    if (loading) {
+      stopLoading();
+    } else {
+      startLoading();
+    }
+  }, [loading, startLoading, stopLoading]);
+
+  const setLoading = useCallback(
+    (value: boolean) => {
+      if (value) {
+        startLoading();
+      } else {
+        stopLoading();
+      }
+    },
+    [startLoading, stopLoading]
+  );
+
   return {
     loading,
     isVisible,
@@ -377,6 +396,8 @@ export function useEnhancedLoader(options: UseLoaderOptions = {}): UseLoaderRetu
     history,
     startLoading,
     stopLoading,
+    toggleLoading,
+    setLoading,
     setError,
     retry,
     reset,

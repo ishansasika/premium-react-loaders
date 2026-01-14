@@ -115,6 +115,12 @@ export interface UseLoaderReturn {
   /** Stop loading with success */
   stopLoading: () => void;
 
+  /** Toggle loading state */
+  toggleLoading: () => void;
+
+  /** Set loading state directly */
+  setLoading: (loading: boolean) => void;
+
   /** Stop loading with error */
   setError: (error: Error) => void;
 
