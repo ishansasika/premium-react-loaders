@@ -1,6 +1,6 @@
 # Premium React Loaders
 
-A comprehensive collection of **28 premium, production-ready loading components** for React applications. Built with TypeScript and custom CSS for maximum flexibility and zero configuration.
+A comprehensive collection of **29 premium, production-ready loading components** for React applications. Built with TypeScript and custom CSS for maximum flexibility and zero configuration.
 
 [![npm version](https://img.shields.io/npm/v/premium-react-loaders.svg)](https://www.npmjs.com/package/premium-react-loaders)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -11,11 +11,11 @@ A comprehensive collection of **28 premium, production-ready loading components*
 
 📚 **[Storybook Documentation](https://docs.premium-react-loaders.ishansasika.dev/)** - Detailed component documentation and examples
 
-See all 28 components in action with interactive examples and customization options.
+See all 29 components in action with interactive examples and customization options.
 
 ## Features
 
-- **28 Premium Components** across 7 categories (Skeleton, Spinner, Progress, Pulse, Overlay, Button, Status)
+- **29 Premium Components** across 8 categories (Skeleton, Spinner, Progress, Pulse, Overlay, Button, Status, Transition)
 - **Global Theming** - ThemeProvider for app-wide customization ✨ *New in v2.1.0*
 - **Smart Loading UX** - useLoader hook with delay, minDuration, and autoHide ✨ *New in v2.1.0*
 - **Enhanced CSS Variables** - Comprehensive theming with dark mode support ✨ *New in v2.1.0*
