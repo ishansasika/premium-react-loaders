@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Premium React Loaders is a TypeScript library providing 29 production-ready loading components for React. The library is published to npm and uses Vite for building, with Storybook for documentation and demos hosted on Firebase.
+Premium React Loaders is a TypeScript library providing 40 production-ready loading components for React. The library is published to npm and uses Vite for building, with Storybook for documentation and demos hosted on Firebase.
 
 ## Development Commands
 
@@ -50,7 +50,7 @@ npm run prepublishOnly     # Runs automatically before npm publish (builds libra
 
 ### Library Structure
 
-The library is organized into 8 main component categories, each in its own directory under `src/components/`:
+The library is organized into 13 main component categories, each in its own directory under `src/components/`:
 
 1. **Skeleton** (`src/components/skeleton/`) - 9 components for placeholder content
    - Base `Skeleton`, `SkeletonText`, `SkeletonAvatar`, `SkeletonImage`, `SkeletonCard`, `SkeletonForm`, `SkeletonList`, `SkeletonTable`, `SkeletonPage`
@@ -78,6 +78,27 @@ The library is organized into 8 main component categories, each in its own direc
 
 8. **Transition** (`src/components/transition/`) - 1 transition component (v2.3.0+)
    - `LoaderTransition` - Smooth transitions between loading and loaded states with multiple animation types (fade, slide-up, slide-down, slide-left, slide-right, scale)
+
+9. **Shimmer** (`src/components/shimmer/`) - 3 shimmer components (v3.0.0+)
+   - `ShimmerBox` - Shimmer container with directional animation
+   - `ShimmerText` - Multi-line text shimmer placeholder
+   - `ShimmerButton` - Button placeholder with shimmer effect
+
+10. **Orbit** (`src/components/orbit/`) - 3 orbital animations (v3.0.0+)
+    - `OrbitDots` - Dots orbiting around a central point
+    - `OrbitRings` - Concentric rotating rings
+    - `AtomLoader` - Electron-like orbital animation with nucleus
+
+11. **Bounce** (`src/components/bounce/`) - 2 bouncing loaders (v3.0.0+)
+    - `BouncingDots` - Dots with physics-based bounce animation
+    - `BouncingBalls` - 3D bouncing balls with shadow and squash effects
+
+12. **Infinity** (`src/components/infinity/`) - 2 infinity loaders (v3.0.0+)
+    - `InfinityLoader` - Figure-8 infinity symbol animation
+    - `MobiusLoader` - Segmented ribbon loop with twist effect
+
+13. **Text** (`src/components/text/`) - 1 text loader (v3.0.0+)
+    - `LoadingText` - Animated loading text with multiple animation styles
 
 ### Export Pattern
 
@@ -180,11 +201,11 @@ See `.github/workflows/README.md` for detailed setup instructions.
 
 ## Demo App Architecture
 
-The `demo/` directory contains a standalone React + Vite application that showcases all 20 library components:
+The `demo/` directory contains a standalone React + Vite application that showcases all 40 library components:
 
 **Key Features**:
 - Interactive playground with live prop controls (similar to Storybook)
-- Component gallery with all 20 components
+- Component gallery with all 40 components
 - Documentation pages
 - Code generation with copy-to-clipboard
 - Background theme switcher (light/dark/gray)
@@ -203,7 +224,7 @@ The `demo/` directory contains a standalone React + Vite application that showca
 - `src/hooks/` - React hooks (useTheme, useClipboard, useLocalStorage)
 - `src/utils/` - Utility functions (code generation, formatters)
 
-**Component Metadata**: All 20 components are defined in `demo/src/data/components.ts` with:
+**Component Metadata**: All 40 components are defined in `demo/src/data/components.ts` with:
 - Default props
 - Prop definitions with control types (range, color, select, boolean, text)
 - Usage examples

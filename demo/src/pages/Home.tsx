@@ -23,7 +23,7 @@ export function Home() {
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold mb-4">Premium React Loaders</h1>
           <p className="text-xl text-gray-600 mb-8">
-            29 production-ready loading components for React with TypeScript
+            40 production-ready loading components for React with TypeScript
           </p>
           <div className="flex gap-4 justify-center mb-8">
             <Link to="/playground" className="btn-primary">
@@ -62,10 +62,10 @@ export function Home() {
         {/* Features */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           <div className="text-center">
-            <div className="text-4xl font-bold text-blue-500 mb-2">29</div>
+            <div className="text-4xl font-bold text-blue-500 mb-2">40</div>
             <div className="font-semibold mb-2">Components</div>
             <div className="text-sm text-gray-600">
-              Skeleton, Spinner, Progress, Pulse, Button, Status, and Transition loaders
+              Skeleton, Spinner, Progress, Pulse, Shimmer, Orbit, Bounce, Infinity, Text, and more
             </div>
           </div>
           <div className="text-center">

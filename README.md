@@ -1,6 +1,6 @@
 # Premium React Loaders
 
-A comprehensive collection of **29 premium, production-ready loading components** for React applications. Built with TypeScript and custom CSS for maximum flexibility and zero configuration.
+A comprehensive collection of **40 premium, production-ready loading components** for React applications. Built with TypeScript and custom CSS for maximum flexibility and zero configuration.
 
 [![npm version](https://img.shields.io/npm/v/premium-react-loaders.svg)](https://www.npmjs.com/package/premium-react-loaders)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -11,11 +11,11 @@ A comprehensive collection of **29 premium, production-ready loading components*
 
 📚 **[Storybook Documentation](https://docs.premium-react-loaders.ishansasika.dev/)** - Detailed component documentation and examples
 
-See all 29 components in action with interactive examples and customization options.
+See all 40 components in action with interactive examples and customization options.
 
 ## Features
 
-- **29 Premium Components** across 8 categories (Skeleton, Spinner, Progress, Pulse, Overlay, Button, Status, Transition)
+- **40 Premium Components** across 13 categories (Skeleton, Spinner, Progress, Pulse, Overlay, Button, Status, Transition, Shimmer, Orbit, Bounce, Infinity, Text)
 - **Global Theming** - ThemeProvider for app-wide customization ✨ *New in v2.1.0*
 - **Smart Loading UX** - useLoader hook with delay, minDuration, and autoHide ✨ *New in v2.1.0*
 - **Enhanced CSS Variables** - Comprehensive theming with dark mode support ✨ *New in v2.1.0*
@@ -177,6 +177,48 @@ Animated indicators for success and error states:
 
 - **SuccessCheckmark** - Animated checkmark with optional circle background
 - **ErrorIndicator** - Animated X mark with optional shake effect and circle background
+
+### Transition Components (1 component) ✨ *New in v2.3.0*
+
+Smooth transitions between loading and loaded states:
+
+- **LoaderTransition** - Animated transitions between loading and content states with multiple animation types (fade, slide, scale)
+
+### Shimmer Components (3 components) ✨ *New in v3.0.0*
+
+Shimmer effect placeholders with directional animations:
+
+- **ShimmerBox** - Shimmer container with customizable direction (left-to-right, right-to-left, top-to-bottom, bottom-to-top)
+- **ShimmerText** - Multi-line text shimmer placeholder
+- **ShimmerButton** - Button placeholder with shimmer effect
+
+### Orbit Components (3 components) ✨ *New in v3.0.0*
+
+Orbital and atomic animations:
+
+- **OrbitDots** - Dots orbiting around a central point
+- **OrbitRings** - Concentric rotating rings
+- **AtomLoader** - Electron-like orbital animation with nucleus
+
+### Bounce Components (2 components) ✨ *New in v3.0.0*
+
+Physics-based bouncing loaders:
+
+- **BouncingDots** - Dots with physics-based bounce animation
+- **BouncingBalls** - 3D bouncing balls with shadow and squash effects
+
+### Infinity Components (2 components) ✨ *New in v3.0.0*
+
+Continuous loop animations:
+
+- **InfinityLoader** - Figure-8 infinity symbol animation with optional traveling dot
+- **MobiusLoader** - Segmented ribbon loop with twist effect
+
+### Text Components (1 component) ✨ *New in v3.0.0*
+
+Animated loading text:
+
+- **LoadingText** - Animated loading text with multiple animation styles (dots, fade, bounce, wave)
 
 ## Usage Examples
 
