@@ -5,6 +5,187 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2025-01-16
+
+### 🎉 Major Release - 40 Components
+
+This major release adds 11 new components across 5 new categories, bringing the total to 40 premium loading components.
+
+### Added
+
+#### Shimmer Components (3 components) - New Category
+- **ShimmerBox** - Shimmer container with directional animation
+  - Four directions: left-to-right, right-to-left, top-to-bottom, bottom-to-top
+  - Customizable shimmer color with adjustable intensity
+  - Configurable animation speed and border radius
+  - Example:
+    ```tsx
+    <ShimmerBox
+      width={200}
+      height={100}
+      direction="ltr"
+      shimmerColor="#ffffff"
+      intensity={0.5}
+    />
+    ```
+
+- **ShimmerText** - Multi-line text shimmer placeholder
+  - Configurable line count and height
+  - Variable last line width for natural appearance
+  - Line-by-line shimmer animation
+  - Example:
+    ```tsx
+    <ShimmerText
+      lines={3}
+      lineHeight={16}
+      lastLineWidth="60%"
+    />
+    ```
+
+- **ShimmerButton** - Button placeholder with shimmer effect
+  - Multiple variants: primary, secondary, outline
+  - Configurable width and height
+  - Optional icon placeholder support
+  - Example:
+    ```tsx
+    <ShimmerButton
+      width={120}
+      variant="primary"
+      showIcon
+    />
+    ```
+
+#### Orbit Components (3 components) - New Category
+- **OrbitDots** - Dots orbiting around a central point
+  - Configurable dot count and orbit radius
+  - Optional center dot with customizable size
+  - Trail effect for motion blur appearance
+  - Example:
+    ```tsx
+    <OrbitDots
+      dotCount={6}
+      orbitRadius={30}
+      showCenter
+      trail
+    />
+    ```
+
+- **OrbitRings** - Concentric rotating rings
+  - Multiple rings with alternating directions
+  - Customizable ring count and spacing
+  - Optional gradient coloring
+  - Example:
+    ```tsx
+    <OrbitRings
+      ringCount={3}
+      spacing={8}
+      gradient
+    />
+    ```
+
+- **AtomLoader** - Electron-like orbital animation with nucleus
+  - Multiple electron orbits at different angles
+  - Customizable electron count and orbit color
+  - Optional pulsing nucleus
+  - Example:
+    ```tsx
+    <AtomLoader
+      electronCount={3}
+      nucleusSize={12}
+      pulseNucleus
+    />
+    ```
+
+#### Bounce Components (2 components) - New Category
+- **BouncingDots** - Dots with physics-based bounce animation
+  - Configurable dot count and bounce height
+  - Staggered animation for wave effect
+  - Optional fade during bounce
+  - Example:
+    ```tsx
+    <BouncingDots
+      dotCount={3}
+      bounceHeight={20}
+      stagger={0.1}
+    />
+    ```
+
+- **BouncingBalls** - 3D bouncing balls with shadow and squash effects
+  - Realistic shadow that scales with height
+  - Squash and stretch deformation on impact
+  - Configurable ball count and size
+  - Example:
+    ```tsx
+    <BouncingBalls
+      ballCount={3}
+      showShadow
+      squash
+    />
+    ```
+
+#### Infinity Components (2 components) - New Category
+- **InfinityLoader** - Figure-8 infinity symbol animation
+  - SVG-based smooth path animation
+  - Optional traveling dot along path
+  - Gradient color support
+  - Example:
+    ```tsx
+    <InfinityLoader
+      gradient
+      showDot
+      dotSize={6}
+    />
+    ```
+
+- **MobiusLoader** - Segmented ribbon loop with twist effect
+  - Configurable segment count and ribbon width
+  - Optional twist animation
+  - Alternating segment colors
+  - Example:
+    ```tsx
+    <MobiusLoader
+      segments={8}
+      twist
+      secondaryColor="#ec4899"
+    />
+    ```
+
+#### Text Components (1 component) - New Category
+- **LoadingText** - Animated loading text with multiple styles
+  - Four animation types: dots, fade, bounce, wave
+  - Customizable text content and font styling
+  - Configurable dot count for ellipsis
+  - Example:
+    ```tsx
+    <LoadingText
+      text="Loading"
+      animation="wave"
+      fontSize={18}
+      showEllipsis
+    />
+    ```
+
+#### New CSS Animations
+- `shimmer-ltr`, `shimmer-rtl`, `shimmer-ttb`, `shimmer-btt` - Directional shimmer animations
+- `orbit-rotate`, `orbit-dot-pulse` - Orbital motion animations
+- `atom-orbit` - Electron orbit path animation
+- `bounce-dot`, `bounce-ball`, `bounce-ball-squash`, `bounce-shadow` - Physics-based bounce animations
+- `infinity-dash`, `infinity-dot` - Infinity path animations
+- `mobius-rotate`, `mobius-segment` - Mobius strip rotation animations
+- `loading-text-dot`, `loading-text-fade`, `loading-text-bounce`, `loading-text-wave` - Text loading animations
+
+### Updated
+- **Component Count**: Increased from 29 to 40 components
+- **Category Count**: Increased from 8 to 13 categories
+- **Demo App**: Added 5 new categories with all 11 new components
+- **Storybook**: Added comprehensive stories for all new components
+- **Documentation**: Updated README, CLAUDE.md, and Introduction with new component information
+
+### Breaking Changes
+None - this is an additive release with no changes to existing component APIs.
+
+---
+
 ## [2.3.1] - 2025-01-14
 
 ### Added
