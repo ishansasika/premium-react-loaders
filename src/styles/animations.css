@@ -470,3 +470,42 @@
   opacity: 0;
   transition: opacity var(--transition-duration, 150ms) ease-out;
 }
+
+/* Orbit animations */
+@keyframes orbit-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-dot-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) rotate(var(--angle, 0deg)) translateX(var(--radius, 0)) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--angle, 0deg)) translateX(var(--radius, 0)) scale(1);
+  }
+}
+
+@keyframes atom-orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-orbit-rotate {
+  animation: orbit-rotate var(--animation-duration-normal, 1s) linear infinite;
+}
+
+.animate-atom-orbit {
+  animation: atom-orbit var(--animation-duration-normal, 1s) linear infinite;
+}
