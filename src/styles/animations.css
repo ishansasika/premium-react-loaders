@@ -617,3 +617,64 @@
 .animate-mobius-rotate {
   animation: mobius-rotate var(--animation-duration-normal, 2s) linear infinite;
 }
+
+/* Loading text animations */
+@keyframes loading-text-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+@keyframes loading-text-fade {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes loading-text-bounce {
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-0.3em);
+  }
+}
+
+@keyframes loading-text-wave {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-0.2em);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(0.1em);
+  }
+}
+
+.animate-loading-text-dot {
+  animation: loading-text-dot var(--animation-duration-normal, 1.4s) ease-in-out infinite;
+}
+
+.animate-loading-text-fade {
+  animation: loading-text-fade var(--animation-duration-normal, 1.5s) ease-in-out infinite;
+}
+
+.animate-loading-text-bounce {
+  animation: loading-text-bounce var(--animation-duration-normal, 1.2s) ease-in-out infinite;
+}

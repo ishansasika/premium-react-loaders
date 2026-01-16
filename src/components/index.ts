@@ -33,3 +33,6 @@ export * from './bounce';
 
 // Infinity components
 export * from './infinity';
+
+// Text components
+export * from './text';

@@ -14,6 +14,7 @@ export * from './shimmer';
 export * from './orbit';
 export * from './bounce';
 export * from './infinity';
+export * from './text';
 
 // Hook types
 export * from './hooks';

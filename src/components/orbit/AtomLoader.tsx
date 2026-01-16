@@ -58,9 +58,7 @@ export const AtomLoader = forwardRef<HTMLDivElement, AtomLoaderProps>(
     if (!shouldRender) return null;
 
     const normalizedSize = normalizeSize(size);
-    const sizeNum = parseInt(normalizedSize, 10);
     const durationNum = parseInt(effectiveDuration, 10);
-    const orbitRadius = (sizeNum - electronSize) / 2;
 
     // Generate orbital angles - distribute evenly
     const orbitAngles = Array.from({ length: orbits }, (_, i) => (180 / orbits) * i);
