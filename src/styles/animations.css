@@ -509,3 +509,60 @@
 .animate-atom-orbit {
   animation: atom-orbit var(--animation-duration-normal, 1s) linear infinite;
 }
+
+/* Bounce animations */
+@keyframes bounce-dot {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(calc(var(--bounce-height, 10px) * -1));
+  }
+}
+
+@keyframes bounce-ball {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(calc(var(--bounce-height, 20px) * -1));
+  }
+}
+
+@keyframes bounce-ball-squash {
+  0%,
+  100% {
+    transform: translateY(0) scaleX(1.1) scaleY(0.9);
+  }
+  25% {
+    transform: translateY(calc(var(--bounce-height, 20px) * -0.5)) scaleX(1) scaleY(1);
+  }
+  50% {
+    transform: translateY(calc(var(--bounce-height, 20px) * -1)) scaleX(0.9) scaleY(1.1);
+  }
+  75% {
+    transform: translateY(calc(var(--bounce-height, 20px) * -0.5)) scaleX(1) scaleY(1);
+  }
+}
+
+@keyframes bounce-shadow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(0.5);
+    opacity: 0.1;
+  }
+}
+
+.animate-bounce-dot {
+  animation: bounce-dot var(--animation-duration-normal, 600ms) ease-in-out infinite;
+}
+
+.animate-bounce-ball {
+  animation: bounce-ball var(--animation-duration-normal, 800ms) ease-in-out infinite;
+}

@@ -12,6 +12,7 @@ export * from './status';
 export * from './transition';
 export * from './shimmer';
 export * from './orbit';
+export * from './bounce';
 
 // Hook types
 export * from './hooks';

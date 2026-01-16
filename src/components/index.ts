@@ -27,3 +27,6 @@ export * from './shimmer';
 
 // Orbit components
 export * from './orbit';
+
+// Bounce components
+export * from './bounce';
