@@ -566,3 +566,54 @@
 .animate-bounce-ball {
   animation: bounce-ball var(--animation-duration-normal, 800ms) ease-in-out infinite;
 }
+
+/* Infinity animations */
+@keyframes infinity-dash {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -250;
+  }
+}
+
+@keyframes infinity-dot {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes mobius-rotate {
+  0% {
+    transform: rotate(0deg) rotateX(0deg);
+  }
+  100% {
+    transform: rotate(360deg) rotateX(0deg);
+  }
+}
+
+@keyframes mobius-segment {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: rotate(var(--angle, 90deg)) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(var(--angle, 90deg)) scale(1.2);
+  }
+}
+
+.animate-infinity-dash {
+  animation: infinity-dash var(--animation-duration-normal, 2s) linear infinite;
+}
+
+.animate-mobius-rotate {
+  animation: mobius-rotate var(--animation-duration-normal, 2s) linear infinite;
+}

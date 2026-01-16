@@ -30,3 +30,6 @@ export * from './orbit';
 
 // Bounce components
 export * from './bounce';
+
+// Infinity components
+export * from './infinity';
