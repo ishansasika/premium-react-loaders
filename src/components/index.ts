@@ -21,3 +21,6 @@ export * from './status';
 
 // Transition components
 export * from './transition';
+
+// Shimmer components
+export * from './shimmer';

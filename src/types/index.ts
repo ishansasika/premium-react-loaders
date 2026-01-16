@@ -10,6 +10,7 @@ export * from './overlay';
 export * from './button';
 export * from './status';
 export * from './transition';
+export * from './shimmer';
 
 // Hook types
 export * from './hooks';

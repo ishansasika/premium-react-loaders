@@ -1,5 +1,42 @@
 /* Animation keyframes */
 
+/* Shimmer animations - directional */
+@keyframes shimmer-ltr {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes shimmer-rtl {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes shimmer-ttb {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes shimmer-btt {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
 @keyframes skeleton-shimmer {
   0% {
     transform: translateX(-100%);
