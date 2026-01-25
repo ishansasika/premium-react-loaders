@@ -15,6 +15,7 @@ export * from './orbit';
 export * from './bounce';
 export * from './infinity';
 export * from './text';
+export * from './3d';
 
 // Hook types
 export * from './hooks';

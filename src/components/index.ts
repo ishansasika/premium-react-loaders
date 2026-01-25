@@ -36,3 +36,6 @@ export * from './infinity';
 
 // Text components
 export * from './text';
+
+// 3D components
+export * from './3d';
