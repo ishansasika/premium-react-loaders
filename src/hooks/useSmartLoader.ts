@@ -196,8 +196,6 @@ export function useSmartLoader(
     }
 
     const elapsed = Date.now() - startTimeRef.current;
-    const avgDuration =
-      historyRef.current.reduce((sum, d) => sum + d, 0) / historyRef.current.length;
 
     // Estimate based on current progress
     const estimatedTotal = (elapsed / progress) * 100;

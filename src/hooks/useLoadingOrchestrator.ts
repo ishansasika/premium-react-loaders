@@ -111,7 +111,6 @@ export function useLoadingOrchestrator(
   options: OrchestratorOptions = {}
 ): UseLoadingOrchestratorReturn {
   const {
-    mode = 'parallel',
     stopOnError = false,
     onTaskStart,
     onTaskComplete,
@@ -120,7 +119,6 @@ export function useLoadingOrchestrator(
   } = options;
 
   const [tasks, setTasks] = useState<LoadingTask[]>(initialTasks);
-  const previousTasksRef = useRef<LoadingTask[]>(initialTasks);
   const allCompleteCalledRef = useRef(false);
 
   // Reset all tasks

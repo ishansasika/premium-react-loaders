@@ -65,7 +65,6 @@ export const DataTableSkeleton = forwardRef<HTMLDivElement, DataTableSkeletonPro
     if (!shouldRender) return null;
 
     // Calculate column widths
-    const totalColumns = columns + (showSelection ? 1 : 0) + (showActions ? 1 : 0);
     const getColumnWidth = (index: number): string => {
       if (columnWidths && columnWidths[index]) {
         const width = columnWidths[index];

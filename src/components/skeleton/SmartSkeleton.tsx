@@ -1,6 +1,5 @@
 import { forwardRef, useEffect, useState } from 'react';
 import { SmartSkeletonProps } from '../../types';
-import { Skeleton } from './Skeleton';
 import { SkeletonCard } from './SkeletonCard';
 import { SkeletonTable } from './SkeletonTable';
 import { SkeletonList } from './SkeletonList';
@@ -138,8 +137,8 @@ export const SmartSkeleton = forwardRef<HTMLDivElement, SmartSkeletonProps>(
           <SkeletonCard
             {...commonProps}
             width={width}
-            showAvatar
-            textLines={3}
+            hasAvatar
+            lines={3}
           />
         );
 
