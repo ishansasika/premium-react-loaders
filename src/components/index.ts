@@ -42,3 +42,6 @@ export * from './3d';
 
 // Smart components
 export * from './smart';
+
+// Accessibility components
+export * from './accessibility';

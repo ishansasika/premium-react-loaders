@@ -17,6 +17,7 @@ export * from './infinity';
 export * from './text';
 export * from './3d';
 export * from './smart';
+export * from './accessibility';
 
 // Hook types
 export * from './hooks';
