@@ -39,3 +39,6 @@ export * from './text';
 
 // 3D components
 export * from './3d';
+
+// Smart components
+export * from './smart';

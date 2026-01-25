@@ -16,6 +16,7 @@ export * from './bounce';
 export * from './infinity';
 export * from './text';
 export * from './3d';
+export * from './smart';
 
 // Hook types
 export * from './hooks';

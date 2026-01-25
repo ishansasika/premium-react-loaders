@@ -7,3 +7,5 @@ export { SkeletonList } from './SkeletonList';
 export { SkeletonTable } from './SkeletonTable';
 export { SkeletonPage } from './SkeletonPage';
 export { SkeletonForm } from './SkeletonForm';
+export { SmartSkeleton } from './SmartSkeleton';
+export { DataTableSkeleton } from './DataTableSkeleton';
