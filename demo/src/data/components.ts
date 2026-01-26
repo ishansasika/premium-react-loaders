@@ -55,6 +55,18 @@ import {
   MobiusLoader,
   // Text
   LoadingText,
+  // 3D
+  CubeSpinner,
+  FlipCard,
+  PlaneRotate,
+  Helix,
+  PerspectiveRing,
+  // Smart
+  SmartSkeleton,
+  DataTableSkeleton,
+  FormFieldLoader,
+  // Accessibility
+  LiveRegion,
 } from '@lib/components';
 
 export const COMPONENTS: ComponentMetadata[] = [
@@ -3446,4 +3458,7 @@ export const CATEGORIES = [
   { id: 'bounce', name: 'Bounce', description: 'Physics-based bouncing loaders' },
   { id: 'infinity', name: 'Infinity', description: 'Continuous loop animations' },
   { id: 'text', name: 'Text', description: 'Animated loading text' },
+  { id: '3d', name: '3D', description: 'Immersive 3D animations' },
+  { id: 'smart', name: 'Smart', description: 'Intelligent context-aware loaders' },
+  { id: 'accessibility', name: 'Accessibility', description: 'Screen reader support' },
 ];
