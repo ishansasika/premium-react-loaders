@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Premium React Loaders is a TypeScript library providing 40 production-ready loading components for React. The library is published to npm and uses Vite for building, with Storybook for documentation and demos hosted on Firebase.
+Premium React Loaders is a TypeScript library providing 50+ production-ready loading components for React. The library is published to npm and uses Vite for building, with Storybook for documentation and demos hosted on Firebase.
 
 ## Development Commands
 
@@ -50,7 +50,7 @@ npm run prepublishOnly     # Runs automatically before npm publish (builds libra
 
 ### Library Structure
 
-The library is organized into 13 main component categories, each in its own directory under `src/components/`:
+The library is organized into 15 main component categories, each in its own directory under `src/components/`:
 
 1. **Skeleton** (`src/components/skeleton/`) - 9 components for placeholder content
    - Base `Skeleton`, `SkeletonText`, `SkeletonAvatar`, `SkeletonImage`, `SkeletonCard`, `SkeletonForm`, `SkeletonList`, `SkeletonTable`, `SkeletonPage`
@@ -99,6 +99,32 @@ The library is organized into 13 main component categories, each in its own dire
 
 13. **Text** (`src/components/text/`) - 1 text loader (v3.0.0+)
     - `LoadingText` - Animated loading text with multiple animation styles
+
+14. **3D** (`src/components/3d/`) - 5 immersive 3D loaders (v3.1.0+)
+    - `CubeSpinner` - Rotating 3D cube with customizable faces and rotation axes (x, y, z, diagonal)
+    - `FlipCard` - 3D card flip animation with horizontal/vertical modes
+    - `PlaneRotate` - Multiple rotating planes in 3D space
+    - `Helix` - DNA-like spiral animation with particles
+    - `PerspectiveRing` - 3D ring with tilt and shadow effects
+
+15. **Smart** (`src/components/smart/`) - 3 intelligent components (v3.1.0+)
+    - `FormFieldLoader` - Loading states for form inputs (text, select, checkbox, radio, textarea, file)
+
+16. **Accessibility** (`src/components/accessibility/`) - 1 accessibility component (v3.1.0+)
+    - `LiveRegion` - ARIA live region for screen reader announcements
+
+**Note**: `SmartSkeleton` and `DataTableSkeleton` are part of the Skeleton category (`src/components/skeleton/`) but added in v3.1.0.
+
+### Hooks
+
+The library provides 6 hooks for loading state management in `src/hooks/`:
+
+1. **useLoader** (v2.1.0+) - Basic loading state with delay, minDuration, and autoHide
+2. **useEnhancedLoader** (v2.3.0+) - Advanced loading with retry logic, success/error states, and history
+3. **useLoadingOrchestrator** (v3.1.0+) - Manage multiple loading tasks with dependencies
+4. **useLoadingAnalytics** (v3.1.0+) - Track loading performance metrics
+5. **useSmartLoader** (v3.1.0+) - Intelligent loader with connection detection and progress estimation
+6. **useTheme** (v2.1.0+) - Access global theme configuration
 
 ### Export Pattern
 

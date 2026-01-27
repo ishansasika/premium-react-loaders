@@ -1,6 +1,6 @@
 # Premium React Loaders
 
-A comprehensive collection of **40 premium, production-ready loading components** for React applications. Built with TypeScript and custom CSS for maximum flexibility and zero configuration.
+A comprehensive collection of **50+ premium, production-ready loading components** for React applications. Built with TypeScript and custom CSS for maximum flexibility and zero configuration.
 
 [![npm version](https://img.shields.io/npm/v/premium-react-loaders.svg)](https://www.npmjs.com/package/premium-react-loaders)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -11,11 +11,15 @@ A comprehensive collection of **40 premium, production-ready loading components*
 
 📚 **[Storybook Documentation](https://docs.premium-react-loaders.ishansasika.dev/)** - Detailed component documentation and examples
 
-See all 40 components in action with interactive examples and customization options.
+See all 50+ components in action with interactive examples and customization options.
 
 ## Features
 
-- **40 Premium Components** across 13 categories (Skeleton, Spinner, Progress, Pulse, Overlay, Button, Status, Transition, Shimmer, Orbit, Bounce, Infinity, Text)
+- **50+ Premium Components** across 15 categories (Skeleton, Spinner, Progress, Pulse, Overlay, Button, Status, Transition, Shimmer, Orbit, Bounce, Infinity, Text, 3D, Smart)
+- **6 Powerful Hooks** - useLoader, useEnhancedLoader, useLoadingOrchestrator, useLoadingAnalytics, useSmartLoader, useTheme ✨ *New in v3.1.0*
+- **3D Loaders** - Immersive 3D animations with CSS transforms ✨ *New in v3.1.0*
+- **Smart Components** - Context-aware skeletons and form field loaders ✨ *New in v3.1.0*
+- **Accessibility First** - LiveRegion component and announcement system ✨ *New in v3.1.0*
 - **Global Theming** - ThemeProvider for app-wide customization ✨ *New in v2.1.0*
 - **Smart Loading UX** - useLoader hook with delay, minDuration, and autoHide ✨ *New in v2.1.0*
 - **Enhanced CSS Variables** - Comprehensive theming with dark mode support ✨ *New in v2.1.0*
@@ -219,6 +223,44 @@ Continuous loop animations:
 Animated loading text:
 
 - **LoadingText** - Animated loading text with multiple animation styles (dots, fade, bounce, wave)
+
+### 3D Components (5 components) ✨ *New in v3.1.0*
+
+Immersive 3D loaders with perspective transforms:
+
+- **CubeSpinner** - Rotating 3D cube with customizable faces and rotation axes (x, y, z, diagonal)
+- **FlipCard** - 3D card flip animation with horizontal/vertical modes
+- **PlaneRotate** - Multiple rotating planes in 3D space with synchronized/staggered modes
+- **Helix** - DNA-like spiral animation with particles and optional connecting lines
+- **PerspectiveRing** - 3D ring with tilt angle, shadow effects, and depth perception
+
+### Smart Components (3 components) ✨ *New in v3.1.0*
+
+Intelligent, context-aware loading placeholders:
+
+- **SmartSkeleton** - Auto-detecting skeleton that analyzes content type (text, image, card, list, table, form)
+- **FormFieldLoader** - Loading states for form inputs (text, select, checkbox, radio, textarea, file)
+- **DataTableSkeleton** - Advanced table skeleton with headers, sorting, filtering, pagination, and selection
+
+### Accessibility Components (1 component) ✨ *New in v3.1.0*
+
+Screen reader support and ARIA announcements:
+
+- **LiveRegion** - ARIA live region for screen reader announcements with configurable politeness levels
+
+## Hooks
+
+### Loading State Management
+
+- **useLoader** - Basic loading state with delay, minDuration, and autoHide *(v2.1.0+)*
+- **useEnhancedLoader** - Advanced loading with retry logic, success/error states, and history *(v2.3.0+)*
+- **useLoadingOrchestrator** - Manage multiple loading tasks with dependencies ✨ *New in v3.1.0*
+- **useLoadingAnalytics** - Track loading performance metrics and user experience ✨ *New in v3.1.0*
+- **useSmartLoader** - Intelligent loader with connection detection and progress estimation ✨ *New in v3.1.0*
+
+### Theming
+
+- **useTheme** - Access global theme configuration *(v2.1.0+)*
 
 ## Usage Examples
 

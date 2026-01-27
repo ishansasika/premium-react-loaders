@@ -36,3 +36,12 @@ export * from './infinity';
 
 // Text components
 export * from './text';
+
+// 3D components
+export * from './3d';
+
+// Smart components
+export * from './smart';
+
+// Accessibility components
+export * from './accessibility';
