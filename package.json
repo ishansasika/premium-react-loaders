@@ -1,6 +1,6 @@
 {
   "name": "premium-react-loaders",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Premium, production-ready loading components for React with TypeScript",
   "author": "Ishan Karunaratne",
   "license": "MIT",
@@ -36,10 +36,7 @@
         "default": "./dist/index.cjs"
       }
     },
-    "./styles": {
-      "import": "./dist/styles/index.css",
-      "require": "./dist/styles/index.css"
-    },
+    "./styles": "./dist/premium-react-loaders.css",
     "./package.json": "./package.json"
   },
   "files": [
