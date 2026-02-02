@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.1] - 2026-02-02
+
+### Fixed
+- **CSS Export Path** - Corrected the `package.json` exports map for CSS imports
+  - Fixed `"premium-react-loaders/styles"` import path to point to the actual built CSS file (`dist/premium-react-loaders.css`)
+  - Previously pointed to non-existent `dist/styles/index.css`, causing module resolution failures
+  - Users can now import styles using the standard `import 'premium-react-loaders/styles'` without needing workarounds
+
 ## [3.1.0] - 2026-01-25
 
 ### 🚀 Feature Release - 3D Loaders, Advanced Hooks & Smart Components
