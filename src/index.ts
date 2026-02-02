@@ -20,4 +20,4 @@ export { cn } from './utils/classNames';
 export { getAnimationDuration, normalizeSize } from './utils/colors';
 
 // Version
-export const version = '2.1.0';
+export const version = '3.1.1';
