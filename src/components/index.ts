@@ -51,3 +51,6 @@ export * from './morph';
 
 // Gradient components
 export * from './gradient';
+
+// Particle components
+export * from './particle';
