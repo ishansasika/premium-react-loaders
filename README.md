@@ -1,6 +1,6 @@
 # Premium React Loaders
 
-A comprehensive collection of **50+ premium, production-ready loading components** for React applications. Built with TypeScript and custom CSS for maximum flexibility and zero configuration.
+A comprehensive collection of **58+ premium, production-ready loading components** for React applications. Built with TypeScript and custom CSS for maximum flexibility and zero configuration.
 
 [![npm version](https://img.shields.io/npm/v/premium-react-loaders.svg)](https://www.npmjs.com/package/premium-react-loaders)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -11,12 +11,16 @@ A comprehensive collection of **50+ premium, production-ready loading components
 
 📚 **[Storybook Documentation](https://docs.premium-react-loaders.ishansasika.dev/)** - Detailed component documentation and examples
 
-See all 50+ components in action with interactive examples and customization options.
+See all 58+ components in action with interactive examples and customization options.
 
 ## Features
 
-- **50+ Premium Components** across 15 categories (Skeleton, Spinner, Progress, Pulse, Overlay, Button, Status, Transition, Shimmer, Orbit, Bounce, Infinity, Text, 3D, Smart)
+- **58+ Premium Components** across 19 categories (Skeleton, Spinner, Progress, Pulse, Overlay, Button, Status, Transition, Shimmer, Orbit, Bounce, Infinity, Text, 3D, Smart, Morph, Gradient, Particle, Accessibility)
 - **6 Powerful Hooks** - useLoader, useEnhancedLoader, useLoadingOrchestrator, useLoadingAnalytics, useSmartLoader, useTheme ✨ *New in v3.1.0*
+- **Morph Loaders** - Fluid organic blob, liquid fill, and wave circle animations ✨ *New in v4.0.0*
+- **Gradient Loaders** - Animated conic gradient spinners and flowing gradient bars ✨ *New in v4.0.0*
+- **Particle Loaders** - CSS particle burst and orbital animations ✨ *New in v4.0.0*
+- **onComplete Callback** - Fire callbacks when progress reaches 100% ✨ *New in v4.0.0*
 - **3D Loaders** - Immersive 3D animations with CSS transforms ✨ *New in v3.1.0*
 - **Smart Components** - Context-aware skeletons and form field loaders ✨ *New in v3.1.0*
 - **Accessibility First** - LiveRegion component and announcement system ✨ *New in v3.1.0*
@@ -247,6 +251,29 @@ Intelligent, context-aware loading placeholders:
 Screen reader support and ARIA announcements:
 
 - **LiveRegion** - ARIA live region for screen reader announcements with configurable politeness levels
+
+### Morph Components (3 components) ✨ *New in v4.0.0*
+
+Fluid, organic animation components based on CSS morphing:
+
+- **MorphBlob** - Organic blob shape that continuously morphs between randomized border-radius states
+- **LiquidFill** - Circular container that fills with an animated liquid level (determinate and indeterminate modes)
+- **WaveCircle** - Concentric circular ripples emanating outward from the center like a sonar pulse
+
+### Gradient Components (3 components) ✨ *New in v4.0.0*
+
+Visually striking spinners and progress indicators using animated CSS gradients:
+
+- **GradientSpinner** - Circular spinner filled with a sweeping conic gradient that rotates continuously
+- **GradientRing** - Ring with a moving gradient that travels around its circumference
+- **GradientBar** - Horizontal progress bar with a flowing gradient shimmer animation
+
+### Particle Components (2 components) ✨ *New in v4.0.0*
+
+Particle-based loaders using CSS-positioned elements for dynamic visual effects:
+
+- **ParticleBurst** - Particles that periodically burst outward from a central point and fade as they travel
+- **ParticleOrbit** - Multiple particles floating in circular orbits around a central dot with staggered delays
 
 ## Hooks
 
