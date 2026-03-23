@@ -1,19 +1,6 @@
 import { forwardRef } from 'react';
 import { WaveCircleProps } from '../../types';
-import { cn, useReducedMotion, getEffectiveDuration, useLoaderVisibility } from '../../utils';
-
-/**
- * Parse an animation duration string (e.g. "1s", "500ms", "0.01ms") to milliseconds.
- */
-function parseDurationMs(duration: string): number {
-  if (duration.endsWith('ms')) {
-    return parseFloat(duration);
-  }
-  if (duration.endsWith('s')) {
-    return parseFloat(duration) * 1000;
-  }
-  return parseFloat(duration);
-}
+import { cn, useReducedMotion, getEffectiveDuration, useLoaderVisibility, parseDurationMs } from '../../utils';
 
 /**
  * WaveCircle - Concentric ripples expanding outward like a sonar pulse

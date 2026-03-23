@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { ParticleOrbitProps } from '../../types';
-import { cn, useReducedMotion, getEffectiveDuration, useLoaderVisibility } from '../../utils';
+import { cn, useReducedMotion, getEffectiveDuration, useLoaderVisibility, parseDurationMs } from '../../utils';
 
 /**
  * ParticleOrbit - Particles orbiting a central point with staggered animation offsets
@@ -43,9 +43,7 @@ export const ParticleOrbit = forwardRef<HTMLDivElement, ParticleOrbitProps>(
     const particleSize = size * 0.1;
     const centerSize = size * 0.15;
     const dotColor = centerColor || color;
-    const durationMs = effectiveDuration.endsWith('ms')
-      ? parseFloat(effectiveDuration)
-      : parseFloat(effectiveDuration) * 1000;
+    const durationMs = parseDurationMs(effectiveDuration);
 
     return (
       <div
