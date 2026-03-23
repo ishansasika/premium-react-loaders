@@ -48,3 +48,6 @@ export * from './accessibility';
 
 // Morph components
 export * from './morph';
+
+// Gradient components
+export * from './gradient';
