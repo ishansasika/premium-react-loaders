@@ -45,3 +45,6 @@ export * from './smart';
 
 // Accessibility components
 export * from './accessibility';
+
+// Morph components
+export * from './morph';
