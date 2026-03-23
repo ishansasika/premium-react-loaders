@@ -10,6 +10,8 @@ export interface GradientSpinnerProps extends BaseLoaderProps {
   secondaryColor?: string;
   /** Ring stroke width in px */
   thickness?: number;
+  /** Background color for the inner cutout (defaults to 'white' — set to match your page background for dark mode) */
+  backgroundColor?: string;
 }
 
 export interface GradientRingProps extends BaseLoaderProps {
@@ -19,6 +21,8 @@ export interface GradientRingProps extends BaseLoaderProps {
   colors?: string[];
   /** Ring width in px */
   thickness?: number;
+  /** Background color for the inner cutout (defaults to 'white' — set to match your page background for dark mode) */
+  backgroundColor?: string;
 }
 
 export interface GradientBarProps extends BaseLoaderProps {

@@ -18,6 +18,7 @@ export const GradientSpinner = forwardRef<HTMLDivElement, GradientSpinnerProps>(
       color = '#3b82f6',
       secondaryColor = '#8b5cf6',
       thickness = 4,
+      backgroundColor = 'white',
       speed = 'normal',
       respectMotionPreference = true,
       delay = 0,
@@ -61,8 +62,8 @@ export const GradientSpinner = forwardRef<HTMLDivElement, GradientSpinnerProps>(
         />
         {/* Inner cutout to form ring shape */}
         <div
-          className="absolute rounded-full bg-white"
-          style={{ width: inner, height: inner }}
+          className="absolute rounded-full"
+          style={{ width: inner, height: inner, backgroundColor }}
         />
       </div>
     );

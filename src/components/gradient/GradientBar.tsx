@@ -40,12 +40,21 @@ export const GradientBar = forwardRef<HTMLDivElement, GradientBarProps>(
     const { shouldRender, opacity, transitionStyle } = useLoaderVisibility(visible, delay, minDuration, transition);
     const onCompleteRef = useRef(onComplete);
     onCompleteRef.current = onComplete;
+    const hasCompletedRef = useRef(false);
 
     const isIndeterminate = value === undefined;
     const clampedValue = isIndeterminate ? 0 : Math.min(100, Math.max(0, value));
 
+    // Reset guard when progress goes below 100
     useEffect(() => {
-      if (!isIndeterminate && clampedValue === 100 && onCompleteRef.current) {
+      if (clampedValue < 100) {
+        hasCompletedRef.current = false;
+      }
+    }, [clampedValue]);
+
+    useEffect(() => {
+      if (!isIndeterminate && clampedValue === 100 && !hasCompletedRef.current && onCompleteRef.current) {
+        hasCompletedRef.current = true;
         onCompleteRef.current();
       }
     }, [clampedValue, isIndeterminate]);
@@ -73,18 +82,30 @@ export const GradientBar = forwardRef<HTMLDivElement, GradientBarProps>(
         aria-valuenow={isIndeterminate ? undefined : clampedValue}
         aria-valuemin={0}
         aria-valuemax={100}
+        aria-busy="true"
         {...rest}
       >
-        <div
-          className="h-full rounded-full"
-          style={{
-            width: isIndeterminate ? '40%' : `${clampedValue}%`,
-            background: gradient,
-            backgroundSize: '200% 100%',
-            animation: `gradient-flow ${effectiveDuration} linear infinite${isIndeterminate ? `, progress-indeterminate ${effectiveDuration} ease-in-out infinite` : ''}`,
-            transition: isIndeterminate ? undefined : 'width 0.3s ease-in-out',
-          }}
-        />
+        {isIndeterminate ? (
+          <div
+            className="absolute h-full rounded-full"
+            style={{
+              background: gradient,
+              backgroundSize: '200% 100%',
+              animation: `gradient-flow ${effectiveDuration} linear infinite, progress-indeterminate ${effectiveDuration} ease-in-out infinite`,
+            }}
+          />
+        ) : (
+          <div
+            className="h-full rounded-full"
+            style={{
+              width: `${clampedValue}%`,
+              background: gradient,
+              backgroundSize: '200% 100%',
+              animation: `gradient-flow ${effectiveDuration} linear infinite`,
+              transition: 'width 0.3s ease-in-out',
+            }}
+          />
+        )}
       </div>
     );
   }

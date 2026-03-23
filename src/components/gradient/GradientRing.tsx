@@ -17,6 +17,7 @@ export const GradientRing = forwardRef<HTMLDivElement, GradientRingProps>(
       size = 48,
       colors = ['#3b82f6', '#8b5cf6', '#ec4899'],
       thickness = 6,
+      backgroundColor = 'white',
       speed = 'normal',
       respectMotionPreference = true,
       delay = 0,
@@ -61,8 +62,8 @@ export const GradientRing = forwardRef<HTMLDivElement, GradientRingProps>(
           }}
         />
         <div
-          className="absolute rounded-full bg-white"
-          style={{ width: inner, height: inner }}
+          className="absolute rounded-full"
+          style={{ width: inner, height: inner, backgroundColor }}
         />
       </div>
     );
