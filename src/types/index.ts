@@ -18,6 +18,9 @@ export * from './text';
 export * from './3d';
 export * from './smart';
 export * from './accessibility';
+export * from './morph';
+export * from './gradient';
+export * from './particle';
 
 // Hook types
 export * from './hooks';
