@@ -98,8 +98,8 @@ export const LiquidFill = forwardRef<HTMLDivElement, LiquidFillProps>(
             />
             {/* Solid fill beneath wave */}
             <div
-              className="absolute bottom-0 left-0 right-0 top-4"
-              style={{ backgroundColor: color }}
+              className="absolute bottom-0 left-0 right-0"
+              style={{ backgroundColor: color, top: waveAmplitude * 2 }}
             />
           </div>
           {/* Percentage label */}

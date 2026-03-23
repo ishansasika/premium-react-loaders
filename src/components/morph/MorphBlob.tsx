@@ -52,6 +52,7 @@ export const MorphBlob = forwardRef<HTMLDivElement, MorphBlobProps>(
             width: size,
             height: size,
             backgroundColor: color,
+            borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
             animation: `morph-blob ${effectiveDuration} ease-in-out infinite`,
           }}
         />

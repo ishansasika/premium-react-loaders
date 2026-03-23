@@ -857,9 +857,8 @@
 }
 
 @keyframes liquid-wave {
-  0%   { transform: translateX(-60%) translateY(0); }
-  50%  { transform: translateX(-40%) translateY(-4px); }
-  100% { transform: translateX(-20%) translateY(0); }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 @keyframes wave-circle-expand {

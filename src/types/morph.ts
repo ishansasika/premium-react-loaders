@@ -1,7 +1,7 @@
 import { BaseLoaderProps } from './common';
 
 export interface MorphBlobProps extends BaseLoaderProps {
-  /** Diameter in px */
+  /** Diameter in px. Note: morph components accept pixel numbers only (no SizePreset strings). */
   size?: number;
   /** Fill color */
   color?: string;
@@ -12,7 +12,7 @@ export interface MorphBlobProps extends BaseLoaderProps {
 export interface LiquidFillProps extends BaseLoaderProps {
   /** Fill percentage 0–100; omit for indeterminate */
   value?: number;
-  /** Diameter in px */
+  /** Diameter in px. Note: morph components accept pixel numbers only (no SizePreset strings). */
   size?: number;
   /** Liquid color */
   color?: string;
@@ -23,7 +23,7 @@ export interface LiquidFillProps extends BaseLoaderProps {
 }
 
 export interface WaveCircleProps extends BaseLoaderProps {
-  /** Max diameter in px */
+  /** Max diameter in px. Note: morph components accept pixel numbers only (no SizePreset strings). */
   size?: number;
   /** Ring color */
   color?: string;
