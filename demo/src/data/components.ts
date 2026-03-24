@@ -67,6 +67,17 @@ import {
   FormFieldLoader,
   // Accessibility
   LiveRegion,
+  // Morph
+  MorphBlob,
+  LiquidFill,
+  WaveCircle,
+  // Gradient
+  GradientSpinner,
+  GradientRing,
+  GradientBar,
+  // Particle
+  ParticleBurst,
+  ParticleOrbit,
 } from '@lib/components';
 
 export const COMPONENTS: ComponentMetadata[] = [
@@ -4121,6 +4132,165 @@ export const COMPONENTS: ComponentMetadata[] = [
     ],
     importPath: "import { LiveRegion } from 'premium-react-loaders';",
   },
+  // ==================== MORPH COMPONENTS ====================
+  {
+    id: 'morph-blob',
+    name: 'MorphBlob',
+    category: 'morph',
+    component: MorphBlob,
+    description: 'Organic blob shape that continuously morphs with smooth CSS animation',
+    defaultProps: { size: 80, color: '#3b82f6', speed: 'normal' },
+    propDefinitions: [
+      { name: 'size', type: 'number', control: { type: 'range', min: 40, max: 200, step: 8 }, description: 'Diameter in px', defaultValue: 80 },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Fill color', defaultValue: '#3b82f6' },
+      { name: 'speed', type: 'string', control: { type: 'select', options: ['slow', 'normal', 'fast'] }, description: 'Morphing speed', defaultValue: 'normal' },
+    ],
+    examples: [
+      { name: 'Default', props: { size: 80, color: '#3b82f6' } },
+      { name: 'Large', props: { size: 120, color: '#8b5cf6', speed: 'slow' } },
+    ],
+    importPath: "import { MorphBlob } from 'premium-react-loaders';",
+  },
+  {
+    id: 'liquid-fill',
+    name: 'LiquidFill',
+    category: 'morph',
+    component: LiquidFill,
+    description: 'Container that fills with animated liquid; supports determinate and indeterminate modes',
+    defaultProps: { value: 65, size: 80, color: '#3b82f6' },
+    propDefinitions: [
+      { name: 'value', type: 'number', control: { type: 'range', min: 0, max: 100, step: 1 }, description: 'Fill percentage (0–100); omit for indeterminate', defaultValue: 65 },
+      { name: 'size', type: 'number', control: { type: 'range', min: 40, max: 200, step: 8 }, description: 'Diameter in px', defaultValue: 80 },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Liquid color', defaultValue: '#3b82f6' },
+      { name: 'waveAmplitude', type: 'number', control: { type: 'range', min: 1, max: 12, step: 1 }, description: 'Wave height in px', defaultValue: 4 },
+    ],
+    examples: [
+      { name: 'Half Full', props: { value: 50, color: '#3b82f6' } },
+      { name: 'Almost Full', props: { value: 90, color: '#10b981' } },
+      { name: 'Indeterminate', props: {} },
+    ],
+    importPath: "import { LiquidFill } from 'premium-react-loaders';",
+  },
+  {
+    id: 'wave-circle',
+    name: 'WaveCircle',
+    category: 'morph',
+    component: WaveCircle,
+    description: 'Concentric ripple rings expanding outward like a sonar pulse',
+    defaultProps: { size: 80, color: '#3b82f6', ringCount: 3 },
+    propDefinitions: [
+      { name: 'size', type: 'number', control: { type: 'range', min: 40, max: 200, step: 8 }, description: 'Max diameter in px', defaultValue: 80 },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Ring color', defaultValue: '#3b82f6' },
+      { name: 'ringCount', type: 'number', control: { type: 'range', min: 2, max: 5, step: 1 }, description: 'Number of rings (2–5)', defaultValue: 3 },
+      { name: 'speed', type: 'string', control: { type: 'select', options: ['slow', 'normal', 'fast'] }, description: 'Expansion speed', defaultValue: 'normal' },
+    ],
+    examples: [
+      { name: 'Default', props: { ringCount: 3 } },
+      { name: 'Dense', props: { ringCount: 5, color: '#8b5cf6' } },
+    ],
+    importPath: "import { WaveCircle } from 'premium-react-loaders';",
+  },
+  // ==================== GRADIENT COMPONENTS ====================
+  {
+    id: 'gradient-spinner',
+    name: 'GradientSpinner',
+    category: 'gradient',
+    component: GradientSpinner,
+    description: 'Circular spinner with a sweeping conic gradient animation',
+    defaultProps: { size: 48, color: '#3b82f6', secondaryColor: '#8b5cf6', thickness: 4 },
+    propDefinitions: [
+      { name: 'size', type: 'number', control: { type: 'range', min: 24, max: 120, step: 8 }, description: 'Diameter in px', defaultValue: 48 },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Gradient start color', defaultValue: '#3b82f6' },
+      { name: 'secondaryColor', type: 'string', control: { type: 'color' }, description: 'Gradient end color', defaultValue: '#8b5cf6' },
+      { name: 'thickness', type: 'number', control: { type: 'range', min: 2, max: 16, step: 1 }, description: 'Ring stroke width in px', defaultValue: 4 },
+      { name: 'speed', type: 'string', control: { type: 'select', options: ['slow', 'normal', 'fast'] }, description: 'Spin speed', defaultValue: 'normal' },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'Warm', props: { color: '#f59e0b', secondaryColor: '#ef4444', thickness: 6 } },
+    ],
+    importPath: "import { GradientSpinner } from 'premium-react-loaders';",
+  },
+  {
+    id: 'gradient-ring',
+    name: 'GradientRing',
+    category: 'gradient',
+    component: GradientRing,
+    description: 'Ring with a flowing multi-stop gradient that rotates around the circumference',
+    defaultProps: { size: 48, colors: ['#3b82f6', '#8b5cf6', '#ec4899'], thickness: 6 },
+    propDefinitions: [
+      { name: 'size', type: 'number', control: { type: 'range', min: 24, max: 120, step: 8 }, description: 'Diameter in px', defaultValue: 48 },
+      { name: 'thickness', type: 'number', control: { type: 'range', min: 2, max: 20, step: 1 }, description: 'Ring width in px', defaultValue: 6 },
+      { name: 'speed', type: 'string', control: { type: 'select', options: ['slow', 'normal', 'fast'] }, description: 'Animation speed', defaultValue: 'normal' },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'Rainbow', props: { colors: ['#ef4444', '#f59e0b', '#10b981', '#3b82f6'], thickness: 8 } },
+    ],
+    importPath: "import { GradientRing } from 'premium-react-loaders';",
+  },
+  {
+    id: 'gradient-bar',
+    name: 'GradientBar',
+    category: 'gradient',
+    component: GradientBar,
+    description: 'Progress bar with flowing animated gradient; supports determinate and indeterminate modes',
+    defaultProps: { value: 65, height: 8, color: '#3b82f6', secondaryColor: '#8b5cf6' },
+    propDefinitions: [
+      { name: 'value', type: 'number', control: { type: 'range', min: 0, max: 100, step: 1 }, description: 'Progress (0–100); omit for indeterminate', defaultValue: 65 },
+      { name: 'height', type: 'number', control: { type: 'range', min: 4, max: 24, step: 1 }, description: 'Bar height in px', defaultValue: 8 },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Gradient start color', defaultValue: '#3b82f6' },
+      { name: 'secondaryColor', type: 'string', control: { type: 'color' }, description: 'Gradient end color', defaultValue: '#8b5cf6' },
+      { name: 'speed', type: 'string', control: { type: 'select', options: ['slow', 'normal', 'fast'] }, description: 'Flow speed', defaultValue: 'normal' },
+    ],
+    examples: [
+      { name: 'Determinate', props: { value: 65 } },
+      { name: 'Indeterminate', props: {} },
+      { name: 'Warm', props: { value: 80, color: '#f59e0b', secondaryColor: '#ef4444', height: 12 } },
+    ],
+    importPath: "import { GradientBar } from 'premium-react-loaders';",
+  },
+  // ==================== PARTICLE COMPONENTS ====================
+  {
+    id: 'particle-burst',
+    name: 'ParticleBurst',
+    category: 'particle',
+    component: ParticleBurst,
+    description: 'Particles that burst outward from a central point in a looping animation',
+    defaultProps: { size: 60, count: 8, color: '#3b82f6', particleSize: 6 },
+    propDefinitions: [
+      { name: 'size', type: 'number', control: { type: 'range', min: 40, max: 160, step: 8 }, description: 'Burst radius in px', defaultValue: 60 },
+      { name: 'count', type: 'number', control: { type: 'range', min: 4, max: 20, step: 1 }, description: 'Number of particles', defaultValue: 8 },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Particle color', defaultValue: '#3b82f6' },
+      { name: 'particleSize', type: 'number', control: { type: 'range', min: 2, max: 16, step: 1 }, description: 'Dot diameter in px', defaultValue: 6 },
+      { name: 'speed', type: 'string', control: { type: 'select', options: ['slow', 'normal', 'fast'] }, description: 'Burst cycle speed', defaultValue: 'normal' },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'Dense', props: { count: 16, particleSize: 4, color: '#8b5cf6' } },
+    ],
+    importPath: "import { ParticleBurst } from 'premium-react-loaders';",
+  },
+  {
+    id: 'particle-orbit',
+    name: 'ParticleOrbit',
+    category: 'particle',
+    component: ParticleOrbit,
+    description: 'Particles orbiting a central dot with staggered animation offsets',
+    defaultProps: { size: 80, count: 5, color: '#3b82f6' },
+    propDefinitions: [
+      { name: 'size', type: 'number', control: { type: 'range', min: 40, max: 160, step: 8 }, description: 'Orbital diameter in px', defaultValue: 80 },
+      { name: 'count', type: 'number', control: { type: 'range', min: 3, max: 8, step: 1 }, description: 'Number of particles', defaultValue: 5 },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Particle color', defaultValue: '#3b82f6' },
+      { name: 'centerColor', type: 'string', control: { type: 'color' }, description: 'Central dot color (defaults to color)', defaultValue: '#3b82f6' },
+      { name: 'speed', type: 'string', control: { type: 'select', options: ['slow', 'normal', 'fast'] }, description: 'Orbit speed', defaultValue: 'normal' },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'Multicolor', props: { count: 6, color: '#8b5cf6', centerColor: '#ef4444' } },
+    ],
+    importPath: "import { ParticleOrbit } from 'premium-react-loaders';",
+  },
 ];
 
 // Helper functions
@@ -4149,4 +4319,7 @@ export const CATEGORIES = [
   { id: '3d', name: '3D', description: 'Immersive 3D animations' },
   { id: 'smart', name: 'Smart', description: 'Intelligent context-aware loaders' },
   { id: 'accessibility', name: 'Accessibility', description: 'Screen reader support' },
+  { id: 'morph', name: 'Morph', description: 'Fluid and organic morphing animations' },
+  { id: 'gradient', name: 'Gradient', description: 'Animated gradient spinners and bars' },
+  { id: 'particle', name: 'Particle', description: 'Particle-based loading animations' },
 ];

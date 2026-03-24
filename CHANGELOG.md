@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0] - 2026-03-23
+
+### Added
+
+#### Morph Category (3 new components)
+- **MorphBlob** — Organic blob shape that continuously morphs border-radius with smooth CSS animation
+- **LiquidFill** — Circular container that fills with animated liquid; supports determinate (0–100) and indeterminate modes, plus `onComplete` callback
+- **WaveCircle** — Concentric ripple rings expanding outward like a sonar pulse; configurable `ringCount` (2–5)
+
+#### Gradient Category (3 new components)
+- **GradientSpinner** — Circular spinner using a sweeping conic gradient; customizable `color`, `secondaryColor`, `thickness`, `backgroundColor`
+- **GradientRing** — Ring with a flowing multi-stop gradient that rotates around the circumference; accepts `colors` array (2–4 stops) and `backgroundColor`
+- **GradientBar** — Horizontal progress bar with animated flowing gradient; supports determinate and indeterminate modes plus `onComplete`
+
+#### Particle Category (2 new components)
+- **ParticleBurst** — Particles that burst outward from a central point and loop; configurable `count` (4–20), `particleSize`
+- **ParticleOrbit** — Particles orbiting a central dot with staggered offsets; configurable `count` (3–8), `centerColor`
+
+#### API Enhancements
+- **`onComplete` callback** added to `ProgressBar`, `ProgressCircle`, `ProgressRing`, `LiquidFill`, and `GradientBar` — fires when `value` reaches 100 in determinate mode (fires once per completion cycle, resets when value drops below 100)
+
+#### Internal
+- **`parseDurationMs` utility** extracted to `src/utils/colors.ts` — shared duration parsing helper used by animation stagger calculations
+
 ## [3.1.1] - 2026-02-02
 
 ### Fixed

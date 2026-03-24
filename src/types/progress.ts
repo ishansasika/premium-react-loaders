@@ -10,6 +10,8 @@ export interface ProgressBarProps extends ProgressLoaderProps {
   gradient?: boolean;
   /** Buffer value (0-100) for showing partial loading */
   buffer?: number;
+  /** Fires when value reaches 100 (determinate mode only, fires once per completion cycle) */
+  onComplete?: () => void;
 }
 
 /**
@@ -20,6 +22,8 @@ export interface ProgressCircleProps extends ProgressLoaderProps {
   size?: number | string;
   /** Buffer value (0-100) for showing partial loading */
   buffer?: number;
+  /** Fires when value reaches 100 (determinate mode only, fires once per completion cycle) */
+  onComplete?: () => void;
 }
 
 /**
@@ -32,6 +36,8 @@ export interface ProgressRingProps extends ProgressLoaderProps {
   gradient?: boolean;
   /** Buffer value (0-100) for showing partial loading */
   buffer?: number;
+  /** Fires when value reaches 100 (determinate mode only, fires once per completion cycle) */
+  onComplete?: () => void;
 }
 
 /**

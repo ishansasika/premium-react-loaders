@@ -129,3 +129,17 @@ export function getContrastColor(backgroundColor: string): string {
   // WCAG standard: use white text on dark backgrounds (luminance < 0.5)
   return luminance < 0.5 ? '#ffffff' : '#000000';
 }
+
+/**
+ * Parse an animation duration string (e.g. "1s", "500ms", "0.01ms") to milliseconds.
+ * Handles: "1s", "2s", "0.5s", "500ms", "0.01ms", or bare numbers.
+ */
+export function parseDurationMs(duration: string): number {
+  if (duration.endsWith('ms')) {
+    return parseFloat(duration);
+  }
+  if (duration.endsWith('s')) {
+    return parseFloat(duration) * 1000;
+  }
+  return parseFloat(duration);
+}

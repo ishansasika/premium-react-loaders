@@ -45,3 +45,12 @@ export * from './smart';
 
 // Accessibility components
 export * from './accessibility';
+
+// Morph components
+export * from './morph';
+
+// Gradient components
+export * from './gradient';
+
+// Particle components
+export * from './particle';

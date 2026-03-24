@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, useMemo, useRef, useEffect } from 'react';
 import { ProgressRingProps } from '../../types';
 import { cn, normalizeSize, parseSizeToNumber, useReducedMotion, getEffectiveDuration, useLoaderVisibility } from '../../utils';
 
@@ -27,6 +27,7 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
       secondaryColor = '#e0e0e0',
       gradient = false,
       buffer,
+      onComplete,
       speed = 'normal',
       reverse = false,
       respectMotionPreference = true,
@@ -55,9 +56,28 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
       transition
     );
 
-    if (!shouldRender) return null;
+    const onCompleteRef = useRef(onComplete);
+    onCompleteRef.current = onComplete;
+    const hasCompletedRef = useRef(false);
 
     const clampedValue = Math.min(100, Math.max(0, value));
+
+    // Reset guard when progress goes below 100
+    useEffect(() => {
+      if (clampedValue < 100) {
+        hasCompletedRef.current = false;
+      }
+    }, [clampedValue]);
+
+    useEffect(() => {
+      if (!indeterminate && clampedValue === 100 && !hasCompletedRef.current && onCompleteRef.current) {
+        hasCompletedRef.current = true;
+        onCompleteRef.current();
+      }
+    }, [clampedValue, indeterminate]);
+
+    if (!shouldRender) return null;
+
     const clampedBuffer = buffer !== undefined ? Math.min(100, Math.max(0, buffer)) : undefined;
     const sizeValue = parseSizeToNumber(size, 56);
     const thicknessValue = parseSizeToNumber(thickness, 4);
