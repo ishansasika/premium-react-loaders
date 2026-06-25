@@ -894,3 +894,109 @@
   from { transform: rotate(var(--start-angle)) translateX(var(--orbit-radius)) rotate(calc(-1 * var(--start-angle))); }
   to   { transform: rotate(calc(var(--start-angle) + 360deg)) translateX(var(--orbit-radius)) rotate(calc(-1 * (var(--start-angle) + 360deg))); }
 }
+
+/* ============================================================ */
+/* NEON ANIMATIONS (v4.1.0)                                     */
+/* ============================================================ */
+
+@keyframes neon-pulse-ring {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 var(--neon-glow-spread, 8px) var(--neon-glow-spread, 8px) var(--neon-color, #3b82f6);
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.5;
+    box-shadow: 0 0 calc(var(--neon-glow-spread, 8px) * 2) calc(var(--neon-glow-spread, 8px) * 2) var(--neon-color, #3b82f6);
+  }
+}
+
+@keyframes neon-spinner-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes neon-text-glow {
+  0%, 100% { opacity: 1; text-shadow: 0 0 8px var(--neon-color, #22d3ee), 0 0 16px var(--neon-color, #22d3ee); }
+  50%       { opacity: 0.6; text-shadow: 0 0 2px var(--neon-color, #22d3ee); }
+}
+
+.animate-neon-pulse {
+  animation: neon-pulse-ring var(--animation-duration-normal, 1.5s) ease-in-out infinite;
+}
+
+.animate-neon-spinner {
+  animation: neon-spinner-rotate var(--animation-duration-normal, 1s) linear infinite;
+}
+
+.animate-neon-text-glow {
+  animation: neon-text-glow var(--animation-duration-normal, 1.5s) ease-in-out infinite;
+}
+
+/* ============================================================ */
+/* STATUS ANIMATIONS (v4.1.0)                                   */
+/* ============================================================ */
+
+@keyframes warning-scale {
+  0%   { transform: scale(0); }
+  50%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes warning-shake {
+  0%, 100% { transform: translateX(0) scale(1); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px) scale(1); }
+  20%, 40%, 60%, 80%      { transform: translateX(4px) scale(1); }
+}
+
+@keyframes info-scale {
+  0%   { transform: scale(0); }
+  50%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes info-pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 var(--info-color, #3b82f6); }
+  50%       { box-shadow: 0 0 0 6px transparent; }
+}
+
+.animate-warning-scale {
+  animation: warning-scale var(--animation-duration-normal, 500ms) ease-out forwards;
+}
+
+.animate-warning-shake {
+  animation: warning-shake var(--animation-duration-normal, 500ms) ease-out forwards;
+}
+
+.animate-info-scale {
+  animation: info-scale var(--animation-duration-normal, 500ms) ease-out forwards;
+}
+
+.animate-info-pulse-glow {
+  animation: info-pulse-glow 1.5s ease-in-out infinite;
+}
+
+/* ============================================================ */
+/* PARTICLE ANIMATIONS (v4.1.0)                                 */
+/* ============================================================ */
+
+@keyframes particle-trail-orbit {
+  from { transform: rotate(var(--start-angle)) translateX(var(--orbit-radius)) rotate(calc(-1 * var(--start-angle))); }
+  to   { transform: rotate(calc(var(--start-angle) + 360deg)) translateX(var(--orbit-radius)) rotate(calc(-1 * (var(--start-angle) + 360deg))); }
+}
+
+@keyframes particle-field-float {
+  0%   { transform: translate(var(--tx-start, 0px), 0px); opacity: 0; }
+  10%  { opacity: var(--particle-opacity, 0.7); }
+  90%  { opacity: var(--particle-opacity, 0.7); }
+  100% { transform: translate(var(--tx-end, 0px), calc(var(--field-height, 120px) * -1)); opacity: 0; }
+}
+
+.animate-particle-trail {
+  animation: particle-trail-orbit var(--animation-duration-normal, 1.5s) linear infinite;
+}
+
+.animate-particle-field-float {
+  animation: particle-field-float var(--animation-duration-normal, 3s) ease-in-out infinite;
+}
