@@ -54,3 +54,6 @@ export * from './gradient';
 
 // Particle components
 export * from './particle';
+
+// Neon components
+export * from './neon';
