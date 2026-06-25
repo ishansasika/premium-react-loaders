@@ -21,6 +21,7 @@ export * from './accessibility';
 export * from './morph';
 export * from './gradient';
 export * from './particle';
+export * from './neon';
 
 // Hook types
 export * from './hooks';
