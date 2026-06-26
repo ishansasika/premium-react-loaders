@@ -57,25 +57,27 @@ export const InfoIndicator = forwardRef<HTMLDivElement, InfoIndicatorProps>(
 
     if (!shouldRender) return null;
 
-    const animClass = animate ? 'animate-info-scale' : '';
-
     return (
       <div
         ref={ref}
         data-testid={testId}
-        className={cn('inline-flex items-center justify-center', className)}
-        style={{ opacity, transition: transitionStyle, ...style }}
+        className={cn('inline-flex items-center justify-center', animate && 'animate-info-scale', className)}
+        style={{
+          opacity,
+          transition: transitionStyle,
+          animationDuration: animate ? `${duration}ms` : undefined,
+          ...style,
+        }}
         role="status"
         aria-label={ariaLabel}
         {...rest}
       >
         <div
-          className={cn('rounded-full inline-flex items-center justify-center', animClass, pulse && 'animate-info-pulse-glow')}
+          className={cn('rounded-full inline-flex items-center justify-center', pulse && 'animate-info-pulse-glow')}
           style={{
             width: size,
             height: size,
             backgroundColor: color,
-            animationDuration: `${duration}ms`,
             ['--info-color' as string]: color,
           }}
         >

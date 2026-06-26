@@ -958,7 +958,7 @@
 
 @keyframes info-pulse-glow {
   0%, 100% { box-shadow: 0 0 0 0 var(--info-color, #3b82f6); }
-  50%       { box-shadow: 0 0 0 6px transparent; }
+  50%       { box-shadow: 0 0 0 6px color(from var(--info-color, #3b82f6) srgb r g b / 0); }
 }
 
 .animate-warning-scale {
