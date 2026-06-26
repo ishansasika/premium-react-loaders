@@ -78,6 +78,16 @@ import {
   // Particle
   ParticleBurst,
   ParticleOrbit,
+  // Neon
+  NeonPulse,
+  NeonSpinner,
+  NeonText,
+  // Status (new)
+  WarningIndicator,
+  InfoIndicator,
+  // Particle (new)
+  ParticleTrail,
+  ParticleField,
 } from '@lib/components';
 
 export const COMPONENTS: ComponentMetadata[] = [
@@ -4291,6 +4301,143 @@ export const COMPONENTS: ComponentMetadata[] = [
     ],
     importPath: "import { ParticleOrbit } from 'premium-react-loaders';",
   },
+  // ==================== NEON COMPONENTS ====================
+  {
+    id: 'neon-pulse',
+    name: 'NeonPulse',
+    category: 'neon',
+    component: NeonPulse,
+    description: 'Pulsing glowing ring with neon box-shadow animation',
+    defaultProps: { size: 60, color: '#3b82f6', glowIntensity: 'medium' },
+    propDefinitions: [
+      { name: 'size', type: 'number', control: { type: 'range', min: 40, max: 160, step: 8 }, description: 'Ring diameter in px', defaultValue: 60 },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Neon glow color', defaultValue: '#3b82f6' },
+      { name: 'glowIntensity', type: 'string', control: { type: 'select', options: ['low', 'medium', 'high'] }, description: 'Glow spread intensity', defaultValue: 'medium' },
+      { name: 'speed', type: 'string', control: { type: 'select', options: ['slow', 'normal', 'fast'] }, description: 'Pulse speed', defaultValue: 'normal' },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'High glow', props: { glowIntensity: 'high', color: '#22d3ee', size: 80 } },
+    ],
+    importPath: "import { NeonPulse } from 'premium-react-loaders';",
+  },
+  {
+    id: 'neon-spinner',
+    name: 'NeonSpinner',
+    category: 'neon',
+    component: NeonSpinner,
+    description: 'Spinning arc with neon glow trail effect',
+    defaultProps: { size: 60, color: '#a855f7', thickness: 4 },
+    propDefinitions: [
+      { name: 'size', type: 'number', control: { type: 'range', min: 40, max: 160, step: 8 }, description: 'Spinner diameter in px', defaultValue: 60 },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Neon arc color', defaultValue: '#a855f7' },
+      { name: 'thickness', type: 'number', control: { type: 'range', min: 2, max: 12, step: 1 }, description: 'Arc stroke width in px', defaultValue: 4 },
+      { name: 'speed', type: 'string', control: { type: 'select', options: ['slow', 'normal', 'fast'] }, description: 'Spin speed', defaultValue: 'normal' },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'Thick cyan', props: { color: '#22d3ee', thickness: 6, size: 80 } },
+    ],
+    importPath: "import { NeonSpinner } from 'premium-react-loaders';",
+  },
+  {
+    id: 'neon-text',
+    name: 'NeonText',
+    category: 'neon',
+    component: NeonText,
+    description: 'Loading text with pulsing neon glow animation',
+    defaultProps: { text: 'LOADING', color: '#22d3ee', fontSize: 18 },
+    propDefinitions: [
+      { name: 'text', type: 'string', control: { type: 'text' }, description: 'Display text', defaultValue: 'LOADING' },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Neon glow color', defaultValue: '#22d3ee' },
+      { name: 'fontSize', type: 'number', control: { type: 'range', min: 10, max: 48, step: 2 }, description: 'Font size in px', defaultValue: 18 },
+      { name: 'speed', type: 'string', control: { type: 'select', options: ['slow', 'normal', 'fast'] }, description: 'Glow pulse speed', defaultValue: 'normal' },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'Large purple', props: { text: 'PROCESSING', color: '#a855f7', fontSize: 24 } },
+    ],
+    importPath: "import { NeonText } from 'premium-react-loaders';",
+  },
+  // ==================== STATUS EXTENSIONS ====================
+  {
+    id: 'warning-indicator',
+    name: 'WarningIndicator',
+    category: 'status',
+    component: WarningIndicator,
+    description: 'Animated warning triangle with exclamation mark',
+    defaultProps: { size: 48, color: '#f59e0b', animate: true, shake: false },
+    propDefinitions: [
+      { name: 'size', type: 'number', control: { type: 'range', min: 24, max: 120, step: 8 }, description: 'Icon size in px', defaultValue: 48 },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Triangle color', defaultValue: '#f59e0b' },
+      { name: 'animate', type: 'boolean', control: { type: 'boolean' }, description: 'Run draw-in animation', defaultValue: true },
+      { name: 'shake', type: 'boolean', control: { type: 'boolean' }, description: 'Shake on appearance', defaultValue: false },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'Shake', props: { shake: true } },
+    ],
+    importPath: "import { WarningIndicator } from 'premium-react-loaders';",
+  },
+  {
+    id: 'info-indicator',
+    name: 'InfoIndicator',
+    category: 'status',
+    component: InfoIndicator,
+    description: 'Animated info badge with optional pulse glow',
+    defaultProps: { size: 48, color: '#3b82f6', animate: true, pulse: false },
+    propDefinitions: [
+      { name: 'size', type: 'number', control: { type: 'range', min: 24, max: 120, step: 8 }, description: 'Icon size in px', defaultValue: 48 },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Icon color', defaultValue: '#3b82f6' },
+      { name: 'animate', type: 'boolean', control: { type: 'boolean' }, description: 'Run draw-in animation', defaultValue: true },
+      { name: 'pulse', type: 'boolean', control: { type: 'boolean' }, description: 'Ongoing pulse glow', defaultValue: false },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'With pulse', props: { pulse: true } },
+    ],
+    importPath: "import { InfoIndicator } from 'premium-react-loaders';",
+  },
+  // ==================== PARTICLE EXTENSIONS ====================
+  {
+    id: 'particle-trail',
+    name: 'ParticleTrail',
+    category: 'particle',
+    component: ParticleTrail,
+    description: 'Particles trailing along a circular orbit path with opacity fade',
+    defaultProps: { size: 60, count: 6, color: '#3b82f6' },
+    propDefinitions: [
+      { name: 'size', type: 'number', control: { type: 'range', min: 40, max: 160, step: 8 }, description: 'Orbit diameter in px', defaultValue: 60 },
+      { name: 'count', type: 'number', control: { type: 'range', min: 3, max: 10, step: 1 }, description: 'Trailing particle count', defaultValue: 6 },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Particle color', defaultValue: '#3b82f6' },
+      { name: 'speed', type: 'string', control: { type: 'select', options: ['slow', 'normal', 'fast'] }, description: 'Orbit speed', defaultValue: 'normal' },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'Dense purple', props: { count: 10, color: '#8b5cf6', size: 80 } },
+    ],
+    importPath: "import { ParticleTrail } from 'premium-react-loaders';",
+  },
+  {
+    id: 'particle-field',
+    name: 'ParticleField',
+    category: 'particle',
+    component: ParticleField,
+    description: 'Ambient floating particle field with rising drift animation',
+    defaultProps: { width: 120, height: 120, count: 12, color: '#3b82f6' },
+    propDefinitions: [
+      { name: 'width', type: 'number', control: { type: 'range', min: 60, max: 300, step: 20 }, description: 'Field width in px', defaultValue: 120 },
+      { name: 'height', type: 'number', control: { type: 'range', min: 60, max: 300, step: 20 }, description: 'Field height in px', defaultValue: 120 },
+      { name: 'count', type: 'number', control: { type: 'range', min: 5, max: 30, step: 1 }, description: 'Number of particles', defaultValue: 12 },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Particle color', defaultValue: '#3b82f6' },
+      { name: 'speed', type: 'string', control: { type: 'select', options: ['slow', 'normal', 'fast'] }, description: 'Float speed', defaultValue: 'normal' },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'Dense', props: { count: 24, color: '#8b5cf6', width: 160, height: 160 } },
+    ],
+    importPath: "import { ParticleField } from 'premium-react-loaders';",
+  },
 ];
 
 // Helper functions
@@ -4322,4 +4469,5 @@ export const CATEGORIES = [
   { id: 'morph', name: 'Morph', description: 'Fluid and organic morphing animations' },
   { id: 'gradient', name: 'Gradient', description: 'Animated gradient spinners and bars' },
   { id: 'particle', name: 'Particle', description: 'Particle-based loading animations' },
+  { id: 'neon', name: 'Neon', description: 'Glowing neon-style loaders' },
 ];
