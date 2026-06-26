@@ -27,3 +27,13 @@ export const Dense: Story = {
 export const Wide: Story = {
   args: { width: 240, height: 80, count: 20, color: '#22d3ee' },
 };
+
+export const Multiple: Story = {
+  render: () => (
+    <div className="flex gap-8 items-center">
+      <ParticleField color="#3b82f6" count={10} width={100} height={100} />
+      <ParticleField color="#8b5cf6" count={16} width={120} height={120} speed="slow" />
+      <ParticleField color="#ec4899" count={24} width={140} height={140} />
+    </div>
+  ),
+};
