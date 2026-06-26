@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.1.0] - 2026-06-26
+
+### Added
+
+#### Neon Category (3 new components) — new category
+- **NeonPulse** — Pulsing glowing ring with configurable neon box-shadow; `glowIntensity` controls spread (`low` / `medium` / `high`)
+- **NeonSpinner** — Spinning arc with a neon glow trail; customizable `thickness` and `color`
+- **NeonText** — Loading text label that pulses with a neon glow; configurable `text`, `color`, `fontSize`
+
+#### Status Enhancements (2 new components)
+- **WarningIndicator** — Animated warning triangle with `!` mark; optional `shake` effect; completes the Success / Warning / Error / Info set
+- **InfoIndicator** — Animated info badge with `i` mark; optional `pulse` glow for ongoing attention
+
+#### Particle Enhancements (2 new components)
+- **ParticleTrail** — Particles that trail along a circular orbit with opacity and size fade; configurable `count` (3–10)
+- **ParticleField** — Ambient field of floating, drifting particles rising through a bounded area; configurable `width`, `height`, `count` (5–30)
+
 ## [4.0.0] - 2026-03-23
 
 ### Added
