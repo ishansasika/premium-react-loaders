@@ -1,6 +1,6 @@
 # Premium React Loaders
 
-A comprehensive collection of **58+ premium, production-ready loading components** for React applications. Built with TypeScript and custom CSS for maximum flexibility and zero configuration.
+A comprehensive collection of **65+ premium, production-ready loading components** for React applications. Built with TypeScript and custom CSS for maximum flexibility and zero configuration.
 
 [![npm version](https://img.shields.io/npm/v/premium-react-loaders.svg)](https://www.npmjs.com/package/premium-react-loaders)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -11,12 +11,15 @@ A comprehensive collection of **58+ premium, production-ready loading components
 
 📚 **[Storybook Documentation](https://docs.premium-react-loaders.ishansasika.dev/)** - Detailed component documentation and examples
 
-See all 58+ components in action with interactive examples and customization options.
+See all 65+ components in action with interactive examples and customization options.
 
 ## Features
 
-- **58+ Premium Components** across 19 categories (Skeleton, Spinner, Progress, Pulse, Overlay, Button, Status, Transition, Shimmer, Orbit, Bounce, Infinity, Text, 3D, Smart, Morph, Gradient, Particle, Accessibility)
+- **65+ Premium Components** across 20 categories (Skeleton, Spinner, Progress, Pulse, Overlay, Button, Status, Transition, Shimmer, Orbit, Bounce, Infinity, Text, 3D, Smart, Morph, Gradient, Particle, Neon, Accessibility)
 - **6 Powerful Hooks** - useLoader, useEnhancedLoader, useLoadingOrchestrator, useLoadingAnalytics, useSmartLoader, useTheme ✨ *New in v3.1.0*
+- **Neon Loaders** - Glowing neon-style pulse, spinner, and text for dark UIs ✨ *New in v4.1.0*
+- **Extended Status Set** - WarningIndicator and InfoIndicator complete the status family ✨ *New in v4.1.0*
+- **Particle Enhancements** - ParticleTrail and ParticleField ambient effects ✨ *New in v4.1.0*
 - **Morph Loaders** - Fluid organic blob, liquid fill, and wave circle animations ✨ *New in v4.0.0*
 - **Gradient Loaders** - Animated conic gradient spinners and flowing gradient bars ✨ *New in v4.0.0*
 - **Particle Loaders** - CSS particle burst and orbital animations ✨ *New in v4.0.0*
@@ -179,12 +182,14 @@ Specialized loaders for button loading states:
 
 - **ButtonSpinner** - Compact spinner optimized for buttons with multiple variants (circle, dots, bars) and positioning options
 
-### Status Components (2 components) ✨ *New in v2.2.0*
+### Status Components (4 components) ✨ *New in v2.2.0 / Extended in v4.1.0*
 
-Animated indicators for success and error states:
+Animated indicators for operation outcomes:
 
 - **SuccessCheckmark** - Animated checkmark with optional circle background
 - **ErrorIndicator** - Animated X mark with optional shake effect and circle background
+- **WarningIndicator** - Animated warning triangle with `!` mark; optional `shake` effect ✨ *New in v4.1.0*
+- **InfoIndicator** - Animated info badge with `i` mark; optional `pulse` glow ✨ *New in v4.1.0*
 
 ### Transition Components (1 component) ✨ *New in v2.3.0*
 
@@ -268,12 +273,22 @@ Visually striking spinners and progress indicators using animated CSS gradients:
 - **GradientRing** - Ring with a moving gradient that travels around its circumference
 - **GradientBar** - Horizontal progress bar with a flowing gradient shimmer animation
 
-### Particle Components (2 components) ✨ *New in v4.0.0*
+### Particle Components (4 components) ✨ *New in v4.0.0 / Extended in v4.1.0*
 
 Particle-based loaders using CSS-positioned elements for dynamic visual effects:
 
 - **ParticleBurst** - Particles that periodically burst outward from a central point and fade as they travel
 - **ParticleOrbit** - Multiple particles floating in circular orbits around a central dot with staggered delays
+- **ParticleTrail** - Particles trailing along a circular orbit with opacity and size fade; configurable `count` (3–10) ✨ *New in v4.1.0*
+- **ParticleField** - Ambient field of floating, drifting particles rising through a bounded area; configurable `width`, `height`, `count` (5–30) ✨ *New in v4.1.0*
+
+### Neon Components (3 components) ✨ *New in v4.1.0*
+
+Glowing neon-style loaders using CSS box-shadow and text-shadow for dark UIs and gaming themes:
+
+- **NeonPulse** - Pulsing glowing ring with configurable `glowIntensity` (`low` / `medium` / `high`)
+- **NeonSpinner** - Spinning arc with a neon glow trail; customizable `thickness` and `color`
+- **NeonText** - Loading text label that pulses with a neon glow; configurable `text`, `color`, `fontSize`
 
 ## Hooks
 
