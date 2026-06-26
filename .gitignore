@@ -140,3 +140,6 @@ vite.config.ts.timestamp-*
 
 # storybook build outputs
 storybook-static/
+
+# Superpowers dev workflow artifacts
+.superpowers/
