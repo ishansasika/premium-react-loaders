@@ -14,7 +14,7 @@ export const organizationSchema: StructuredData = {
   '@type': 'Organization',
   name: 'Premium React Loaders',
   url: BASE_URL,
-  logo: `${BASE_URL}/logo.png`,
+  logo: `${BASE_URL}/icon-512.png`,
   sameAs: [
     'https://github.com/ishansasika/premium-react-loaders',
     'https://www.npmjs.com/package/premium-react-loaders',
@@ -33,10 +33,10 @@ export const websiteSchema: StructuredData = {
   name: 'Premium React Loaders',
   url: BASE_URL,
   description:
-    '20 production-ready loading components for React with TypeScript and Tailwind CSS',
+    '65+ production-ready loading components for React with TypeScript. Zero dependencies.',
   author: {
     '@type': 'Person',
-    name: 'Ishan Sasika',
+    name: 'Ishan Karunaratne',
     url: 'https://ishansasika.dev',
   },
 };
@@ -54,10 +54,10 @@ export const softwareApplicationSchema: StructuredData = {
     priceCurrency: 'USD',
   },
   description:
-    '18 production-ready loading components for React including skeleton screens, spinners, progress bars, and pulse loaders with TypeScript and Tailwind CSS support',
+    '65+ production-ready loading components for React including skeleton screens, spinners, progress bars, neon loaders, particle effects, 3D animations and more. TypeScript support, zero dependencies.',
   url: BASE_URL,
   downloadUrl: 'https://www.npmjs.com/package/premium-react-loaders',
-  softwareVersion: '1.0.1',
+  softwareVersion: '4.1.1',
   programmingLanguage: ['TypeScript', 'React'],
   screenshot: `${BASE_URL}/og-image.png`,
   aggregateRating: {

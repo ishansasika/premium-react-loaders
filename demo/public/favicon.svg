@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="16" fill="url(#bg)"/>
+  <!-- Full track ring -->
+  <circle cx="16" cy="16" r="10" fill="none" stroke="white" stroke-width="2.5" stroke-opacity="0.25"/>
+  <!-- Spinner arc ~270deg -->
+  <path d="M 16 6 A 10 10 0 1 1 6 16" fill="none" stroke="white" stroke-width="2.8" stroke-linecap="round"/>
+  <!-- Dot at arc end -->
+  <circle cx="6" cy="16" r="1.8" fill="#93c5fd"/>
+</svg>

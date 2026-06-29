@@ -1,10 +1,10 @@
 {
   "name": "Premium React Loaders",
-  "short_name": "PRL Demo",
-  "description": "20 production-ready loading components for React with TypeScript and Tailwind CSS",
+  "short_name": "React Loaders",
+  "description": "65+ production-ready loading components for React. TypeScript support, zero dependencies.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#1e3a8a",
   "theme_color": "#3b82f6",
   "icons": [
     {
