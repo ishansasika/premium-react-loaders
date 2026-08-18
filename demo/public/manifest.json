@@ -1,7 +1,7 @@
 {
   "name": "Premium React Loaders",
   "short_name": "React Loaders",
-  "description": "65+ production-ready loading components for React. TypeScript support, zero dependencies.",
+  "description": "70+ production-ready loading components for React. TypeScript support, zero dependencies.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#1e3a8a",

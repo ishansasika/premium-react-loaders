@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Premium React Loaders is a TypeScript library providing 50+ production-ready loading components for React. The library is published to npm and uses Vite for building, with Storybook for documentation and demos hosted on Firebase.
+Premium React Loaders is a TypeScript library providing 70+ production-ready loading components for React, organized into 21 categories. It has **zero runtime dependencies** and does **not require Tailwind CSS** (Tailwind was removed in v2.0.0 — the library ships its own custom CSS). The library is published to npm and uses Vite for building, with Storybook for documentation and a separate demo app, both hosted on Firebase.
 
 ## Development Commands
 
@@ -40,6 +40,7 @@ npm install                # Install demo dependencies (first time only)
 npm run dev                # Start dev server
 npm run build              # Build for production
 ```
+The demo app is a separate npm project (its own `package.json`, own devDependencies including Tailwind CSS and clsx for the demo UI itself — this does **not** apply to the library, which is Tailwind-free).
 
 ### Publishing
 ```bash
@@ -74,10 +75,10 @@ Example: `release/v4.1.0-neon-status-particle`
 
 ### Library Structure
 
-The library is organized into 15 main component categories, each in its own directory under `src/components/`:
+The library is organized into 21 component categories, each in its own directory under `src/components/`:
 
-1. **Skeleton** (`src/components/skeleton/`) - 9 components for placeholder content
-   - Base `Skeleton`, `SkeletonText`, `SkeletonAvatar`, `SkeletonImage`, `SkeletonCard`, `SkeletonForm`, `SkeletonList`, `SkeletonTable`, `SkeletonPage`
+1. **Skeleton** (`src/components/skeleton/`) - 11 components for placeholder content
+   - `Skeleton`, `SkeletonText`, `SkeletonAvatar`, `SkeletonImage`, `SkeletonCard`, `SkeletonForm`, `SkeletonList`, `SkeletonTable`, `SkeletonPage`, `SmartSkeleton`, `DataTableSkeleton`
    - `SkeletonPage` provides pre-built full page layouts (default, dashboard, article, profile)
 
 2. **Spinner** (`src/components/spinner/`) - 7 rotating/animated spinners
@@ -85,7 +86,7 @@ The library is organized into 15 main component categories, each in its own dire
 
 3. **Progress** (`src/components/progress/`) - 4 progress indicators
    - `ProgressBar`, `ProgressCircle`, `ProgressRing`, `ProgressSteps`
-   - Support both determinate (value-based) and indeterminate modes
+   - Support both determinate (value-based) and indeterminate modes, plus an `onComplete` callback fired at 100%
 
 4. **Pulse** (`src/components/pulse/`) - 4 pulsing/bouncing loaders
    - `PulseDots`, `PulseWave`, `PulseBars`, `TypingIndicator`
@@ -93,82 +94,98 @@ The library is organized into 15 main component categories, each in its own dire
 5. **Overlay** (`src/components/overlay/`) - 1 wrapper component
    - `LoaderOverlay` - Displays loaders over content with backdrop (full-screen or container-relative)
 
-6. **Button** (`src/components/button/`) - 1 button loading component (v2.2.0+)
+6. **Button** (`src/components/button/`) - 1 button loading component
    - `ButtonSpinner` - Compact spinner for button loading states with multiple variants (circle, dots, bars) and positioning options
 
-7. **Status** (`src/components/status/`) - 2 status indicator components (v2.2.0+)
-   - `SuccessCheckmark` - Animated checkmark for successful operations with optional circle background
-   - `ErrorIndicator` - Animated error indicator with X mark and optional shake effect
+7. **Status** (`src/components/status/`) - 4 status indicator components
+   - `SuccessCheckmark`, `ErrorIndicator`, `WarningIndicator`, `InfoIndicator`
 
-8. **Transition** (`src/components/transition/`) - 1 transition component (v2.3.0+)
-   - `LoaderTransition` - Smooth transitions between loading and loaded states with multiple animation types (fade, slide-up, slide-down, slide-left, slide-right, scale)
+8. **Transition** (`src/components/transition/`) - 1 transition component
+   - `LoaderTransition` - Smooth transitions between loading and loaded states (fade, slide-up, slide-down, slide-left, slide-right, scale)
 
-9. **Shimmer** (`src/components/shimmer/`) - 3 shimmer components (v3.0.0+)
-   - `ShimmerBox` - Shimmer container with directional animation
-   - `ShimmerText` - Multi-line text shimmer placeholder
-   - `ShimmerButton` - Button placeholder with shimmer effect
+9. **Shimmer** (`src/components/shimmer/`) - 3 shimmer components
+   - `ShimmerBox`, `ShimmerText`, `ShimmerButton`
 
-10. **Orbit** (`src/components/orbit/`) - 3 orbital animations (v3.0.0+)
-    - `OrbitDots` - Dots orbiting around a central point
-    - `OrbitRings` - Concentric rotating rings
-    - `AtomLoader` - Electron-like orbital animation with nucleus
+10. **Orbit** (`src/components/orbit/`) - 3 orbital animations
+    - `OrbitDots`, `OrbitRings`, `AtomLoader`
 
-11. **Bounce** (`src/components/bounce/`) - 2 bouncing loaders (v3.0.0+)
-    - `BouncingDots` - Dots with physics-based bounce animation
-    - `BouncingBalls` - 3D bouncing balls with shadow and squash effects
+11. **Bounce** (`src/components/bounce/`) - 2 bouncing loaders
+    - `BouncingDots`, `BouncingBalls`
 
-12. **Infinity** (`src/components/infinity/`) - 2 infinity loaders (v3.0.0+)
-    - `InfinityLoader` - Figure-8 infinity symbol animation
-    - `MobiusLoader` - Segmented ribbon loop with twist effect
+12. **Infinity** (`src/components/infinity/`) - 2 infinity loaders
+    - `InfinityLoader`, `MobiusLoader`
 
-13. **Text** (`src/components/text/`) - 1 text loader (v3.0.0+)
+13. **Text** (`src/components/text/`) - 1 text loader
     - `LoadingText` - Animated loading text with multiple animation styles
 
-14. **3D** (`src/components/3d/`) - 5 immersive 3D loaders (v3.1.0+)
-    - `CubeSpinner` - Rotating 3D cube with customizable faces and rotation axes (x, y, z, diagonal)
-    - `FlipCard` - 3D card flip animation with horizontal/vertical modes
-    - `PlaneRotate` - Multiple rotating planes in 3D space
-    - `Helix` - DNA-like spiral animation with particles
-    - `PerspectiveRing` - 3D ring with tilt and shadow effects
+14. **3D** (`src/components/3d/`) - 5 immersive 3D loaders
+    - `CubeSpinner`, `FlipCard`, `PlaneRotate`, `Helix`, `PerspectiveRing`
 
-15. **Smart** (`src/components/smart/`) - 3 intelligent components (v3.1.0+)
+15. **Smart** (`src/components/smart/`) - 1 intelligent component
     - `FormFieldLoader` - Loading states for form inputs (text, select, checkbox, radio, textarea, file)
 
-16. **Accessibility** (`src/components/accessibility/`) - 1 accessibility component (v3.1.0+)
+16. **Accessibility** (`src/components/accessibility/`) - 1 accessibility component
     - `LiveRegion` - ARIA live region for screen reader announcements
 
-**Note**: `SmartSkeleton` and `DataTableSkeleton` are part of the Skeleton category (`src/components/skeleton/`) but added in v3.1.0.
+17. **Gradient** (`src/components/gradient/`) - 5 gradient loaders (v4.0.0+/v4.2.0+)
+    - `GradientSpinner` - Animated conic gradient spinner
+    - `GradientBar` - Flowing gradient progress bar
+    - `GradientRing` - Rotating gradient ring
+    - `GradientText` - Gradient-filled loading text via `background-clip: text` (v4.2.0)
+    - `GradientDots` - Bouncing dots sharing an animated gradient fill (v4.2.0)
+
+18. **Morph** (`src/components/morph/`) - 3 fluid/organic loaders (v4.0.0+)
+    - `MorphBlob` - Organic blob shape morphing
+    - `LiquidFill` - Liquid fill animation
+    - `WaveCircle` - Wave-distorted circle
+
+19. **Particle** (`src/components/particle/`) - 4 particle-based loaders (v4.0.0+/v4.1.0+)
+    - `ParticleBurst`, `ParticleOrbit` (v4.0.0), `ParticleTrail`, `ParticleField` (v4.1.0 ambient effects)
+
+20. **Neon** (`src/components/neon/`) - 5 glowing neon-style loaders (v4.1.0+/v4.2.0+)
+    - `NeonSpinner`, `NeonPulse`, `NeonText` - designed for dark UIs
+    - `NeonProgress` - Neon-glow progress bar, determinate/indeterminate with `onComplete` (v4.2.0)
+    - `NeonDots` - Bouncing dots with a glowing neon box-shadow (v4.2.0)
+
+21. **Chart** (`src/components/chart/`) - 3 chart skeleton loaders (v4.2.0+)
+    - `BarChartSkeleton`, `LineChartSkeleton`, `DonutChartSkeleton` - dashboard chart placeholders
+
+### Theme Context
+
+`src/context/ThemeContext.tsx` provides `ThemeProvider` and `useTheme` (exported at the root as `ThemeProvider`/`useTheme`, not from `src/hooks/`). Wrapping the app in `ThemeProvider` with a `LoaderTheme` config (primary/secondary color, default size/speed/delay/minDuration/transition, motion preference) supplies defaults that individual components fall back to unless overridden by props.
 
 ### Hooks
 
-The library provides 6 hooks for loading state management in `src/hooks/`:
+The library provides 5 hooks for loading state management in `src/hooks/`:
 
-1. **useLoader** (v2.1.0+) - Basic loading state with delay, minDuration, and autoHide
-2. **useEnhancedLoader** (v2.3.0+) - Advanced loading with retry logic, success/error states, and history
-3. **useLoadingOrchestrator** (v3.1.0+) - Manage multiple loading tasks with dependencies
-4. **useLoadingAnalytics** (v3.1.0+) - Track loading performance metrics
-5. **useSmartLoader** (v3.1.0+) - Intelligent loader with connection detection and progress estimation
-6. **useTheme** (v2.1.0+) - Access global theme configuration
+1. **useLoader** - Basic loading state with delay, minDuration, and autoHide
+2. **useEnhancedLoader** - Advanced loading with retry logic, success/error states, and history
+3. **useLoadingOrchestrator** - Manage multiple loading tasks with dependencies
+4. **useLoadingAnalytics** - Track loading performance metrics
+5. **useSmartLoader** - Intelligent loader with connection detection and progress estimation
+
+(`useTheme` is a related but separate export — see Theme Context above.)
 
 ### Export Pattern
 
 All components follow a hierarchical export pattern:
 - Category index files (`src/components/[category]/index.ts`) export all components in that category
 - Main component index (`src/components/index.ts`) re-exports all category exports
-- Root index (`src/index.ts`) re-exports components and types, imports global CSS
+- Root index (`src/index.ts`) re-exports components, types, the theme context, hooks, and the `cn`/`getAnimationDuration`/`normalizeSize` utilities, and imports global CSS
 
 ### Type System
 
-TypeScript types are centralized in `src/types/`:
-- `common.ts` - Base interfaces (`BaseLoaderProps`, `SkeletonBaseProps`, `ProgressLoaderProps`)
-- Category-specific type files extend base props with component-specific options
+TypeScript types are centralized in `src/types/`, with one file per component category (e.g. `spinner.ts`, `gradient.ts`, `neon.ts`) plus:
+- `common.ts` - Base interfaces (`BaseLoaderProps`, `SizePreset`/`SIZE_PRESET_MAP`, etc.)
+- `hooks.ts` - Shared hook option/return types
 - All types are re-exported through `src/types/index.ts`
 
 All loader components extend `BaseLoaderProps` which includes common props:
-- `size`, `color`, `secondaryColor`
+- `size` (preset, number, or CSS string), `color`, `secondaryColor`
 - `className`, `style` for customization
-- `ariaLabel`, `testId` for accessibility/testing
-- `visible`, `speed` for behavior control
+- `ariaLabel` for accessibility, plus standard `data-testid`-style test targeting via a `testId` prop on individual components
+- `visible`, `speed`, `reverse` for behavior control
+- `respectMotionPreference`, `delay`, `minDuration`, `transition` for loading UX
 
 ### Build Configuration
 
@@ -183,11 +200,11 @@ The library uses **Vite in library mode** with specific optimizations:
 
 ### Styling System
 
-- **Tailwind CSS** for utility classes (users must have Tailwind installed)
-- **CSS animations** in `src/styles/animations.css` using hardware-accelerated transforms
-- **Global styles** imported via `src/styles/index.css` (auto-imported by root index)
-- Components use `cn()` utility (from `src/utils/classNames.ts`) to merge class names using `clsx`
-- CSS variables for theming (e.g., `--loader-primary`, `--skeleton-base`)
+- **No Tailwind CSS** - since v2.0.0 the library ships plain, hand-authored CSS; consumers need no Tailwind setup or content-path configuration
+- CSS lives in `src/styles/`: `animations.css` (hardware-accelerated keyframe animations), `components.css`, `utilities.css`, and `index.css` (aggregator, auto-imported by root `src/index.ts`)
+- Consumers must import `'premium-react-loaders/styles'` once in their app entry
+- Components use the local `cn()` utility (`src/utils/classNames.ts`) to merge class names — a small dependency-free reimplementation, not `clsx`
+- CSS variables drive theming (e.g. `--loader-primary`, `--skeleton-base`), and `prefers-reduced-motion` is respected via `useReducedMotion`/`respectMotionPreference`
 
 ### Storybook Configuration
 
@@ -197,17 +214,18 @@ Stories are in the `stories/` directory (separate from `src/`), organized by com
 
 ### Component Patterns
 
-1. **All components are functional components** using TypeScript
+1. **All components are functional components** using TypeScript, most wrapped in `forwardRef`
 2. **Props destructuring** with default values where appropriate
 3. **Conditional rendering** based on `visible` prop
 4. **CSS-only animations** - no JavaScript animation loops for performance
 5. **Accessibility**: ARIA labels and semantic HTML
 
-### Utilities
+### Utilities (`src/utils/`)
 
-- `cn()` - Class name merger using `clsx` (no `tailwind-merge` to keep bundle small)
-- `getAnimationDuration()` - Converts speed prop to milliseconds
-- `normalizeSize()` - Converts size prop to CSS values
+- `classNames.ts` - `cn()`, a dependency-free class name merger
+- `colors.ts` - `getAnimationDuration()` (converts `speed` prop to ms) and `normalizeSize()` (converts `size` prop to CSS values), plus `getEffectiveDuration`
+- `hooks.ts` - shared internal hooks like `useReducedMotion` and `useLoaderVisibility` (delay/minDuration handling)
+- `accessibility.ts` - accessibility helpers
 
 ### Testing IDs
 
@@ -215,12 +233,11 @@ Components support a `testId` prop for test targeting. When provided, it's appli
 
 ## Important Constraints
 
-1. **Peer dependencies**: React 18+/19+ and Tailwind CSS 3.4+ are required but not bundled
-2. **No runtime dependencies**: Only `clsx` is used internally
+1. **Peer dependencies**: only React 18+/19+ (`react`, `react-dom`) are required — no Tailwind CSS
+2. **Zero runtime dependencies**: the library bundles no third-party runtime code
 3. **Tree-shakeable**: Users can import individual components without bundling unused code
 4. **TypeScript strict mode**: All code must pass strict type checking
 5. **CSS must be imported**: Users must import `'premium-react-loaders/styles'` in their app
-6. **Tailwind content path**: Users must add library path to their Tailwind config content array
 
 ## Firebase Deployment
 
@@ -251,11 +268,11 @@ See `.github/workflows/README.md` for detailed setup instructions.
 
 ## Demo App Architecture
 
-The `demo/` directory contains a standalone React + Vite application that showcases all 40 library components:
+The `demo/` directory contains a standalone React + Vite application (its own npm project, its own dependencies) that showcases all library components. Unlike the library itself, **the demo app does use Tailwind CSS and clsx** for its own UI — this is isolated to `demo/` and does not affect the library's Tailwind-free status.
 
 **Key Features**:
 - Interactive playground with live prop controls (similar to Storybook)
-- Component gallery with all 40 components
+- Component gallery with all components
 - Documentation pages
 - Code generation with copy-to-clipboard
 - Background theme switcher (light/dark/gray)
@@ -264,7 +281,7 @@ The `demo/` directory contains a standalone React + Vite application that showca
 - React 19 + TypeScript
 - Vite for build tooling
 - React Router for navigation
-- Tailwind CSS for styling
+- Tailwind CSS for the demo's own styling
 - prism-react-renderer for syntax highlighting
 
 **Structure**:
@@ -273,8 +290,10 @@ The `demo/` directory contains a standalone React + Vite application that showca
 - `src/data/` - Component metadata and examples
 - `src/hooks/` - React hooks (useTheme, useClipboard, useLocalStorage)
 - `src/utils/` - Utility functions (code generation, formatters)
+- `src/contexts/` - Demo-local React context
+- `scripts/generate-sitemap.ts` / `scripts/generate-assets.js` - run as part of `demo`'s build (`prebuild`) and asset generation
 
-**Component Metadata**: All 40 components are defined in `demo/src/data/components.ts` with:
+**Component Metadata**: Components are defined in `demo/src/data/components.ts` with:
 - Default props
 - Prop definitions with control types (range, color, select, boolean, text)
 - Usage examples

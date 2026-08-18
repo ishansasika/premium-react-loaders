@@ -57,3 +57,6 @@ export * from './particle';
 
 // Neon components
 export * from './neon';
+
+// Chart components
+export * from './chart';
