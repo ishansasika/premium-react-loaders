@@ -1000,3 +1000,15 @@
 .animate-particle-field-float {
   animation: particle-field-float var(--animation-duration-normal, 3s) ease-in-out infinite;
 }
+
+/* ============================================================ */
+/* CHART SKELETON ANIMATIONS (v4.2.0)                            */
+/* ============================================================ */
+
+@keyframes chart-line-flow {
+  to { stroke-dashoffset: -24; }
+}
+
+.animate-chart-line {
+  animation: chart-line-flow var(--animation-duration-normal, 1.2s) linear infinite;
+}
