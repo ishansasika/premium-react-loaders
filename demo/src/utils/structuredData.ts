@@ -33,7 +33,7 @@ export const websiteSchema: StructuredData = {
   name: 'Premium React Loaders',
   url: BASE_URL,
   description:
-    '65+ production-ready loading components for React with TypeScript. Zero dependencies.',
+    '70+ production-ready loading components for React with TypeScript. Zero dependencies.',
   author: {
     '@type': 'Person',
     name: 'Ishan Karunaratne',
@@ -54,7 +54,7 @@ export const softwareApplicationSchema: StructuredData = {
     priceCurrency: 'USD',
   },
   description:
-    '65+ production-ready loading components for React including skeleton screens, spinners, progress bars, neon loaders, particle effects, 3D animations and more. TypeScript support, zero dependencies.',
+    '70+ production-ready loading components for React including skeleton screens, spinners, progress bars, neon loaders, particle effects, 3D animations and more. TypeScript support, zero dependencies.',
   url: BASE_URL,
   downloadUrl: 'https://www.npmjs.com/package/premium-react-loaders',
   softwareVersion: '4.1.1',
