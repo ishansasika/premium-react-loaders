@@ -1,6 +1,6 @@
 # Premium React Loaders
 
-A comprehensive collection of **65+ premium, production-ready loading components** for React applications. Built with TypeScript and custom CSS for maximum flexibility and zero configuration.
+A comprehensive collection of **70+ premium, production-ready loading components** for React applications. Built with TypeScript and custom CSS for maximum flexibility and zero configuration.
 
 [![npm version](https://img.shields.io/npm/v/premium-react-loaders.svg)](https://www.npmjs.com/package/premium-react-loaders)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -11,13 +11,14 @@ A comprehensive collection of **65+ premium, production-ready loading components
 
 📚 **[Storybook Documentation](https://docs.premium-react-loaders.ishansasika.dev/)** - Detailed component documentation and examples
 
-See all 65+ components in action with interactive examples and customization options.
+See all 70+ components in action with interactive examples and customization options.
 
 ## Features
 
-- **65+ Premium Components** across 20 categories (Skeleton, Spinner, Progress, Pulse, Overlay, Button, Status, Transition, Shimmer, Orbit, Bounce, Infinity, Text, 3D, Smart, Morph, Gradient, Particle, Neon, Accessibility)
+- **70+ Premium Components** across 21 categories (Skeleton, Spinner, Progress, Pulse, Overlay, Button, Status, Transition, Shimmer, Orbit, Bounce, Infinity, Text, 3D, Smart, Morph, Gradient, Particle, Neon, Chart, Accessibility)
 - **6 Powerful Hooks** - useLoader, useEnhancedLoader, useLoadingOrchestrator, useLoadingAnalytics, useSmartLoader, useTheme ✨ *New in v3.1.0*
-- **Neon Loaders** - Glowing neon-style pulse, spinner, and text for dark UIs ✨ *New in v4.1.0*
+- **Chart Skeletons** - Bar, line, and donut chart placeholders for dashboards ✨ *New in v4.2.0*
+- **Neon Loaders** - Glowing neon-style pulse, spinner, text, progress, and dots for dark UIs ✨ *New in v4.1.0*
 - **Extended Status Set** - WarningIndicator and InfoIndicator complete the status family ✨ *New in v4.1.0*
 - **Particle Enhancements** - ParticleTrail and ParticleField ambient effects ✨ *New in v4.1.0*
 - **Morph Loaders** - Fluid organic blob, liquid fill, and wave circle animations ✨ *New in v4.0.0*
@@ -265,13 +266,15 @@ Fluid, organic animation components based on CSS morphing:
 - **LiquidFill** - Circular container that fills with an animated liquid level (determinate and indeterminate modes)
 - **WaveCircle** - Concentric circular ripples emanating outward from the center like a sonar pulse
 
-### Gradient Components (3 components) ✨ *New in v4.0.0*
+### Gradient Components (5 components) ✨ *New in v4.0.0 / Extended in v4.2.0*
 
 Visually striking spinners and progress indicators using animated CSS gradients:
 
 - **GradientSpinner** - Circular spinner filled with a sweeping conic gradient that rotates continuously
 - **GradientRing** - Ring with a moving gradient that travels around its circumference
 - **GradientBar** - Horizontal progress bar with a flowing gradient shimmer animation
+- **GradientText** - Loading text filled with a flowing animated gradient via `background-clip: text` ✨ *New in v4.2.0*
+- **GradientDots** - Bouncing dots sharing an animated two-color gradient fill; configurable `dotCount`, `dotSize` ✨ *New in v4.2.0*
 
 ### Particle Components (4 components) ✨ *New in v4.0.0 / Extended in v4.1.0*
 
@@ -282,13 +285,23 @@ Particle-based loaders using CSS-positioned elements for dynamic visual effects:
 - **ParticleTrail** - Particles trailing along a circular orbit with opacity and size fade; configurable `count` (3–10) ✨ *New in v4.1.0*
 - **ParticleField** - Ambient field of floating, drifting particles rising through a bounded area; configurable `width`, `height`, `count` (5–30) ✨ *New in v4.1.0*
 
-### Neon Components (3 components) ✨ *New in v4.1.0*
+### Neon Components (5 components) ✨ *New in v4.1.0 / Extended in v4.2.0*
 
 Glowing neon-style loaders using CSS box-shadow and text-shadow for dark UIs and gaming themes:
 
 - **NeonPulse** - Pulsing glowing ring with configurable `glowIntensity` (`low` / `medium` / `high`)
 - **NeonSpinner** - Spinning arc with a neon glow trail; customizable `thickness` and `color`
 - **NeonText** - Loading text label that pulses with a neon glow; configurable `text`, `color`, `fontSize`
+- **NeonProgress** - Progress bar with a glowing neon fill; determinate/indeterminate with an `onComplete` callback ✨ *New in v4.2.0*
+- **NeonDots** - Bouncing dots with a glowing neon box-shadow; configurable `dotCount`, `dotSize`, `color` ✨ *New in v4.2.0*
+
+### Chart Components (3 components) ✨ *New in v4.2.0*
+
+Skeleton placeholders shaped like common chart types, for dashboards that load data asynchronously:
+
+- **BarChartSkeleton** - Bar chart placeholder with a deterministic wave-height pattern; configurable `bars` (3–12), optional `showAxis` baseline
+- **LineChartSkeleton** - Line/trend chart placeholder with a flowing dashed path; configurable `points` (3–10), optional `showGrid`
+- **DonutChartSkeleton** - Donut/pie chart placeholder built from alternating conic-gradient slices; configurable `segments` (2–6), optional `showLabel`
 
 ## Hooks
 

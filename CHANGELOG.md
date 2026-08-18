@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.2.0] - 2026-08-18
+
+### Added
+
+#### Chart Category (3 new components) — new category
+- **BarChartSkeleton** — Placeholder for a bar chart with a deterministic wave-height pattern; configurable `bars` (3–12), `height`, `gap`, optional `showAxis` baseline
+- **LineChartSkeleton** — Placeholder for a line/trend chart with a flowing dashed path; configurable `points` (3–10), optional `showGrid` background lines
+- **DonutChartSkeleton** — Placeholder for a donut/pie chart built from alternating conic-gradient slices; configurable `segments` (2–6), optional `showLabel` center placeholder
+
+#### Gradient Enhancements (2 new components)
+- **GradientText** — Loading text filled with a flowing animated gradient via `background-clip: text`; configurable `text`, `color`, `secondaryColor`, `fontSize`
+- **GradientDots** — Bouncing dots sharing an animated two-color gradient fill; configurable `dotCount`, `dotSize`
+
+#### Neon Enhancements (2 new components)
+- **NeonProgress** — Progress bar with a glowing neon fill; supports determinate and indeterminate modes plus an `onComplete` callback, matching `GradientBar`/`ProgressBar`
+- **NeonDots** — Bouncing dots with a glowing neon box-shadow; configurable `dotCount`, `dotSize`, `color`
+
 ## [4.1.1] - 2026-06-27
 
 ### Fixed

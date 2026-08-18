@@ -88,6 +88,16 @@ import {
   // Particle (new)
   ParticleTrail,
   ParticleField,
+  // Chart (new)
+  BarChartSkeleton,
+  LineChartSkeleton,
+  DonutChartSkeleton,
+  // Gradient (new)
+  GradientText,
+  GradientDots,
+  // Neon (new)
+  NeonProgress,
+  NeonDots,
 } from '@lib/components';
 
 export const COMPONENTS: ComponentMetadata[] = [
@@ -4438,6 +4448,148 @@ export const COMPONENTS: ComponentMetadata[] = [
     ],
     importPath: "import { ParticleField } from 'premium-react-loaders';",
   },
+  // ==================== GRADIENT EXTENSIONS ====================
+  {
+    id: 'gradient-text',
+    name: 'GradientText',
+    category: 'gradient',
+    component: GradientText,
+    description: 'Loading text filled with a flowing animated gradient',
+    defaultProps: { text: 'LOADING', color: '#3b82f6', secondaryColor: '#ec4899', fontSize: 18 },
+    propDefinitions: [
+      { name: 'text', type: 'string', control: { type: 'text' }, description: 'Display text', defaultValue: 'LOADING' },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Gradient start color', defaultValue: '#3b82f6' },
+      { name: 'secondaryColor', type: 'string', control: { type: 'color' }, description: 'Gradient end color', defaultValue: '#ec4899' },
+      { name: 'fontSize', type: 'number', control: { type: 'range', min: 10, max: 48, step: 2 }, description: 'Font size in px', defaultValue: 18 },
+      { name: 'speed', type: 'string', control: { type: 'select', options: ['slow', 'normal', 'fast'] }, description: 'Flow speed', defaultValue: 'normal' },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'Warm large', props: { text: 'PROCESSING', color: '#f59e0b', secondaryColor: '#ef4444', fontSize: 28 } },
+    ],
+    importPath: "import { GradientText } from 'premium-react-loaders';",
+  },
+  {
+    id: 'gradient-dots',
+    name: 'GradientDots',
+    category: 'gradient',
+    component: GradientDots,
+    description: 'Bouncing dots, each filled with a shared animated gradient',
+    defaultProps: { dotCount: 3, dotSize: 12, color: '#3b82f6', secondaryColor: '#ec4899' },
+    propDefinitions: [
+      { name: 'dotCount', type: 'number', control: { type: 'range', min: 2, max: 8, step: 1 }, description: 'Number of dots', defaultValue: 3 },
+      { name: 'dotSize', type: 'number', control: { type: 'range', min: 4, max: 24, step: 1 }, description: 'Dot diameter in px', defaultValue: 12 },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Gradient start color', defaultValue: '#3b82f6' },
+      { name: 'secondaryColor', type: 'string', control: { type: 'color' }, description: 'Gradient end color', defaultValue: '#ec4899' },
+      { name: 'speed', type: 'string', control: { type: 'select', options: ['slow', 'normal', 'fast'] }, description: 'Bounce speed', defaultValue: 'normal' },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'Five dots', props: { dotCount: 5, dotSize: 14, color: '#f59e0b', secondaryColor: '#ef4444' } },
+    ],
+    importPath: "import { GradientDots } from 'premium-react-loaders';",
+  },
+  // ==================== NEON EXTENSIONS ====================
+  {
+    id: 'neon-progress',
+    name: 'NeonProgress',
+    category: 'neon',
+    component: NeonProgress,
+    description: 'Progress bar with a glowing neon fill; supports determinate and indeterminate modes',
+    defaultProps: { value: 65, height: 8, color: '#3b82f6' },
+    propDefinitions: [
+      { name: 'value', type: 'number', control: { type: 'range', min: 0, max: 100, step: 1 }, description: 'Progress (0–100); omit for indeterminate', defaultValue: 65 },
+      { name: 'height', type: 'number', control: { type: 'range', min: 4, max: 24, step: 1 }, description: 'Bar height in px', defaultValue: 8 },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Neon glow color', defaultValue: '#3b82f6' },
+      { name: 'speed', type: 'string', control: { type: 'select', options: ['slow', 'normal', 'fast'] }, description: 'Animation speed', defaultValue: 'normal' },
+    ],
+    examples: [
+      { name: 'Determinate', props: { value: 65 } },
+      { name: 'Indeterminate', props: {} },
+      { name: 'Cyan', props: { value: 80, color: '#22d3ee', height: 12 } },
+    ],
+    importPath: "import { NeonProgress } from 'premium-react-loaders';",
+  },
+  {
+    id: 'neon-dots',
+    name: 'NeonDots',
+    category: 'neon',
+    component: NeonDots,
+    description: 'Bouncing dots with a glowing neon box-shadow',
+    defaultProps: { dotCount: 3, dotSize: 12, color: '#22d3ee' },
+    propDefinitions: [
+      { name: 'dotCount', type: 'number', control: { type: 'range', min: 2, max: 8, step: 1 }, description: 'Number of dots', defaultValue: 3 },
+      { name: 'dotSize', type: 'number', control: { type: 'range', min: 4, max: 24, step: 1 }, description: 'Dot diameter in px', defaultValue: 12 },
+      { name: 'color', type: 'string', control: { type: 'color' }, description: 'Neon glow color', defaultValue: '#22d3ee' },
+      { name: 'speed', type: 'string', control: { type: 'select', options: ['slow', 'normal', 'fast'] }, description: 'Bounce speed', defaultValue: 'normal' },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'Purple, four dots', props: { dotCount: 4, color: '#a855f7' } },
+    ],
+    importPath: "import { NeonDots } from 'premium-react-loaders';",
+  },
+  // ==================== CHART COMPONENTS ====================
+  {
+    id: 'bar-chart-skeleton',
+    name: 'BarChartSkeleton',
+    category: 'chart',
+    component: BarChartSkeleton,
+    description: 'Placeholder for a bar chart while data loads',
+    defaultProps: { bars: 6, height: 120, gap: 8, showAxis: true },
+    propDefinitions: [
+      { name: 'bars', type: 'number', control: { type: 'range', min: 3, max: 12, step: 1 }, description: 'Number of bars', defaultValue: 6 },
+      { name: 'height', type: 'number', control: { type: 'range', min: 60, max: 240, step: 10 }, description: 'Chart height in px', defaultValue: 120 },
+      { name: 'gap', type: 'number', control: { type: 'range', min: 0, max: 24, step: 2 }, description: 'Gap between bars in px', defaultValue: 8 },
+      { name: 'showAxis', type: 'boolean', control: { type: 'boolean' }, description: 'Show baseline axis', defaultValue: true },
+      { name: 'animate', type: 'boolean', control: { type: 'boolean' }, description: 'Enable shimmer animation', defaultValue: true },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'Few bars, no axis', props: { bars: 4, showAxis: false } },
+    ],
+    importPath: "import { BarChartSkeleton } from 'premium-react-loaders';",
+  },
+  {
+    id: 'line-chart-skeleton',
+    name: 'LineChartSkeleton',
+    category: 'chart',
+    component: LineChartSkeleton,
+    description: 'Placeholder for a line/trend chart while data loads',
+    defaultProps: { width: 240, height: 120, points: 6, showGrid: true },
+    propDefinitions: [
+      { name: 'width', type: 'number', control: { type: 'range', min: 120, max: 400, step: 20 }, description: 'Chart width in px', defaultValue: 240 },
+      { name: 'height', type: 'number', control: { type: 'range', min: 60, max: 240, step: 10 }, description: 'Chart height in px', defaultValue: 120 },
+      { name: 'points', type: 'number', control: { type: 'range', min: 3, max: 10, step: 1 }, description: 'Number of data points', defaultValue: 6 },
+      { name: 'showGrid', type: 'boolean', control: { type: 'boolean' }, description: 'Show background grid lines', defaultValue: true },
+      { name: 'animate', type: 'boolean', control: { type: 'boolean' }, description: 'Enable flowing dash animation', defaultValue: true },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'No grid, dense', props: { showGrid: false, points: 9 } },
+    ],
+    importPath: "import { LineChartSkeleton } from 'premium-react-loaders';",
+  },
+  {
+    id: 'donut-chart-skeleton',
+    name: 'DonutChartSkeleton',
+    category: 'chart',
+    component: DonutChartSkeleton,
+    description: 'Placeholder for a donut/pie chart while data loads',
+    defaultProps: { size: 120, thickness: 20, segments: 4, showLabel: true },
+    propDefinitions: [
+      { name: 'size', type: 'number', control: { type: 'range', min: 60, max: 240, step: 8 }, description: 'Diameter in px', defaultValue: 120 },
+      { name: 'thickness', type: 'number', control: { type: 'range', min: 8, max: 40, step: 2 }, description: 'Ring thickness in px', defaultValue: 20 },
+      { name: 'segments', type: 'number', control: { type: 'range', min: 2, max: 6, step: 1 }, description: 'Number of pie slices', defaultValue: 4 },
+      { name: 'showLabel', type: 'boolean', control: { type: 'boolean' }, description: 'Show placeholder label in the hole', defaultValue: true },
+      { name: 'animate', type: 'boolean', control: { type: 'boolean' }, description: 'Enable shimmer animation', defaultValue: true },
+    ],
+    examples: [
+      { name: 'Default', props: {} },
+      { name: 'Three slices, no label', props: { segments: 3, showLabel: false } },
+    ],
+    importPath: "import { DonutChartSkeleton } from 'premium-react-loaders';",
+  },
 ];
 
 // Helper functions
@@ -4470,4 +4622,5 @@ export const CATEGORIES = [
   { id: 'gradient', name: 'Gradient', description: 'Animated gradient spinners and bars' },
   { id: 'particle', name: 'Particle', description: 'Particle-based loading animations' },
   { id: 'neon', name: 'Neon', description: 'Glowing neon-style loaders' },
+  { id: 'chart', name: 'Chart', description: 'Chart and dashboard skeleton placeholders' },
 ];
