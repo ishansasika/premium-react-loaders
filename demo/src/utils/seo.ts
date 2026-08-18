@@ -20,9 +20,9 @@ export const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`;
 
 // Homepage SEO
 export const homeSEO: SEOMetadata = {
-  title: 'Premium React Loaders - 65+ Production-Ready Loading Components',
+  title: 'Premium React Loaders - 70+ Production-Ready Loading Components',
   description:
-    'Premium React Loaders provides 65+ beautiful, customizable loading components for React. Includes skeleton screens, spinners, progress bars, neon loaders, particle effects, 3D animations and more. Zero dependencies, TypeScript support.',
+    'Premium React Loaders provides 70+ beautiful, customizable loading components for React. Includes skeleton screens, spinners, progress bars, neon loaders, particle effects, 3D animations and more. Zero dependencies, TypeScript support.',
   keywords: [
     'react loaders',
     'react loading components',
@@ -46,7 +46,7 @@ export const homeSEO: SEOMetadata = {
 export const gallerySEO: SEOMetadata = {
   title: 'Component Gallery - Premium React Loaders',
   description:
-    'Browse all 65+ React loading components: skeleton screens, spinners, progress bars, neon loaders, particle effects, 3D animations and more. Interactive examples with live previews and customization options.',
+    'Browse all 70+ React loading components: skeleton screens, spinners, progress bars, neon loaders, particle effects, 3D animations and more. Interactive examples with live previews and customization options.',
   keywords: [
     'react component gallery',
     'loading component examples',
@@ -64,7 +64,7 @@ export const gallerySEO: SEOMetadata = {
 export const docsSEO: SEOMetadata = {
   title: 'Documentation - Premium React Loaders',
   description:
-    'Complete documentation for Premium React Loaders. Installation guide, setup instructions, API reference, and usage examples for all 65+ components. Zero dependencies, TypeScript support.',
+    'Complete documentation for Premium React Loaders. Installation guide, setup instructions, API reference, and usage examples for all 70+ components. Zero dependencies, TypeScript support.',
   keywords: [
     'react loaders documentation',
     'premium react loaders docs',
@@ -82,7 +82,7 @@ export const docsSEO: SEOMetadata = {
 export const playgroundHubSEO: SEOMetadata = {
   title: 'Interactive Playground - Premium React Loaders',
   description:
-    'Try all Premium React Loaders components interactively. Customize props, see live previews, and copy code snippets instantly. 65+ production-ready loading components to explore.',
+    'Try all Premium React Loaders components interactively. Customize props, see live previews, and copy code snippets instantly. 70+ production-ready loading components to explore.',
   keywords: [
     'react loader playground',
     'interactive component demo',
