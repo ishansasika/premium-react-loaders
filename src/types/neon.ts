@@ -26,3 +26,25 @@ export interface NeonTextProps extends BaseLoaderProps {
   /** Font size in px (default: 18) */
   fontSize?: number;
 }
+
+export interface NeonProgressProps extends BaseLoaderProps {
+  /** Progress 0–100; omit for indeterminate */
+  value?: number;
+  /** Bar width (CSS value or number for px) */
+  width?: number | string;
+  /** Bar height in px (default: 8) */
+  height?: number;
+  /** Neon glow color (default: '#3b82f6') */
+  color?: string;
+  /** Fires when value reaches 100 */
+  onComplete?: () => void;
+}
+
+export interface NeonDotsProps extends BaseLoaderProps {
+  /** Number of dots (default: 3) */
+  dotCount?: number;
+  /** Dot diameter in px (default: 12) */
+  dotSize?: number;
+  /** Neon glow color (default: '#3b82f6') */
+  color?: string;
+}

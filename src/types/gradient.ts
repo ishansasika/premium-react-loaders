@@ -39,3 +39,25 @@ export interface GradientBarProps extends BaseLoaderProps {
   /** Fires when value reaches 100 */
   onComplete?: () => void;
 }
+
+export interface GradientTextProps extends BaseLoaderProps {
+  /** Display text (default: 'LOADING') */
+  text?: string;
+  /** Gradient start color */
+  color?: string;
+  /** Gradient end color */
+  secondaryColor?: string;
+  /** Font size in px (default: 18) */
+  fontSize?: number;
+}
+
+export interface GradientDotsProps extends BaseLoaderProps {
+  /** Number of dots (default: 3) */
+  dotCount?: number;
+  /** Dot diameter in px (default: 12) */
+  dotSize?: number;
+  /** Gradient start color */
+  color?: string;
+  /** Gradient end color */
+  secondaryColor?: string;
+}
